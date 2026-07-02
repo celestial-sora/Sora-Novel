@@ -1,4 +1,4 @@
-﻿// พี่จู uwufufu's Rooftop - Core Visual Novel Game Logic
+// พี่จู uwufufu ในต่างโลก - Core Visual Novel Game Logic
 
 // Constants & Configurations
 // API key is stored securely on the backend — never exposed to the browser
@@ -6,15 +6,15 @@ const API_URL = "/api/generate";
 
 // Curated Background Image URLs (High-res anime style fallbacks/direct images)
 const BACKGROUNDS = {
-    "school_rooftop": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1920&auto=format&fit=crop",
-    "school_rooftop_sunset": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1920&auto=format&fit=crop",
-    "school_rooftop_empty": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1920&auto=format&fit=crop"
+    "lugnica_capital": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1920&auto=format&fit=crop",
+    "lugnica_sunset": "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=1920&auto=format&fit=crop",
+    "lugnica_empty": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1920&auto=format&fit=crop"
 };
 
 // Sprites mapping
 const SPRITES = {
-    "happy": "assets/antigravity.webp",
-    "neutral": "assets/antigravity.webp"
+    "happy": "assets/yuki_happy.png",
+    "neutral": "assets/yuki_neutral.png"
 };
 
 // Game State Object
@@ -808,14 +808,14 @@ Here is the list of target static nodes in the main storyline:
 - "node_friendly" (theme: player being friendly/supportive, พี่จู uwufufu is happy to talk)
 - "node_cold" (theme: player being cold/mean, พี่จู uwufufu feels unwanted/blames himself and gets ready to leave)
 - "node_curious" (theme: player asking what he is doing, พี่จู uwufufu explains his struggles/situation)
-- "node_reason" (theme: talking about the rooftop view or search for another way forward)
+- "node_reason" (theme: talking about the world of Lugnica or search for another way forward)
 - "node_apologize" (theme: player apologizing for being rude)
-- "node_sit" (theme: player and พี่จู uwufufu sitting together to talk, climax before ending)
+- "node_sit" (theme: player and พี่จู uwufufu sitting together in Lugnica, climax before ending)
 - "ending_neutral" (theme: casual parting)
-- "ending_bad" (theme: พี่จู uwufufu leaving, player left alone on rooftop)
+- "ending_bad" (theme: พี่จู uwufufu leaving, player left alone in Lugnica)
 
 In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-พี่จู uwufufu's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
+พี่จู uwufufu's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มาคุยเคียงข้างกันในต่างโลกตรงนี้หน่อยได้ไหม?" to guide towards "node_sit").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
@@ -933,14 +933,14 @@ Here is the list of target static nodes in the main storyline:
 - "node_friendly" (theme: player being friendly/supportive, พี่จู uwufufu is happy to talk)
 - "node_cold" (theme: player being cold/mean, พี่จู uwufufu feels unwanted/blames himself and gets ready to leave)
 - "node_curious" (theme: player asking what he is doing, พี่จู uwufufu explains his struggles/situation)
-- "node_reason" (theme: talking about the rooftop view or search for another way forward)
+- "node_reason" (theme: talking about the world of Lugnica or search for another way forward)
 - "node_apologize" (theme: player apologizing for being rude)
-- "node_sit" (theme: player and พี่จู uwufufu sitting together to talk, climax before ending)
+- "node_sit" (theme: player and พี่จู uwufufu sitting together in Lugnica, climax before ending)
 - "ending_neutral" (theme: casual parting)
-- "ending_bad" (theme: พี่จู uwufufu leaving, player left alone on rooftop)
+- "ending_bad" (theme: พี่จู uwufufu leaving, player left alone in Lugnica)
 
 In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-พี่จู uwufufu's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
+พี่จู uwufufu's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มาคุยเคียงข้างกันในต่างโลกตรงนี้หน่อยได้ไหม?" to guide towards "node_sit").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
