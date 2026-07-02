@@ -484,13 +484,13 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(7, 5, 12, 0.1); /* Very subtle tint to highlight choices but keep background fully visible */
+    background: rgba(7, 5, 12, 0.15); /* Very subtle tint to highlight choices but keep background fully visible */
     z-index: 8;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding-bottom: 240px; /* Push choices up so the bottom dialogue box is completely visible */
+    padding-bottom: 210px; /* Push choices up so they sit just above the dialogue box */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
@@ -1099,24 +1099,187 @@ body, html {
     }
     
     .chat-history-container {
-        height: 60vh;
+        height: 65vh;
     }
 
     .sprite-container {
-        height: 60vh;
+        height: 65vh;
     }
 
     .dialogue-box-container {
         width: 95%;
         margin-bottom: 15px;
+        padding: 1.2rem;
     }
 
     .dialogue-text {
         font-size: 1.1rem;
+        line-height: 1.5;
     }
 
     .game-title {
         font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Make control panel horizontal-scrollable on mobile to fit nicely */
+    .controls-panel {
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        padding: 5px 0;
+        gap: 0.4rem;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .controls-panel::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .ctrl-btn {
+        flex: 0 0 auto;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Resize Affection HUD for mobile screens */
+    .affection-widget {
+        top: 12px;
+        right: 12px;
+        padding: 0.4rem 0.8rem;
+        gap: 0.5rem;
+    }
+    
+    .heart-icon-container {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .heart-icon {
+        font-size: 0.9rem;
+    }
+    
+    .affection-info {
+        width: 90px;
+    }
+    
+    .affection-label {
+        font-size: 0.65rem;
+    }
+    
+    .affection-value {
+        font-size: 0.7rem;
+    }
+    
+    /* Optimize dual-sprites on mobile phones */
+    .sprite-container {
+        width: 100%;
+        height: 58vh;
+    }
+    
+    .sprite {
+        height: 80%;
+        max-width: 48%;
+    }
+    
+    /* Chat history panel optimization */
+    .chat-history-container {
+        height: 70vh;
+    }
+    
+    .chat-messages {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+    
+    .message-bubble {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .chat-input-panel {
+        padding: 0.6rem;
+    }
+    
+    #sandbox-input {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .sandbox-send-btn {
+        padding: 0 1rem;
+    }
+}
+
+/* Height-based media queries to prevent overlay overlapping on mobile landscape */
+@media (max-height: 800px) {
+    .choices-overlay {
+        padding-bottom: 185px;
+    }
+}
+
+@media (max-height: 650px) {
+    .choices-overlay {
+        padding-bottom: 160px;
+    }
+    
+    .sprite-container {
+        height: 60vh;
+    }
+    
+    .choices-header {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .choices-list {
+        gap: 0.6rem;
+    }
+    
+    .choice-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-height: 500px) {
+    .choices-overlay {
+        padding-bottom: 140px;
+    }
+    
+    .sprite-container {
+        height: 50vh;
+    }
+    
+    .choices-header {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .choices-list {
+        gap: 0.4rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .choice-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .custom-response-section {
+        gap: 0.5rem;
+    }
+    
+    .custom-input-group {
+        padding: 0.2rem;
+    }
+    
+    #custom-reply-input {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
     }
 }
 
