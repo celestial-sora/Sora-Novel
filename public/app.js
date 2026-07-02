@@ -6,9 +6,10 @@ const API_URL = "/api/generate";
 
 // Curated Background Image URLs (High-res anime style fallbacks/direct images)
 const BACKGROUNDS = {
-    "lugnica_capital": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1920&auto=format&fit=crop",
-    "lugnica_sunset": "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=1920&auto=format&fit=crop",
-    "lugnica_empty": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1920&auto=format&fit=crop"
+    "lugnica_capital": "assets/capital.webp",
+    "lugnica_yard": "assets/yard.webp",
+    "lugnica_living_room": "assets/living_room.webp",
+    "lugnica_empty": "assets/capital.webp"
 };
 
 // Sprites mapping
@@ -389,7 +390,7 @@ function playNode(nodeId) {
     }
 
     // If it's an empty background scene, hide character
-    if (node.background === "school_rooftop_empty" || node.isEnding && nodeId === "ending_bad") {
+    if (node.background === "lugnica_empty" || node.isEnding && nodeId === "ending_bad") {
         spriteImg.style.display = "none";
     } else {
         spriteImg.style.display = "block";
@@ -521,7 +522,7 @@ function scheduleAutoPlayAdvance() {
 function changeBackground(bgName) {
     const bgLayer = document.getElementById("bg-layer");
     const currentStyle = bgLayer.style.backgroundImage;
-    const nextUrl = BACKGROUNDS[bgName] || BACKGROUNDS["school_rooftop"];
+    const nextUrl = BACKGROUNDS[bgName] || BACKGROUNDS["lugnica_capital"];
     
     if (currentStyle !== `url("${nextUrl}")`) {
         playSound("whoosh");
@@ -851,7 +852,7 @@ JSON Schema:
         gameState.dynamicNodes[newNodeId] = {
             speaker: "พี่จู uwufufu",
             text: nextNode.text,
-            background: currentNode.background || "school_rooftop",
+            background: currentNode.background || "lugnica_capital",
             expression: nextNode.expression,
             choices: nextNode.choices,
             affectionChange: nextNode.affectionChange
@@ -976,7 +977,7 @@ JSON Schema:
         gameState.dynamicNodes[newNodeId] = {
             speaker: "พี่จู uwufufu",
             text: nextNode.text,
-            background: currentNode.background || "school_rooftop",
+            background: currentNode.background || "lugnica_capital",
             expression: nextNode.expression,
             choices: nextNode.choices,
             affectionChange: nextNode.affectionChange
