@@ -14,8 +14,8 @@ const BACKGROUNDS = {
 
 // Sprites mapping
 const SPRITES = {
-    "happy": "assets/yuki_happy.png",
-    "neutral": "assets/yuki_neutral.png"
+    "happy": "assets/subaru_larp.webp",
+    "neutral": "assets/subaru_normal.webp"
 };
 
 // Game State Object
