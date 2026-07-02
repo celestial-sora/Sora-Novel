@@ -30,7 +30,7 @@ const limiter = rateLimit({
 app.use("/api/generate", limiter);
 
 // Serve static frontend files (index.html, app.js, style.css, assets/, etc.)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "public")));
 
 // ── API Proxy Endpoint ──────────────────────────────────────────────────────
 const generateHandler = require("./api/generate");
@@ -38,7 +38,7 @@ app.post("/api/generate", generateHandler);
 
 // ── Fallback: serve index.html for any unknown route ────────────────────────
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // ── Start ───────────────────────────────────────────────────────────────────
