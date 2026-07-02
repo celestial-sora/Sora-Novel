@@ -9,7 +9,7 @@ const BACKGROUNDS = {
     "lugnica_capital": "assets/capital.webp",
     "lugnica_yard": "assets/yard.webp",
     "lugnica_living_room": "assets/living_room.webp",
-    "lugnica_empty": "assets/capital.webp"
+    "lugnica_empty": "assets/bad_ending.webp"
 };
 
 // Sprites mapping
