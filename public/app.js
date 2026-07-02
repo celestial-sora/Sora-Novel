@@ -1,4 +1,4 @@
-// Oracle Chan's Rooftop - Core Visual Novel Game Logic
+﻿// พี่จู uwufufu's Rooftop - Core Visual Novel Game Logic
 
 // Constants & Configurations
 // API key is stored securely on the backend — never exposed to the browser
@@ -555,7 +555,7 @@ function openLogOverlay() {
             const div = document.createElement("div");
             div.className = "log-item";
             
-            const isOracleChan = item.speaker === "Oracle Chan";
+            const isOracleChan = item.speaker === "พี่จู uwufufu";
             const speakerClass = isOracleChan ? "oracle-chan" : (item.speaker === "Narrator" ? "narrator" : "player");
             
             div.innerHTML = `
@@ -757,7 +757,7 @@ async function submitCustomResponse() {
     document.getElementById("choices-overlay").classList.remove("active");
     
     // Start loader overlay
-    setAILoader(true, "Oracle Chan กำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
+    setAILoader(true, "พี่จู uwufufu กำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
     
     // Log player text
     logDialogue("Player", playerText);
@@ -768,7 +768,7 @@ async function submitCustomResponse() {
     
     // Construct System Instructions and Prompt
     const systemPrompt = `You are a Visual Novel engine.
-You are roleplaying as "Oracle Chan". 
+You are roleplaying as "พี่จู uwufufu". 
 Here is your personality description:
 - You are an ordinary young man thrown into extraordinary situations. You wear your heart on your sleeve and feel emotions intensely. You refuse to abandon people you care about, even when every logical reason says you should.
 - You often act before thinking. Your emotions can swing rapidly between excitement, panic, despair, determination, and relief. You are dramatic, loud when nervous, and surprisingly persuasive when your feelings are genuine.
@@ -799,31 +799,31 @@ ${contextHistory}
 The player just said: "${playerText}"
 
 Task:
-1. Generate Oracle Chan's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
+1. Generate พี่จู uwufufu's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
 2. Evaluate how it affects his feelings (+affection or -affection).
 3. Generate 2-3 new choices for the next step.
 
 CRITICAL INSTRUCTION: You must actively try to guide the story back to the main static storyline.
 Here is the list of target static nodes in the main storyline:
-- "node_friendly" (theme: player being friendly/supportive, Oracle Chan is happy to talk)
-- "node_cold" (theme: player being cold/mean, Oracle Chan feels unwanted/blames himself and gets ready to leave)
-- "node_curious" (theme: player asking what he is doing, Oracle Chan explains his struggles/situation)
+- "node_friendly" (theme: player being friendly/supportive, พี่จู uwufufu is happy to talk)
+- "node_cold" (theme: player being cold/mean, พี่จู uwufufu feels unwanted/blames himself and gets ready to leave)
+- "node_curious" (theme: player asking what he is doing, พี่จู uwufufu explains his struggles/situation)
 - "node_reason" (theme: talking about the rooftop view or search for another way forward)
 - "node_apologize" (theme: player apologizing for being rude)
-- "node_sit" (theme: player and Oracle Chan sitting together to talk, climax before ending)
+- "node_sit" (theme: player and พี่จู uwufufu sitting together to talk, climax before ending)
 - "ending_neutral" (theme: casual parting)
-- "ending_bad" (theme: Oracle Chan leaving, player left alone on rooftop)
+- "ending_bad" (theme: พี่จู uwufufu leaving, player left alone on rooftop)
 
 In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-Oracle Chan's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
+พี่จู uwufufu's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
 JSON Schema:
 {
-  "text": "Oracle Chan's direct response text in Thai.",
+  "text": "พี่จู uwufufu's direct response text in Thai.",
   "expression": "happy" or "neutral" (choose 'happy' if player is friendly/romantic, 'neutral' if cold/mean),
-  "affectionChange": integer from -3 to 3 (rate how much Oracle Chan likes what player said),
+  "affectionChange": integer from -3 to 3 (rate how much พี่จู uwufufu likes what player said),
   "choices": [
     {
       "id": "dynamic_choice_1",
@@ -849,7 +849,7 @@ JSON Schema:
         
         // Save the dynamic node in state
         gameState.dynamicNodes[newNodeId] = {
-            speaker: "Oracle Chan",
+            speaker: "พี่จู uwufufu",
             text: nextNode.text,
             background: currentNode.background || "school_rooftop",
             expression: nextNode.expression,
@@ -882,7 +882,7 @@ async function submitChoiceAsResponse(playerText, affectionChange) {
     document.getElementById("choices-overlay").classList.remove("active");
     
     // Start loader overlay
-    setAILoader(true, "Oracle Chan กำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
+    setAILoader(true, "พี่จู uwufufu กำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
     
     // Log player text
     logDialogue("Player", playerText);
@@ -893,7 +893,7 @@ async function submitChoiceAsResponse(playerText, affectionChange) {
     
     // Construct System Instructions and Prompt
     const systemPrompt = `You are a Visual Novel engine.
-You are roleplaying as "Oracle Chan". 
+You are roleplaying as "พี่จู uwufufu". 
 Here is your personality description:
 - You are an ordinary young man thrown into extraordinary situations. You wear your heart on your sleeve and feel emotions intensely. You refuse to abandon people you care about, even when every logical reason says you should.
 - You often act before thinking. Your emotions can swing rapidly between excitement, panic, despair, determination, and relief. You are dramatic, loud when nervous, and surprisingly persuasive when your feelings are genuine.
@@ -924,31 +924,31 @@ ${contextHistory}
 The player just said: "${playerText}"
 
 Task:
-1. Generate Oracle Chan's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
+1. Generate พี่จู uwufufu's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
 2. Evaluate how it affects his feelings (+affection or -affection).
 3. Generate 2-3 new choices for the next step.
 
 CRITICAL INSTRUCTION: You must actively try to guide the story back to the main static storyline.
 Here is the list of target static nodes in the main storyline:
-- "node_friendly" (theme: player being friendly/supportive, Oracle Chan is happy to talk)
-- "node_cold" (theme: player being cold/mean, Oracle Chan feels unwanted/blames himself and gets ready to leave)
-- "node_curious" (theme: player asking what he is doing, Oracle Chan explains his struggles/situation)
+- "node_friendly" (theme: player being friendly/supportive, พี่จู uwufufu is happy to talk)
+- "node_cold" (theme: player being cold/mean, พี่จู uwufufu feels unwanted/blames himself and gets ready to leave)
+- "node_curious" (theme: player asking what he is doing, พี่จู uwufufu explains his struggles/situation)
 - "node_reason" (theme: talking about the rooftop view or search for another way forward)
 - "node_apologize" (theme: player apologizing for being rude)
-- "node_sit" (theme: player and Oracle Chan sitting together to talk, climax before ending)
+- "node_sit" (theme: player and พี่จู uwufufu sitting together to talk, climax before ending)
 - "ending_neutral" (theme: casual parting)
-- "ending_bad" (theme: Oracle Chan leaving, player left alone on rooftop)
+- "ending_bad" (theme: พี่จู uwufufu leaving, player left alone on rooftop)
 
 In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-Oracle Chan's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
+พี่จู uwufufu's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
 JSON Schema:
 {
-  "text": "Oracle Chan's direct response text in Thai.",
+  "text": "พี่จู uwufufu's direct response text in Thai.",
   "expression": "happy" or "neutral" (choose 'happy' if player is friendly/romantic, 'neutral' if cold/mean),
-  "affectionChange": integer from -3 to 3 (rate how much Oracle Chan likes what player said),
+  "affectionChange": integer from -3 to 3 (rate how much พี่จู uwufufu likes what player said),
   "choices": [
     {
       "id": "dynamic_choice_1",
@@ -974,7 +974,7 @@ JSON Schema:
         
         // Save the dynamic node in state
         gameState.dynamicNodes[newNodeId] = {
-            speaker: "Oracle Chan",
+            speaker: "พี่จู uwufufu",
             text: nextNode.text,
             background: currentNode.background || "school_rooftop",
             expression: nextNode.expression,
@@ -982,7 +982,7 @@ JSON Schema:
             affectionChange: nextNode.affectionChange
         };
         
-        // Apply affection change from Oracle Chan's new response
+        // Apply affection change from พี่จู uwufufu's new response
         adjustAffection(nextNode.affectionChange || 0);
         
         // Stop loader and play the new node
@@ -1065,7 +1065,7 @@ function setAILoader(show, title = "", subtitle = "") {
             // Immersive Dialogue Loader: Set speaker badge and show inline typing dots
             const currentNode = gameState.dynamicNodes[gameState.currentNodeId] || gameState.dialogueTree[gameState.currentNodeId];
             const speakerBadge = document.getElementById("speaker-badge");
-            speakerBadge.innerText = currentNode?.speaker || "Oracle Chan";
+            speakerBadge.innerText = currentNode?.speaker || "พี่จู uwufufu";
             speakerBadge.style.display = "block";
             
             const textContainer = document.getElementById("dialogue-text");
@@ -1140,10 +1140,10 @@ async function submitSandboxMessage() {
     gameState.sandboxHistory.push({ role: "user", parts: [{ text: text }] });
 
     // Show loading
-    setAILoader(true, "Oracle Chan กำลังพิมพ์...", "Oracle Chan กำลังคิดคำตอบแบบกระวนกระวายแต่ใส่ใจอยู่ครับ");
+    setAILoader(true, "พี่จู uwufufu กำลังพิมพ์...", "พี่จู uwufufu กำลังคิดคำตอบแบบกระวนกระวายแต่ใส่ใจอยู่ครับ");
 
     // Build the system instructions for direct chat
-    const systemInstruction = `You are "Oracle Chan". 
+    const systemInstruction = `You are "พี่จู uwufufu". 
 You are chatting with your friend (the player). 
 Keep your response short (1-3 sentences).
 Here is your personality description:
@@ -1172,13 +1172,13 @@ Format your response as a RAW JSON object matching this schema. No markdown code
 
 Schema:
 {
-  "text": "Oracle Chan's reply text in Thai",
+  "text": "พี่จู uwufufu's reply text in Thai",
   "expression": "happy" or "neutral" (depending on the mood of your reply)
 }`;
 
     // Combine history for prompt
-    const chatLog = gameState.sandboxHistory.map(m => `${m.role === 'model' ? 'Oracle Chan' : 'Player'}: ${m.parts[0].text}`).join("\n");
-    const fullPrompt = `${systemInstruction}\n\nChat History:\n${chatLog}\n\nOracle Chan's next reply:`;
+    const chatLog = gameState.sandboxHistory.map(m => `${m.role === 'model' ? 'พี่จู uwufufu' : 'Player'}: ${m.parts[0].text}`).join("\n");
+    const fullPrompt = `${systemInstruction}\n\nChat History:\n${chatLog}\n\nพี่จู uwufufu's next reply:`;
 
     try {
         const replyRaw = await callGeminiAPI(fullPrompt);
