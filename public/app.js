@@ -1055,13 +1055,50 @@ async function callGeminiAPI(promptText) {
 
 function setAILoader(show, title = "", subtitle = "") {
     gameState.isAILoading = show;
-    const loader = document.getElementById("loading-overlay");
+    
+    // Check which screen is currently active
+    const isGameActive = document.getElementById("game-stage").classList.contains("active");
+    const isSandboxActive = document.getElementById("sandbox-stage").classList.contains("active");
+
     if (show) {
-        document.getElementById("loading-title").innerText = title;
-        document.getElementById("loading-subtitle").innerText = subtitle;
-        loader.classList.add("active");
+        if (isGameActive) {
+            // Immersive Dialogue Loader: Set speaker badge and show inline typing dots
+            const currentNode = gameState.dynamicNodes[gameState.currentNodeId] || gameState.dialogueTree[gameState.currentNodeId];
+            const speakerBadge = document.getElementById("speaker-badge");
+            speakerBadge.innerText = currentNode?.speaker || "Oracle Chan";
+            speakerBadge.style.display = "block";
+            
+            const textContainer = document.getElementById("dialogue-text");
+            textContainer.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1.1rem; color: var(--text-muted); font-style: italic;">กำลังพิมพ์</span>
+                    <div class="inline-typing-indicator"><span></span><span></span><span></span></div>
+                </div>
+            `;
+            document.getElementById("next-indicator").classList.remove("visible");
+        } else if (isSandboxActive) {
+            // Inline Sandbox Chat Loader: Append typing bubble
+            const msgBox = document.getElementById("chat-messages");
+            // Prevent duplicate bubble
+            if (!document.getElementById("sandbox-typing-bubble")) {
+                const typingBubble = document.createElement("div");
+                typingBubble.id = "sandbox-typing-bubble";
+                typingBubble.className = "message oracle-chan";
+                typingBubble.innerHTML = `
+                    <div class="message-bubble" style="padding: 0.5rem 1rem;">
+                        <div class="inline-typing-indicator"><span></span><span></span><span></span></div>
+                    </div>
+                `;
+                msgBox.appendChild(typingBubble);
+                msgBox.scrollTop = msgBox.scrollHeight;
+            }
+        }
     } else {
-        loader.classList.remove("active");
+        // Hide/Remove Sandbox Loader if present
+        const typingBubble = document.getElementById("sandbox-typing-bubble");
+        if (typingBubble) {
+            typingBubble.remove();
+        }
     }
 }
 
