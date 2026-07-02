@@ -14,8 +14,8 @@ const BACKGROUNDS = {
 
 // Sprites mapping
 const SPRITES = {
-    "happy": "assets/subaru_larp.webp",
-    "neutral": "assets/subaru_normal.webp"
+    "happy": "assets/subaru_normal.webp",
+    "neutral": "assets/subaru_larp.webp"
 };
 
 // Game State Object
@@ -375,20 +375,8 @@ function playNode(nodeId) {
         changeBackground(node.background);
     }
 
-    // Set Character Sprites (Dual-Sprite System)
-    const mcSprite = document.getElementById("mc-sprite");
+    // Set Character Sprite and expression
     const spriteImg = document.getElementById("character-sprite");
-    
-    // Toggle active speaker style based on who speaks
-    if (mcSprite && spriteImg) {
-        if (node.speaker === "พี่จู uwufufu") {
-            spriteImg.classList.add("active-speaker");
-            mcSprite.classList.remove("active-speaker");
-        } else {
-            mcSprite.classList.add("active-speaker");
-            spriteImg.classList.remove("active-speaker");
-        }
-    }
     
     // Determine expression based on node properties or choices
     let expression = "happy";
@@ -401,23 +389,16 @@ function playNode(nodeId) {
         expression = node.expression;
     }
 
-    // If it's an empty background scene, hide character sprites
+    // If it's an empty background scene, hide character
     if (node.background === "lugnica_empty" || node.isEnding && nodeId === "ending_bad") {
         spriteImg.style.display = "none";
-        if (mcSprite) mcSprite.style.display = "none";
     } else {
         spriteImg.style.display = "block";
-        if (mcSprite) mcSprite.style.display = "block";
         spriteImg.src = SPRITES[expression] || SPRITES["happy"];
         
-        // Bouncy appearance when starting a node (for the speaking character)
-        if (node.speaker === "พี่จู uwufufu") {
-            spriteImg.classList.remove("float");
-            spriteImg.classList.add("speaking");
-        } else if (mcSprite) {
-            mcSprite.classList.remove("float");
-            mcSprite.classList.add("speaking");
-        }
+        // Bouncy appearance when starting a node
+        spriteImg.classList.remove("float");
+        spriteImg.classList.add("speaking");
     }
 
     // Render text with typewriter effect
@@ -425,10 +406,6 @@ function playNode(nodeId) {
         // Callback after typing finishes
         spriteImg.classList.remove("speaking");
         spriteImg.classList.add("float");
-        if (mcSprite) {
-            mcSprite.classList.remove("speaking");
-            mcSprite.classList.add("float");
-        }
         
         // Log this dialogue in history
         logDialogue(node.speaker || "Narrator", node.text);
@@ -607,14 +584,6 @@ function renderChoicesOrEnding(node) {
     document.getElementById("submit-custom-reply").setAttribute("disabled", "true");
 
     if (node.choices && node.choices.length > 0) {
-        // Highlight MC since it's the player's turn to speak/choose!
-        const mcSprite = document.getElementById("mc-sprite");
-        const charSprite = document.getElementById("character-sprite");
-        if (mcSprite && charSprite) {
-            mcSprite.classList.add("active-speaker");
-            charSprite.classList.remove("active-speaker");
-        }
-
         // Pause auto play to wait for choice
         if (gameState.autoPlay) {
             clearTimeout(gameState.autoPlayTimer);
