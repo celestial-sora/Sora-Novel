@@ -1,0 +1,6 @@
+# Secret — never commit to git
+.env
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
