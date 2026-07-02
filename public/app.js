@@ -1071,7 +1071,7 @@ function setAILoader(show, title = "", subtitle = "") {
             const textContainer = document.getElementById("dialogue-text");
             textContainer.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 1.1rem; color: var(--text-muted); font-style: italic;">กำลังพิมพ์</span>
+                    <span style="font-size: 1.1rem; color: var(--text-muted); font-style: italic;">กำลังบ่น</span>
                     <div class="inline-typing-indicator"><span></span><span></span><span></span></div>
                 </div>
             `;
