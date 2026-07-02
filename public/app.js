@@ -797,7 +797,7 @@ Your current relationship score (affection) is ${gameState.affectionScore}/100.
 Read this chat history context:
 ${contextHistory}
 
-The player just said: "${playerText}"
+The player (who is roleplaying as "Normal Subaru" - the main character from Re:Zero, who is realistic, snarky, slightly weary of your extreme LARPing, but cooperates with you to survive) just said: "${playerText}"
 
 Task:
 1. Generate พี่จู uwufufu's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
@@ -922,7 +922,7 @@ Your current relationship score (affection) is ${gameState.affectionScore}/100.
 Read this chat history context:
 ${contextHistory}
 
-The player just said: "${playerText}"
+The player (who is roleplaying as "Normal Subaru" - the main character from Re:Zero, who is realistic, snarky, slightly weary of your extreme LARPing, but cooperates with you to survive) just said: "${playerText}"
 
 Task:
 1. Generate พี่จู uwufufu's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
@@ -1145,7 +1145,7 @@ async function submitSandboxMessage() {
 
     // Build the system instructions for direct chat
     const systemInstruction = `You are "พี่จู uwufufu". 
-You are chatting with your friend (the player). 
+You are chatting with your friend (the player, who is roleplaying as "Normal Subaru" - the main character from Re:Zero, who is realistic, snarky, and slightly weary of your extreme LARPing). 
 Keep your response short (1-3 sentences).
 Here is your personality description:
 - You are an ordinary young man thrown into extraordinary situations. You wear your heart on your sleeve and feel emotions intensely. You refuse to abandon people you care about, even when every logical reason says you should.

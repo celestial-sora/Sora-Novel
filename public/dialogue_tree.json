@@ -4,81 +4,81 @@
     "text": "หึๆๆ... อากาศเย็นเยือกท้าทายวิญญาณแบบนี้! ในที่สุดผู้พิทักษ์แห่งความเงียบงันก็มาเยือน! bro เธอมามิววิ่ง (mewing) อะไรในต่างโลกคนเดียวเรารึ?! หรือนี่คือการซิกม่า (Sigma) หลีกหนีจากพวก Opps ในเมืองลุกนิก้านี้?!",
     "background": "lugnica_capital",
     "choices": [
-      { "id": "friendly", "hint": "ตอบแบบมิตรภาพระดับ GigaChad ชวนคุยแบบเร่าร้อน", "next": "node_friendly", "affectionChange": 1 },
-      { "id": "cold", "hint": "ปล่อย L Rizz ใส่เธอแบบเย็นชาสุดๆ", "next": "node_cold", "affectionChange": -1 },
-      { "id": "curious", "hint": "ถามว่ากำลังรอให้ใครมาปรุงอาหาร (Let him cook) ในต่างโลกนี้รึเปล่า", "next": "node_curious", "affectionChange": 0 }
+      { "id": "friendly", "hint": "ทักทายกลับแบบเป็นมิตร พยายามทำตัวให้ปกติที่สุด", "next": "node_friendly", "affectionChange": 1 },
+      { "id": "cold", "hint": "ตอบกลับแบบเหนื่อยใจกับความเบียวโชว์คำ declare ของหมอนี่", "next": "node_cold", "affectionChange": -1 },
+      { "id": "curious", "hint": "ถามว่าเขากำลังทำบ้าอะไรอยู่กลางเมืองหลวงลุกนิก้าเนี่ย?!", "next": "node_curious", "affectionChange": 0 }
     ]
   },
   "node_friendly": {
     "speaker": "พี่จู uwufufu",
     "text": "เฮ้ยจริงดิ?! แชท นี่เรื่องจริงปะเนี่ย?! มิตรภาพระดับ SSR ปลดล็อกแล้ว! ได้ W Rizz เฉยเลยเรา! ดีใจสุดขีดที่มีคนยอมมาคุยลาร์ปด้วย ปกติชั้นแทบจะเป็น bro ที่โดดเดี่ยวในลุกนิก้าจนนึกว่าจะต้องรอไปอีก 10 ปีจนกว่า GTA 6 จะออกเลยนะเนี่ย!",
-    "background": "lugnica_capital",
+    "background": "lugnica_yard",
     "choices": [
-      { "id": "ask_reason", "hint": "ถามจุดประสงค์การตั้งฐานทัพลับของ GigaChad ในเมืองลุกนิก้า", "next": "node_reason", "affectionChange": 1 },
-      { "id": "sit_together", "hint": "ร่วมโพสท่า Victory โชว์ Rizz แล้วร่วมผจญภัยด้วยกัน", "next": "node_sit", "affectionChange": 2 }
+      { "id": "ask_reason", "hint": "ถามดีๆ ว่าทำไมเขาถึงมาอยู่ที่ต่างโลกนี้เหมือนกัน", "next": "node_reason", "affectionChange": 1 },
+      { "id": "sit_together", "hint": "ตกลงยอมเดินตามเขาไปตั้งหลักในคฤหาสน์เพื่อหาทางรอด", "next": "node_sit", "affectionChange": 2 }
     ]
   },
   "node_cold": {
     "speaker": "พี่จู uwufufu",
-    "text": "...อ๊ะ เจ็บจี๊ดเลยแฮะ! โดน L Rizz แบบเย็นชาใส่จนดับอนาถลูปนี้ฉับพลัน! งั้น bro อย่างฉันขอสไลด์ตัวถอยทัพไปตั้งหลักจากพวก Opps ในต่างโลกนี้ก่อนละกันนะ บ๊ายบายยย!",
+    "text": "...อ๊ะ เจ็บจี๊ดเลยแฮะ! โดน L Rizz แบบเย็นชาใส่กลางตรอกเมืองหลวงจนดับอนาถลูปนี้ฉับพลัน! งั้น bro อย่างฉันขอสไลด์ตัวถอยทัพไปตั้งหลักจากพวก Opps ในต่างโลกนี้ก่อนละกันนะ บ๊ายบายยย!",
     "background": "lugnica_capital",
     "choices": [
-      { "id": "apologize", "hint": "รีบขอโทษ บอกว่าแค่ล้อเล่นขำๆ ชวนลาร์ปสู้ชีวิตต่อ", "next": "node_apologize", "affectionChange": 1 },
-      { "id": "let_go", "hint": "ปล่อยตัวตนสุดกวนไป ไม่ต้องไปสนใจ", "next": "ending_bad", "affectionChange": -1 }
+      { "id": "apologize", "hint": "ขอโทษทีที่พูดแรงไปหน่อย งั้นเรามาตั้งสติคุยกันดีๆ เถอะ", "next": "node_apologize", "affectionChange": 1 },
+      { "id": "let_go", "hint": "ปล่อยหมอนี่ไว้ตรงนี้แหละ ดูท่าจะพูดจาไม่รู้เรื่อง", "next": "ending_bad", "affectionChange": -1 }
     ]
   },
   "node_curious": {
     "speaker": "พี่จู uwufufu",
     "text": "ถามถึงเป้าหมายของฉันเรารึ?! หึๆๆ... มาเฝ้าระวังภัยพิบัติเพื่อปกป้องเธอจากพวก Opps ในลุกนิก้าน่ะ! ช่วงนี้เรื่องที่บ้านวุ่นวายอย่างกะโดนบอสบุกถล่ม แต่เพื่อเธอแล้ว ชั้นจะสู้ชีวิตจนกว่าจะได้ฉากจบแบบ Very demure, very mindful เลยคอยดูนะ bro!",
-    "background": "lugnica_capital",
+    "background": "lugnica_living_room",
     "choices": [
-      { "id": "listen", "hint": "ฟังแผนการสู้ชีวิตในต่างโลกอย่างตั้งอกตั้งใจ (Let her cook)", "next": "node_sit", "affectionChange": 1 },
-      { "id": "change_topic", "hint": "เปลี่ยนเรื่องคุยก่อนสมองจะคิดแต่เรื่องวนลูป", "next": "node_reason", "affectionChange": 0 }
+      { "id": "listen", "hint": "ตั้งใจฟังแผนการเอาชีวิตรอดในคฤหาสน์ต่างโลกของเขา", "next": "node_sit", "affectionChange": 1 },
+      { "id": "change_topic", "hint": "เปลี่ยนเรื่องคุยเพื่อดึงสติเขากลับมาก่อนจะลูปจมดิ่ง", "next": "node_reason", "affectionChange": 0 }
     ]
   },
   "node_reason": {
     "speaker": "พี่จู uwufufu",
     "text": "ก็ที่ต่างโลกลุกนิก้านี่มันคือพื้นที่เซฟโซนของกิกะแชด (GigaChad) ยังไงล่ะ bro! เงียบสงบ มองท้องฟ้าได้สุดขอบโลก เวลาสติแตกหรือโดนชะตากรรมรุมเร้า มาโพสท่า Victory ฟื้นฟูพลังตรงนี้แล้วรู้สึกเหมือนได้ Rizz ล้นหลามเลยล่ะ!",
-    "background": "lugnica_sunset",
+    "background": "lugnica_yard",
     "choices": [
-      { "id": "relate", "hint": "บอกว่าเข้าใจความรู้สึกของการสู้ชีวิตในต่างโลกแบบ GigaChad", "next": "node_sit", "affectionChange": 2 },
-      { "id": "neutral", "hint": "ยืนมองพยักหน้ายอมใจในวิถี Sigma ในลุกนิก้า", "next": "ending_neutral", "affectionChange": 0 }
+      { "id": "relate", "hint": "บอกว่าเข้าใจความรู้สึกของการต้องปากกัดตีนถีบในต่างโลกนี้เหมือนกัน", "next": "node_sit", "affectionChange": 2 },
+      { "id": "neutral", "hint": "พยักหน้าเงียบๆ ยอมรับในตัวตนที่พยายามดิ้นรนของเขา", "next": "ending_neutral", "affectionChange": 0 }
     ]
   },
   "node_apologize": {
     "speaker": "พี่จู uwufufu",
     "text": "...โอ้! คำขอโทษนั่นมันช่างอบอุ่นหัวใจจนน้ำตาไหลพราก! ขอบใจนะ bro ที่เห็นใจคนสู้ชีวิตแบบฉันในต่างโลกนี้! ได้ W Rizz คืนมาแล้ว!",
-    "background": "lugnica_capital",
+    "background": "lugnica_yard",
     "choices": [
-      { "id": "smile", "hint": "ยิ้มให้ ทำท่าโพส Victory คู่กันแล้วลุยต่อ", "next": "node_sit", "affectionChange": 1 }
+      { "id": "smile", "hint": "ยิ้มตอบและตกลงร่วมมือกับเขาเพื่อหาทางดิ้นรนสู้ชีวิตต่อไป", "next": "node_sit", "affectionChange": 1 }
     ]
   },
   "node_sit": {
     "speaker": "พี่จู uwufufu",
     "text": "ขอบใจนะ bro! ที่ยอมมาลาร์ปสู้ชีวิตเคียงข้างกันในต่างโลกตรงนี้ ได้ฟีลลิ่งแบบ Very mindful สุดๆ พร้อมเผชิญหน้าชะตากรรมลูปต่อไปในลุกนิก้าแล้วล่ะ! Let's cook!",
-    "background": "lugnica_sunset",
+    "background": "lugnica_living_room",
     "choices": [
-      { "id": "confess", "hint": "บอกว่าอยากร่วมสู้ชะตากรรมกับเธอในต่างโลกนี้ตลอดไป", "next": "ending_good", "affectionChange": 3 },
-      { "id": "casual", "hint": "พูดเรื่องมีมทั่วไปชิวๆ ดึงจังหวะไว้ก่อน", "next": "ending_neutral", "affectionChange": 1 }
+      { "id": "confess", "hint": "บอกว่าไม่ว่าจะเจอลูปกี่สิบรอบ เราจะสู้เผชิญหน้าชะตากรรมไปด้วยกัน", "next": "ending_good", "affectionChange": 3 },
+      { "id": "casual", "hint": "ชวนคุยเรื่องเรื่อยเปื่อยชิวๆ บนโซฟาเพื่อคลายความเครียด", "next": "ending_neutral", "affectionChange": 1 }
     ]
   },
   "ending_good": {
     "speaker": "พี่จู uwufufu",
-    "text": "[GOOD ENDING] เฮ้ย... จริงเหรอวะ?! แชท นี่มันคือสุดยอด W Rizz ในประวัติศาสตร์ชัดๆ! ปลดล็อกแฮปปี้เอนด์ลูปนี้แล้ว! ชั้นจะอยู่ปกป้องเธอในต่างโลกนี้ในทุกๆ ลูป สัญญาเลยว่าจะดูแลเธออย่าง Mindful และ Demure ที่สุดเลยนะ bro!",
-    "background": "lugnica_sunset",
+    "text": "[GOOD ENDING] เฮ้ย... จริงเหรอวะ?! แชท นี่มันคือสุดยอด W Rizz ในประวัติศาสตร์ชัดๆ! ปลดล็อกแฮปปี้เอนด์ร่วมเตียงเคียงหมอนในห้องคฤหาสน์นี้แล้ว! ชั้นจะอยู่ปกป้องเธอในต่างโลกนี้ในทุกๆ ลูป สัญญาเลยว่าจะดูแลเธออย่าง Mindful และ Demure ที่สุดเลยนะ bro!",
+    "background": "lugnica_living_room",
     "choices": [],
     "isEnding": true
   },
   "ending_neutral": {
     "speaker": "พี่จู uwufufu",
-    "text": "[NEUTRAL ENDING] วันนี้โครตคุก (Let's cook)! สนุกเป็นบ้าเลย เจอกันใหม่ลูปหน้าวันหลังในลุกนิก้านะ bro! บ๊ายบายยย!",
-    "background": "lugnica_sunset",
+    "text": "[NEUTRAL ENDING] วันนี้โครตคุก (Let's cook)! สนุกเป็นบ้าเลยที่ได้พาเดินทัวร์สวน เจอกันใหม่ลูปหน้าวันหลังในลุกนิก้านะ bro! บ๊ายบายยย!",
+    "background": "lugnica_yard",
     "choices": [],
     "isEnding": true
   },
   "ending_bad": {
     "speaker": "พี่จู uwufufu",
-    "text": "[BAD ENDING] ...ตับแตกโดยสมบูรณ์ โดน L Rizz จนดับอนาถ วนลูปกลับไปเริ่มหน้าแรกแป๊บ... bro พวก Opps ในต่างโลกชนะแล้ว...",
+    "text": "[BAD ENDING] ...ตับแตกโดยสมบูรณ์ โดน L Rizz จนดับอนาถท่ามกลางตรอกลุกนิก้าอันมืดมิด... วนลูปกลับไปเริ่มใหม่แป๊บ... bro พวก Opps ชนะแล้ว...",
     "background": "lugnica_empty",
     "choices": [],
     "isEnding": true
