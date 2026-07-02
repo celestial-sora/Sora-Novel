@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuki's Rooftop - A Dynamic AI Visual Novel</title>
+    <title>Oracle Chan's Rooftop - A Dynamic AI Visual Novel</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,8 @@
         <div id="main-menu" class="screen active">
             <div class="menu-background"></div>
             <div class="menu-content">
-                <h1 class="game-title">Yuki's <span class="highlight">Rooftop</span></h1>
-                <p class="game-subtitle">การพบกันบนดาดฟ้ากับยูกิ • ระบบเนื้อเรื่องไดนามิก AI</p>
+                <h1 class="game-title">Oracle Chan's <span class="highlight">Rooftop</span></h1>
+                <p class="game-subtitle">การพบกันบนดาดฟ้ากับ Oracle Chan • ระบบเนื้อเรื่องไดนามิก AI</p>
                 
                 <div class="menu-buttons">
                     <button id="btn-new-game" class="menu-btn primary">
@@ -52,7 +52,7 @@
                     <i class="fa-solid fa-heart heart-icon"></i>
                 </div>
                 <div class="affection-info">
-                    <span class="affection-label">Yuki's Affection</span>
+                    <span class="affection-label">Oracle Chan's Affection</span>
                     <div class="bar-container">
                         <div id="affection-bar" class="bar-fill" style="width: 50%;"></div>
                     </div>
@@ -62,13 +62,13 @@
 
             <!-- Character Sprite Container -->
             <div class="sprite-container">
-                <img id="character-sprite" src="assets/yuki_happy.png" alt="Yuki" class="sprite float">
+                <img id="character-sprite" src="assets/antigravity.webp" alt="Oracle Chan" class="sprite float">
             </div>
 
             <!-- Dialogue and Control Box (Bottom) -->
             <div class="dialogue-box-container">
                 <!-- Speaker Badge -->
-                <div id="speaker-badge" class="speaker-badge">Yuki</div>
+                <div id="speaker-badge" class="speaker-badge">Oracle Chan</div>
 
                 <!-- Main Dialogue Box -->
                 <div id="dialogue-box" class="dialogue-box">
@@ -92,7 +92,7 @@
 
             <!-- Choices Overlay -->
             <div id="choices-overlay" class="choices-overlay">
-                <div class="choices-header">เธอจะตอบยูกิว่าอย่างไรดี?</div>
+                <div class="choices-header">เธอจะตอบ Oracle Chan ว่าอย่างไรดี?</div>
                 <div id="choices-list" class="choices-list">
                     <!-- Standard options injected dynamically -->
                 </div>
@@ -103,7 +103,7 @@
                         <span>หรือ พิมพ์ตอบกลับด้วยตัวเองด้วยพลัง AI</span>
                     </div>
                     <div class="custom-input-group">
-                        <input type="text" id="custom-reply-input" placeholder="พิมพ์ข้อความคุยกับยูกิที่นี่..." maxlength="150">
+                        <input type="text" id="custom-reply-input" placeholder="พิมพ์ข้อความคุยกับ Oracle Chan ที่นี่..." maxlength="150">
                         <button id="submit-custom-reply" class="submit-btn" disabled>
                             <i class="fa-solid fa-paper-plane"></i> ส่งคำตอบ
                         </button>
@@ -117,28 +117,28 @@
             <div class="sandbox-background"></div>
             <div class="sandbox-header">
                 <button id="sandbox-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> กลับเมนู</button>
-                <div class="sandbox-title">AI Sandbox Chat with Yuki</div>
+                <div class="sandbox-title">AI Sandbox Chat with Oracle Chan</div>
                 <div class="sandbox-status"><span class="status-indicator"></span> Online</div>
             </div>
 
             <div class="sandbox-content">
                 <!-- Sprite preview -->
                 <div class="sandbox-sprite-panel">
-                    <img id="sandbox-sprite" src="assets/yuki_happy.png" alt="Yuki Chat" class="sandbox-sprite float">
+                    <img id="sandbox-sprite" src="assets/antigravity.webp" alt="Oracle Chan Chat" class="sandbox-sprite float">
                 </div>
 
                 <!-- Chat history panel -->
                 <div class="chat-history-container">
                     <div id="chat-messages" class="chat-messages">
-                        <div class="message yuki">
+                        <div class="message oracle-chan">
                             <div class="message-bubble">
-                                ยินดีต้อนรับสู่โหมดแชทอิสระค่ะ! คุยเรื่องอะไรกับฉันก็ได้นะ หรืออยากให้ฉันร้องเพลงหรือเล่าเรื่องอะไรให้ฟังก็บอกได้เลยนะคะ~
+                            ยินดีต้อนรับสู่โหมดแชทอิสระครับ! คุยเรื่องอะไรกับผมก็ได้นะ หรือมีเรื่องอะไรที่อยากระบายหรืออยากให้ผมช่วยหาทางออกก็บอกได้เลยนะ! ถึงผมจะไม่ได้เก่งอะไรมาก แต่สัญญาเลยว่าไม่ทิ้งคุณไปแน่ๆ!
                             </div>
                         </div>
                     </div>
 
                     <div class="chat-input-panel">
-                        <input type="text" id="sandbox-input" placeholder="พิมพ์คุยกับยูกิอิสระ..." maxlength="200">
+                        <input type="text" id="sandbox-input" placeholder="พิมพ์คุยกับ Oracle Chan อิสระ..." maxlength="200">
                         <button id="sandbox-send-btn" class="sandbox-send-btn"><i class="fa-solid fa-paper-plane"></i> ส่ง</button>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                     <div class="spinner"></div>
                     <div class="spinner-heart"><i class="fa-solid fa-heart"></i></div>
                 </div>
-                <h3 id="loading-title">ยูกิกำลังคิดคำตอบ...</h3>
+                <h3 id="loading-title">Oracle Chan กำลังคิดคำตอบ...</h3>
                 <p id="loading-subtitle">ระบบ AI กำลังประมวลผลเส้นทางเรื่องราวใหม่ให้คุณ</p>
             </div>
         </div>

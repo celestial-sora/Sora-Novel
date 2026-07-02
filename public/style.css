@@ -1,4 +1,4 @@
-/* Styleheet for Yuki's Rooftop Visual Novel */
+/* Styleheet for Oracle Chan's Rooftop Visual Novel */
 
 :root {
     --primary-color: #a29bfe;
@@ -344,20 +344,20 @@ body, html {
 }
 
 .sprite.float {
-    animation: yuki-float 4s ease-in-out infinite;
+    animation: oracle-chan-float 4s ease-in-out infinite;
 }
 
 .sprite.speaking {
-    animation: yuki-speak-bounce 0.6s ease infinite;
+    animation: oracle-chan-speak-bounce 0.6s ease infinite;
 }
 
-@keyframes yuki-float {
+@keyframes oracle-chan-float {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
 }
 
-@keyframes yuki-speak-bounce {
+@keyframes oracle-chan-speak-bounce {
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-5px) scale(1.01); }
 }
@@ -773,7 +773,7 @@ body, html {
     max-width: 80%;
 }
 
-.message.yuki {
+.message.oracle-chan {
     align-self: flex-start;
 }
 
@@ -790,7 +790,7 @@ body, html {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.message.yuki .message-bubble {
+.message.oracle-chan .message-bubble {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #f1ecf6;
@@ -938,7 +938,7 @@ body, html {
     margin-bottom: 0.3rem;
 }
 
-.log-speaker.yuki {
+.log-speaker.oracle-chan {
     color: var(--primary-color);
 }
 

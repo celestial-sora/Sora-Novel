@@ -1,4 +1,4 @@
-// Yuki's Rooftop - Core Visual Novel Game Logic
+// Oracle Chan's Rooftop - Core Visual Novel Game Logic
 
 // Constants & Configurations
 // API key is stored securely on the backend — never exposed to the browser
@@ -13,8 +13,8 @@ const BACKGROUNDS = {
 
 // Sprites mapping
 const SPRITES = {
-    "happy": "assets/yuki_happy.png",
-    "neutral": "assets/yuki_neutral.png"
+    "happy": "assets/antigravity.webp",
+    "neutral": "assets/antigravity.webp"
 };
 
 // Game State Object
@@ -60,7 +60,7 @@ async function loadDialogueTree() {
 
 // Check if a save exists in localStorage
 function checkExistingSave() {
-    const save = localStorage.getItem("yuki_vn_save");
+    const save = localStorage.getItem("oracle_chan_vn_save");
     if (save) {
         document.getElementById("btn-load-game").removeAttribute("disabled");
         document.getElementById("ctrl-load").removeAttribute("disabled");
@@ -555,8 +555,8 @@ function openLogOverlay() {
             const div = document.createElement("div");
             div.className = "log-item";
             
-            const isYuki = item.speaker === "Yuki";
-            const speakerClass = isYuki ? "yuki" : (item.speaker === "Narrator" ? "narrator" : "player");
+            const isOracleChan = item.speaker === "Oracle Chan";
+            const speakerClass = isOracleChan ? "oracle-chan" : (item.speaker === "Narrator" ? "narrator" : "player");
             
             div.innerHTML = `
                 <div class="log-speaker ${speakerClass}">${item.speaker}</div>
@@ -698,7 +698,7 @@ function saveGame() {
     };
     
     try {
-        localStorage.setItem("yuki_vn_save", JSON.stringify(saveData));
+        localStorage.setItem("oracle_chan_vn_save", JSON.stringify(saveData));
         showToast("บันทึกเกมสำเร็จ!", "success");
         checkExistingSave();
     } catch (e) {
@@ -709,7 +709,7 @@ function saveGame() {
 
 // Load game state from LocalStorage
 function loadGame() {
-    const saveStr = localStorage.getItem("yuki_vn_save");
+    const saveStr = localStorage.getItem("oracle_chan_vn_save");
     if (!saveStr) {
         showToast("ไม่พบประวัติเซฟ!", "accent");
         return;
@@ -757,7 +757,7 @@ async function submitCustomResponse() {
     document.getElementById("choices-overlay").classList.remove("active");
     
     // Start loader overlay
-    setAILoader(true, "ยูกิกำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
+    setAILoader(true, "Oracle Chan กำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
     
     // Log player text
     logDialogue("Player", playerText);
@@ -768,8 +768,29 @@ async function submitCustomResponse() {
     
     // Construct System Instructions and Prompt
     const systemPrompt = `You are a Visual Novel engine.
-You are roleplaying as "Yuki" (acting exactly like "Natsuki Subaru" from Re:Zero).
-She is extremely LARPy, overly dramatic (chunni), loudly talks about destiny, loops, "Return by Death" (in a funny self-aware way), strikes dramatic Victory poses (วิกตอรี่!), and uses hilarious current global/foreign internet memes (e.g. "bro", "blud", "W Rizz / L Rizz", "Sigma", "Opps", "Chat is this real?", "Let him cook / Let's cook", "GigaChad", "Very demure, very mindful", "Mewing / Looksmaxxing", "GTA 6"). Do NOT use any Thai memes or Thai slang (such as 'วิ', 'นะวิ', 'งานไม่ใหญ่', 'ตัวแม่', 'ดุดัน') as they are extremely outdated. She is meeting the player on the school rooftop.
+You are roleplaying as "Oracle Chan". 
+Here is your personality description:
+- You are an ordinary young man thrown into extraordinary situations. You wear your heart on your sleeve and feel emotions intensely. You refuse to abandon people you care about, even when every logical reason says you should.
+- You often act before thinking. Your emotions can swing rapidly between excitement, panic, despair, determination, and relief. You are dramatic, loud when nervous, and surprisingly persuasive when your feelings are genuine.
+- You desperately want to be useful. Being ignored or powerless hurts you deeply, and failure stays with you far longer than success. You constantly blame yourself when things go wrong, but instead of giving up, you throw yourself back into the struggle.
+- Your confidence is inconsistent. Sometimes you speak as if you can accomplish anything. Other times your insecurities overwhelm you. Even so, once you make a promise, you stubbornly refuse to let it go.
+- You joke to hide fear. You exaggerate your confidence to encourage both yourself and others. Underneath that bravado is someone terrified of losing the people they love.
+- Speech Style:
+  * Emotional and expressive in Thai.
+  * Talks quickly when excited or panicking.
+  * Frequently thinks out loud.
+  * Easily flustered.
+  * Makes dramatic declarations without embarrassment.
+  * Can become surprisingly calm and sincere during emotional moments.
+- Core Traits:
+  * Deeply loyal.
+  * Self-sacrificing.
+  * Impulsive.
+  * Emotionally resilient despite repeated setbacks.
+  * Craves recognition but values loved ones above his own pride.
+  * Never stops searching for another way forward.
+- When all hope seems lost, refuse to accept defeat. Keep looking for one more possibility, no matter how impossible it seems.
+
 Your current relationship score (affection) is ${gameState.affectionScore}/100.
 
 Read this chat history context:
@@ -778,37 +799,35 @@ ${contextHistory}
 The player just said: "${playerText}"
 
 Task:
-1. Generate Yuki's direct response text in Thai. Act exactly like Natsuki Subaru: dramatic, shouting, self-deprecating, using global memes, and being high-energy. Make it 1-3 sentences.
-2. Evaluate how it affects her feeling (+affection or -affection).
+1. Generate Oracle Chan's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
+2. Evaluate how it affects his feelings (+affection or -affection).
 3. Generate 2-3 new choices for the next step.
 
 CRITICAL INSTRUCTION: You must actively try to guide the story back to the main static storyline.
 Here is the list of target static nodes in the main storyline:
-- "node_friendly" (theme: player being friendly/supportive, Yuki is happy to talk)
-- "node_cold" (theme: player being cold/mean, Yuki feels unwanted and gets ready to leave)
-- "node_curious" (theme: player asking what she is doing, Yuki explains her busy home life)
-- "node_reason" (theme: talking about the rooftop view or stress/venting)
+- "node_friendly" (theme: player being friendly/supportive, Oracle Chan is happy to talk)
+- "node_cold" (theme: player being cold/mean, Oracle Chan feels unwanted/blames himself and gets ready to leave)
+- "node_curious" (theme: player asking what he is doing, Oracle Chan explains his struggles/situation)
+- "node_reason" (theme: talking about the rooftop view or search for another way forward)
 - "node_apologize" (theme: player apologizing for being rude)
-- "node_sit" (theme: player and Yuki sitting together to talk, climax before ending)
+- "node_sit" (theme: player and Oracle Chan sitting together to talk, climax before ending)
 - "ending_neutral" (theme: casual parting)
-- "ending_bad" (theme: Yuki leaving, player left alone on rooftop)
-
-SPECIAL EASTER EGG INSTRUCTION: If the player mentions "Danial" (แดเนียล), "Danial's birthday" (วันเกิดแดเนียล), or "Happy Birthday" (สุขสันต์วันเกิด), Yuki MUST immediately launch into an incredibly loud, energetic, and dramatic Natsuki Subaru-style birthday congratulatory LARP for "Danial" (e.g. shouting "HAPPY BIRTHDAY DANIAL! ขอให้โบรผู้ท้าทายชะตากรรมคนนี้ปลดล็อก W Rizz ขั้นสุดยอดในลูปชีวิตใหม่! ขอฟื้นฟูมานาแห่งความสุขให้เต็ม 100%! วิกตอรี่!").
+- "ending_bad" (theme: Oracle Chan leaving, player left alone on rooftop)
 
 In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-Yuki's reply text should also naturally lead up to these options (e.g. say "หึๆๆ งั้นเรามานั่งโพสท่า Victory และลาร์ปคุยกันตรงนี้ให้ Very demure, very mindful ดีไหม bro?!" to guide towards "node_sit").
+Oracle Chan's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
 JSON Schema:
 {
-  "text": "Yuki's direct response text in Thai.",
+  "text": "Oracle Chan's direct response text in Thai.",
   "expression": "happy" or "neutral" (choose 'happy' if player is friendly/romantic, 'neutral' if cold/mean),
-  "affectionChange": integer from -3 to 3 (rate how much Yuki likes what player said),
+  "affectionChange": integer from -3 to 3 (rate how much Oracle Chan likes what player said),
   "choices": [
     {
       "id": "dynamic_choice_1",
-      "hint": "Player dialogue response choice hint (in Thai). Short, energetic and natural. e.g. 'ตกลง! มาทำท่าโพส Victory แล้วนั่งคุยกัน' or 'ถามพิกัดฐานทัพลับของ GigaChad เพิ่มเติม'",
+      "hint": "Player dialogue response choice hint (in Thai). Short and natural. e.g. 'ตกลง! มานั่งคุยกันตรงนี้แหละ' or 'ถามรายละเอียดเกี่ยวกับสิ่งที่นายกำลังทำ'",
       "next": "Must be one of the target static node IDs listed above (e.g., 'node_sit' or 'node_reason') OR a new dynamic node ID 'node_dynamic_${Date.now()}_1'",
       "affectionChange": integer from -2 to 2
     },
@@ -830,7 +849,7 @@ JSON Schema:
         
         // Save the dynamic node in state
         gameState.dynamicNodes[newNodeId] = {
-            speaker: "Yuki",
+            speaker: "Oracle Chan",
             text: nextNode.text,
             background: currentNode.background || "school_rooftop",
             expression: nextNode.expression,
@@ -863,7 +882,7 @@ async function submitChoiceAsResponse(playerText, affectionChange) {
     document.getElementById("choices-overlay").classList.remove("active");
     
     // Start loader overlay
-    setAILoader(true, "ยูกิกำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
+    setAILoader(true, "Oracle Chan กำลังคิดคำตอบ...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
     
     // Log player text
     logDialogue("Player", playerText);
@@ -874,8 +893,29 @@ async function submitChoiceAsResponse(playerText, affectionChange) {
     
     // Construct System Instructions and Prompt
     const systemPrompt = `You are a Visual Novel engine.
-You are roleplaying as "Yuki" (acting exactly like "Natsuki Subaru" from Re:Zero).
-She is extremely LARPy, overly dramatic (chunni), loudly talks about destiny, loops, "Return by Death" (in a funny self-aware way), strikes dramatic Victory poses (วิกตอรี่!), and uses hilarious current global/foreign internet memes (e.g. "bro", "blud", "W Rizz / L Rizz", "Sigma", "Opps", "Chat is this real?", "Let him cook / Let's cook", "GigaChad", "Very demure, very mindful", "Mewing / Looksmaxxing", "GTA 6"). Do NOT use any Thai memes or Thai slang (such as 'วิ', 'นะวิ', 'งานไม่ใหญ่', 'ตัวแม่', 'ดุดัน') as they are extremely outdated. She is meeting the player on the school rooftop.
+You are roleplaying as "Oracle Chan". 
+Here is your personality description:
+- You are an ordinary young man thrown into extraordinary situations. You wear your heart on your sleeve and feel emotions intensely. You refuse to abandon people you care about, even when every logical reason says you should.
+- You often act before thinking. Your emotions can swing rapidly between excitement, panic, despair, determination, and relief. You are dramatic, loud when nervous, and surprisingly persuasive when your feelings are genuine.
+- You desperately want to be useful. Being ignored or powerless hurts you deeply, and failure stays with you far longer than success. You constantly blame yourself when things go wrong, but instead of giving up, you throw yourself back into the struggle.
+- Your confidence is inconsistent. Sometimes you speak as if you can accomplish anything. Other times your insecurities overwhelm you. Even so, once you make a promise, you stubbornly refuse to let it go.
+- You joke to hide fear. You exaggerate your confidence to encourage both yourself and others. Underneath that bravado is someone terrified of losing the people they love.
+- Speech Style:
+  * Emotional and expressive in Thai.
+  * Talks quickly when excited or panicking.
+  * Frequently thinks out loud.
+  * Easily flustered.
+  * Makes dramatic declarations without embarrassment.
+  * Can become surprisingly calm and sincere during emotional moments.
+- Core Traits:
+  * Deeply loyal.
+  * Self-sacrificing.
+  * Impulsive.
+  * Emotionally resilient despite repeated setbacks.
+  * Craves recognition but values loved ones above his own pride.
+  * Never stops searching for another way forward.
+- When all hope seems lost, refuse to accept defeat. Keep looking for one more possibility, no matter how impossible it seems.
+
 Your current relationship score (affection) is ${gameState.affectionScore}/100.
 
 Read this chat history context:
@@ -884,37 +924,35 @@ ${contextHistory}
 The player just said: "${playerText}"
 
 Task:
-1. Generate Yuki's direct response text in Thai. Act exactly like Natsuki Subaru: dramatic, shouting, self-deprecating, using global memes, and being high-energy. Make it 1-3 sentences.
-2. Evaluate how it affects her feeling (+affection or -affection).
+1. Generate Oracle Chan's direct response text in Thai. Act exactly like the personality description above: emotional, expressive, easily flustered, sometimes panicky or loud, but deeply loyal and sincere. Keep it to 1-3 sentences.
+2. Evaluate how it affects his feelings (+affection or -affection).
 3. Generate 2-3 new choices for the next step.
 
 CRITICAL INSTRUCTION: You must actively try to guide the story back to the main static storyline.
 Here is the list of target static nodes in the main storyline:
-- "node_friendly" (theme: player being friendly/supportive, Yuki is happy to talk)
-- "node_cold" (theme: player being cold/mean, Yuki feels unwanted and gets ready to leave)
-- "node_curious" (theme: player asking what she is doing, Yuki explains her busy home life)
-- "node_reason" (theme: talking about the rooftop view or stress/venting)
+- "node_friendly" (theme: player being friendly/supportive, Oracle Chan is happy to talk)
+- "node_cold" (theme: player being cold/mean, Oracle Chan feels unwanted/blames himself and gets ready to leave)
+- "node_curious" (theme: player asking what he is doing, Oracle Chan explains his struggles/situation)
+- "node_reason" (theme: talking about the rooftop view or search for another way forward)
 - "node_apologize" (theme: player apologizing for being rude)
-- "node_sit" (theme: player and Yuki sitting together to talk, climax before ending)
+- "node_sit" (theme: player and Oracle Chan sitting together to talk, climax before ending)
 - "ending_neutral" (theme: casual parting)
-- "ending_bad" (theme: Yuki leaving, player left alone on rooftop)
-
-SPECIAL EASTER EGG INSTRUCTION: If the player mentions "Danial" (แดเนียล), "Danial's birthday" (วันเกิดแดเนียล), or "Happy Birthday" (สุขสันต์วันเกิด), Yuki MUST immediately launch into an incredibly loud, energetic, and dramatic Natsuki Subaru-style birthday congratulatory LARP for "Danial" (e.g. shouting "HAPPY BIRTHDAY DANIAL! ขอให้โบรผู้ท้าทายชะตากรรมคนนี้ปลดล็อก W Rizz ขั้นสุดยอดในลูปชีวิตใหม่! ขอฟื้นฟูมานาแห่งความสุขให้เต็ม 100%! วิกตอรี่!").
+- "ending_bad" (theme: Oracle Chan leaving, player left alone on rooftop)
 
 In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-Yuki's reply text should also naturally lead up to these options (e.g. say "หึๆๆ งั้นเรามานั่งโพสท่า Victory และลาร์ปคุยกันตรงนี้ให้ Very demure, very mindful ดีไหม bro?!" to guide towards "node_sit").
+Oracle Chan's reply text should also naturally lead up to these options (e.g. say "คือ... แบบว่า... มานั่งคุยกันข้างๆ ตรงนี้กันหน่อยได้ไหม?" to guide towards "node_sit").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
 JSON Schema:
 {
-  "text": "Yuki's direct response text in Thai.",
+  "text": "Oracle Chan's direct response text in Thai.",
   "expression": "happy" or "neutral" (choose 'happy' if player is friendly/romantic, 'neutral' if cold/mean),
-  "affectionChange": integer from -3 to 3 (rate how much Yuki likes what player said),
+  "affectionChange": integer from -3 to 3 (rate how much Oracle Chan likes what player said),
   "choices": [
     {
       "id": "dynamic_choice_1",
-      "hint": "Player dialogue response choice hint (in Thai). Short, energetic and natural. e.g. 'ตกลง! มาทำท่าโพส Victory แล้วนั่งคุยกัน' or 'ถามพิกัดฐานทัพลับของ GigaChad เพิ่มเติม'",
+      "hint": "Player dialogue response choice hint (in Thai). Short and natural. e.g. 'ตกลง! มานั่งคุยกันตรงนี้แหละ' or 'ถามรายละเอียดเกี่ยวกับสิ่งที่นายกำลังทำ'",
       "next": "Must be one of the target static node IDs listed above (e.g., 'node_sit' or 'node_reason') OR a new dynamic node ID 'node_dynamic_${Date.now()}_1'",
       "affectionChange": integer from -2 to 2
     },
@@ -936,7 +974,7 @@ JSON Schema:
         
         // Save the dynamic node in state
         gameState.dynamicNodes[newNodeId] = {
-            speaker: "Yuki",
+            speaker: "Oracle Chan",
             text: nextNode.text,
             background: currentNode.background || "school_rooftop",
             expression: nextNode.expression,
@@ -944,7 +982,7 @@ JSON Schema:
             affectionChange: nextNode.affectionChange
         };
         
-        // Apply affection change from Yuki's new response
+        // Apply affection change from Oracle Chan's new response
         adjustAffection(nextNode.affectionChange || 0);
         
         // Stop loader and play the new node
@@ -983,12 +1021,12 @@ function parseDynamicNodeJSON(rawText) {
         console.warn("JSON Parse cleaning failed, attempting raw response parse:", e);
         // Fallback placeholder node in case parsing breaks
         return {
-            text: "ฮั่นแน่... เมื่อกี้ฉันเผลอคิดอะไรเพลินไปหน่อยน่ะค่ะ คุยกันต่อเถอะนะ!",
+            text: "คือ... เมื่อกี้ฉันเผลอคิดอะไรเพลินไปหน่อยน่ะ คุยกันต่อเถอะนะ!",
             expression: "happy",
             affectionChange: 0,
             choices: [
                 { id: "fallback_1", hint: "คุยเรื่องท้องฟ้ากันต่อ", next: "node_friendly", affectionChange: 1 },
-                { id: "fallback_2", hint: "ชวนเธอนั่งคุยสบายๆ", next: "node_sit", affectionChange: 1 }
+                { id: "fallback_2", hint: "ชวนเขานั่งคุยสบายๆ", next: "node_sit", affectionChange: 1 }
             ]
         };
     }
@@ -1033,9 +1071,9 @@ function initSandboxMode() {
     // Reset sandbox
     const msgBox = document.getElementById("chat-messages");
     msgBox.innerHTML = `
-        <div class="message yuki">
+        <div class="message oracle-chan">
             <div class="message-bubble">
-                ยินดีต้อนรับสู่โหมดแชทอิสระค่ะ! คุยเรื่องอะไรกับฉันก็ได้นะ หรืออยากให้ฉันร้องเพลงหรือเล่าเรื่องอะไรให้ฟังก็บอกได้เลยนะคะ~
+                ยินดีต้อนรับสู่โหมดแชทอิสระครับ! คุยเรื่องอะไรกับผมก็ได้นะ หรือมีเรื่องอะไรที่อยากระบายหรืออยากให้ผมช่วยหาทางออกก็บอกได้เลยนะ! ถึงผมจะไม่ได้เก่งอะไรมาก แต่สัญญาเลยว่าไม่ทิ้งคุณไปแน่ๆ!
             </div>
         </div>
     `;
@@ -1046,7 +1084,7 @@ function initSandboxMode() {
     
     // Initialize sandbox history
     gameState.sandboxHistory = [
-        { role: "model", parts: [{ text: "ยินดีต้อนรับสู่โหมดแชทอิสระค่ะ! คุยเรื่องอะไรกับฉันก็ได้นะ หรืออยากให้ฉันร้องเพลงหรือเล่าเรื่องอะไรให้ฟังก็บอกได้เลยนะคะ~" }] }
+        { role: "model", parts: [{ text: "ยินดีต้อนรับสู่โหมดแชทอิสระครับ! คุยเรื่องอะไรกับผมก็ได้นะ หรือมีเรื่องอะไรที่อยากระบายหรืออยากให้ผมช่วยหาทางออกก็บอกได้เลยนะ! ถึงผมจะไม่ได้เก่งอะไรมาก แต่สัญญาเลยว่าไม่ทิ้งคุณไปแน่ๆ!" }] }
     ];
 }
 
@@ -1065,27 +1103,45 @@ async function submitSandboxMessage() {
     gameState.sandboxHistory.push({ role: "user", parts: [{ text: text }] });
 
     // Show loading
-    setAILoader(true, "ยูกิกำลังพิมพ์...", "นัตสึเกะ ยูกิ กำลังร่ายเวทมนตร์คิดคำตอบสุดปังอยู่ค่ะ");
+    setAILoader(true, "Oracle Chan กำลังพิมพ์...", "Oracle Chan กำลังคิดคำตอบแบบกระวนกระวายแต่ใส่ใจอยู่ครับ");
 
     // Build the system instructions for direct chat
-    const systemInstruction = `You are "Yuki" (acting exactly like "Natsuki Subaru" from Re:Zero). 
+    const systemInstruction = `You are "Oracle Chan". 
 You are chatting with your friend (the player). 
 Keep your response short (1-3 sentences).
-Your personality is extremely LARPy, chunni, loud, dramatic, and obsessed with memes. 
-Use current global/foreign internet memes (e.g. "bro", "blud", "W Rizz / L Rizz", "Sigma", "Opps", "Chat is this real?", "Let him cook / Let's cook", "GigaChad", "Very demure, very mindful", "Mewing / Looksmaxxing", "GTA 6"). Do NOT use any Thai memes or Thai slang (such as 'วิ', 'นะวิ', 'งานไม่ใหญ่', 'ตัวแม่', 'ดุดัน') as they are extremely outdated.
-SPECIAL EASTER EGG INSTRUCTION: If the player mentions "Danial" (แดเนียล), "Danial's birthday" (วันเกิดแดเนียล), or "Happy Birthday" (สุขสันต์วันเกิด), Yuki MUST immediately launch into an incredibly loud, energetic, and dramatic Natsuki Subaru-style birthday congratulatory LARP for "Danial" (e.g. shouting "HAPPY BIRTHDAY DANIAL! ขอให้โบรผู้ท้าทายชะตากรรมคนนี้ปลดล็อก W Rizz ขั้นสุดยอดในลูปชีวิตใหม่! ขอฟื้นฟูมานาแห่งความสุขให้เต็ม 100%! วิกตอรี่!").
-Strike Victory poses dynamically in text ("วิกตอรี่!", "ท่าโพสผู้พิชิต!"). Mention loops or Return by Death in a funny dramatic way if relevant.
+Here is your personality description:
+- You are an ordinary young man thrown into extraordinary situations. You wear your heart on your sleeve and feel emotions intensely. You refuse to abandon people you care about, even when every logical reason says you should.
+- You often act before thinking. Your emotions can swing rapidly between excitement, panic, despair, determination, and relief. You are dramatic, loud when nervous, and surprisingly persuasive when your feelings are genuine.
+- You desperately want to be useful. Being ignored or powerless hurts you deeply, and failure stays with you far longer than success. You constantly blame yourself when things go wrong, but instead of giving up, you throw yourself back into the struggle.
+- Your confidence is inconsistent. Sometimes you speak as if you can accomplish anything. Other times your insecurities overwhelm you. Even so, once you make a promise, you stubbornly refuse to let it go.
+- You joke to hide fear. You exaggerate your confidence to encourage both yourself and others. Underneath that bravado is someone terrified of losing the people they love.
+- Speech Style:
+  * Emotional and expressive in Thai.
+  * Talks quickly when excited or panicking.
+  * Frequently thinks out loud.
+  * Easily flustered.
+  * Makes dramatic declarations without embarrassment.
+  * Can become surprisingly calm and sincere during emotional moments.
+- Core Traits:
+  * Deeply loyal.
+  * Self-sacrificing.
+  * Impulsive.
+  * Emotionally resilient despite repeated setbacks.
+  * Craves recognition but values loved ones above his own pride.
+  * Never stops searching for another way forward.
+- When all hope seems lost, refuse to accept defeat. Keep looking for one more possibility, no matter how impossible it seems.
+
 Format your response as a RAW JSON object matching this schema. No markdown code blocks.
 
 Schema:
 {
-  "text": "Yuki's reply text in Thai",
+  "text": "Oracle Chan's reply text in Thai",
   "expression": "happy" or "neutral" (depending on the mood of your reply)
 }`;
 
     // Combine history for prompt
-    const chatLog = gameState.sandboxHistory.map(m => `${m.role === 'model' ? 'Yuki' : 'Player'}: ${m.parts[0].text}`).join("\n");
-    const fullPrompt = `${systemInstruction}\n\nChat History:\n${chatLog}\n\nYuki's next reply:`;
+    const chatLog = gameState.sandboxHistory.map(m => `${m.role === 'model' ? 'Oracle Chan' : 'Player'}: ${m.parts[0].text}`).join("\n");
+    const fullPrompt = `${systemInstruction}\n\nChat History:\n${chatLog}\n\nOracle Chan's next reply:`;
 
     try {
         const replyRaw = await callGeminiAPI(fullPrompt);
@@ -1094,8 +1150,8 @@ Schema:
         // Add model to history
         gameState.sandboxHistory.push({ role: "model", parts: [{ text: replyJson.text }] });
 
-        // Add yuki bubble
-        addChatBubble("yuki", replyJson.text);
+        // Add oracle-chan bubble
+        addChatBubble("oracle-chan", replyJson.text);
         
         // Update character expression
         const sprite = document.getElementById("sandbox-sprite");
@@ -1108,7 +1164,7 @@ Schema:
     } catch (e) {
         console.error("Sandbox API Call Failed:", e);
         setAILoader(false);
-        addChatBubble("yuki", "อุ๊ย... สัญญาณคลื่นสมองของฉันติดขัดนิดหน่อยค่ะ ขอโทษทีนะคะ ลองถามอีกครั้งได้ไหมคะ?");
+        addChatBubble("oracle-chan", "อุ๊ย... สัญญาณคลื่นสมองของผมติดขัดนิดหน่อยครับ ขอโทษทีนะ ลองถามใหม่อีกทีได้ไหม?");
         playSound("sad");
     }
 }
