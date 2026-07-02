@@ -33,50 +33,8 @@ app.use("/api/generate", limiter);
 app.use(express.static(path.join(__dirname)));
 
 // ── API Proxy Endpoint ──────────────────────────────────────────────────────
-app.post("/api/generate", async (req, res) => {
-    const { prompt } = req.body;
-
-    if (!prompt || typeof prompt !== "string" || prompt.trim() === "") {
-        return res.status(400).json({ error: "Missing or invalid 'prompt' field." });
-    }
-
-    const payload = {
-        contents: [
-            {
-                parts: [{ text: prompt }]
-            }
-        ]
-    };
-
-    try {
-        const geminiRes = await fetch(GEMINI_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (!geminiRes.ok) {
-            const errText = await geminiRes.text();
-            console.error(`Gemini API error ${geminiRes.status}:`, errText);
-            return res.status(geminiRes.status).json({ error: `Gemini API error: ${geminiRes.status}` });
-        }
-
-        const data = await geminiRes.json();
-
-        const text =
-            data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        if (!text) {
-            return res.status(500).json({ error: "Invalid response format from Gemini." });
-        }
-
-        return res.json({ text });
-
-    } catch (err) {
-        console.error("Server error calling Gemini:", err.message);
-        return res.status(500).json({ error: "Internal server error." });
-    }
-});
+const generateHandler = require("./api/generate");
+app.post("/api/generate", generateHandler);
 
 // ── Fallback: serve index.html for any unknown route ────────────────────────
 app.get("*", (req, res) => {
