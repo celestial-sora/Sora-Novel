@@ -15,60 +15,158 @@
 </head>
 <body>
     <div id="app-container">
-        <!-- AI Chatbot Main Interface -->
-        <div id="chatbot-stage" class="chatbot-stage">
-            <div class="chatbot-background"></div>
-            
-            <!-- Chat Header -->
-            <div class="chatbot-header">
-                <div class="header-brand">
-                    <div class="logo-icon"><i class="fa-solid fa-ghost"></i></div>
-                    <div class="brand-info">
-                        <h1 class="brand-title">พี่จู uwufufu <span class="highlight">AI Chat</span></h1>
-                        <p class="brand-subtitle">คุยกับจิตใต้สำนึกของ นัตสึเกะ สุบารุ ที่หอคอยเพลอาดัส</p>
-                    </div>
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-background"></div>
+            <div class="menu-content">
+                <h1 class="game-title">Re:Zero SS4 <span class="highlight">เพลอาดัส</span></h1>
+                <p class="game-subtitle">เอาชีวิตรอดกับ พี่จู uwufufu ในลูปหอคอยแห่งความทรงจำ • ระบบเนื้อเรื่องไดนามิก AI</p>
+                
+                <div class="menu-buttons">
+                    <button id="btn-new-game" class="menu-btn primary">
+                        <i class="fa-solid fa-play"></i> เริ่มเกมใหม่
+                    </button>
+                    <button id="btn-load-game" class="menu-btn secondary" disabled>
+                        <i class="fa-solid fa-cloud-arrow-up"></i> โหลดเกมเดิม
+                    </button>
+                    <button id="btn-sandbox" class="menu-btn accent">
+                        <i class="fa-solid fa-comments"></i> โหมดคุยเล่น AI อิสระ
+                    </button>
                 </div>
-                <div class="header-controls">
-                    <button id="btn-toggle-sound" class="header-btn" title="เปิด/ปิดเสียงประมวลผล">
-                        <i class="fa-solid fa-volume-high"></i>
-                    </button>
-                    <button id="btn-clear-chat" class="header-btn accent" title="เริ่มบทสนทนาใหม่">
-                        <i class="fa-solid fa-arrows-rotate"></i> รีเซ็ตแชท
-                    </button>
-                    <div class="status-badge">
-                        <span class="status-indicator"></span> AI Online
+
+                <div class="menu-footer">
+                    <p>พัฒนาด้วย <i class="fa-solid fa-heart" style="color: #ff6b81;"></i> โดย Antigravity • Powered by Gemini 2.5 Flash</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Stage -->
+        <div id="game-stage" class="screen">
+            <!-- Background Layer -->
+            <div id="bg-layer" class="bg-layer"></div>
+            <div class="bg-gradient-overlay"></div>
+
+            <!-- Affection Widget (Top Right) -->
+            <div class="affection-widget">
+                <div class="heart-icon-container">
+                    <i class="fa-solid fa-heart heart-icon"></i>
+                </div>
+                <div class="affection-info">
+                    <span class="affection-label">พี่จู uwufufu's Affection</span>
+                    <div class="bar-container">
+                        <div id="affection-bar" class="bar-fill" style="width: 50%;"></div>
                     </div>
+                    <span id="affection-value" class="affection-value">50%</span>
                 </div>
             </div>
 
-            <!-- Chat Content Area -->
-            <div class="chatbot-content">
-                <!-- Character Sprite Panel -->
-                <div class="character-panel">
-                    <div class="sprite-glow-effect"></div>
-                    <img id="character-sprite" src="assets/subaru_normal.webp" alt="พี่จู uwufufu" class="character-sprite float">
-                    <div class="character-tag">พี่จู uwufufu</div>
+            <!-- Character Sprite Container -->
+            <div class="sprite-container">
+                <img id="character-sprite" src="assets/subaru_normal.webp" alt="พี่จู uwufufu" class="sprite float">
+            </div>
+
+            <!-- Dialogue and Control Box (Bottom) -->
+            <div class="dialogue-box-container">
+                <!-- Speaker Badge -->
+                <div id="speaker-badge" class="speaker-badge">พี่จู uwufufu</div>
+
+                <!-- Main Dialogue Box -->
+                <div id="dialogue-box" class="dialogue-box">
+                    <div id="dialogue-text" class="dialogue-text"></div>
+                    <div id="next-indicator" class="next-indicator">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
                 </div>
 
-                <!-- Chat History Panel -->
-                <div class="chat-container">
+                <!-- Controls Panel -->
+                <div class="controls-panel">
+                    <button id="ctrl-save" class="ctrl-btn" title="บันทึกเซฟปัจจุบัน"><i class="fa-solid fa-floppy-disk"></i> เซฟ</button>
+                    <button id="ctrl-load" class="ctrl-btn" title="โหลดเซฟล่าสุด"><i class="fa-solid fa-folder-open"></i> โหลด</button>
+                    <button id="ctrl-log" class="ctrl-btn" title="ดูประวัติการคุยทั้งหมด"><i class="fa-solid fa-clock-rotate-left"></i> ประวัติ</button>
+                    <button id="ctrl-auto" class="ctrl-btn" title="เล่นอัตโนมัติ"><i class="fa-solid fa-play"></i> ออโต้</button>
+                    <button id="ctrl-skip" class="ctrl-btn" title="ข้ามการพิมพ์"><i class="fa-solid fa-forward-step"></i> ข้าม</button>
+                    <button id="ctrl-restart" class="ctrl-btn" title="เริ่มเกมใหม่"><i class="fa-solid fa-arrow-rotate-left"></i> เริ่มใหม่</button>
+                    <button id="ctrl-menu" class="ctrl-btn" title="กลับหน้าหลัก"><i class="fa-solid fa-house"></i> เมนูหลัก</button>
+                </div>
+            </div>
+
+            <!-- Choices Overlay -->
+            <div id="choices-overlay" class="choices-overlay">
+                <div class="choices-header">เธอจะตอบ พี่จู uwufufu ว่าอย่างไรดี?</div>
+                <div id="choices-list" class="choices-list">
+                    <!-- Standard options injected dynamically -->
+                </div>
+                
+                <!-- Dynamic AI Custom Response Box -->
+                <div class="custom-response-section">
+                    <div class="custom-response-divider">
+                        <span>หรือ พิมพ์ตอบกลับด้วยตัวเองด้วยพลัง AI</span>
+                    </div>
+                    <div class="custom-input-group">
+                        <input type="text" id="custom-reply-input" placeholder="พิมพ์ข้อความคุยกับ พี่จู uwufufu ที่นี่..." maxlength="150">
+                        <button id="submit-custom-reply" class="submit-btn" disabled>
+                            <i class="fa-solid fa-paper-plane"></i> ส่งคำตอบ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Sandbox Chat Mode (Direct interaction) -->
+        <div id="sandbox-stage" class="screen">
+            <div class="sandbox-background"></div>
+            <div class="sandbox-header">
+                <button id="sandbox-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> กลับเมนู</button>
+                <div class="sandbox-title">AI Sandbox Chat with พี่จู uwufufu</div>
+                <div class="sandbox-status"><span class="status-indicator"></span> Online</div>
+            </div>
+
+            <div class="sandbox-content">
+                <!-- Sprite preview -->
+                <div class="sandbox-sprite-panel">
+                    <img id="sandbox-sprite" src="assets/subaru_normal.webp" alt="พี่จู uwufufu Chat" class="sandbox-sprite float">
+                </div>
+
+                <!-- Chat history panel -->
+                <div class="chat-history-container">
                     <div id="chat-messages" class="chat-messages">
-                        <!-- Welcome message -->
-                        <div class="message model">
+                        <div class="message oracle-chan">
                             <div class="message-bubble">
-                                ยินดีต้อนรับสู่โหมดแชทอิสระครับ! คุยเรื่องอะไรกับผมก็ได้นะ หรือมีเรื่องอะไรที่อยากระบายหรืออยากให้ผมช่วยหาทางออกก็บอกได้เลยนะ! ถึงผมจะไม่ได้เก่งอะไรมาก แต่สัญญาเลยว่าไม่ทิ้งคุณไปแน่ๆ!
+                            ยินดีต้อนรับสู่โหมดแชทอิสระครับ! คุยเรื่องอะไรกับผมก็ได้นะ หรือมีเรื่องอะไรที่อยากระบายหรืออยากให้ผมช่วยหาทางออกก็บอกได้เลยนะ! ถึงผมจะไม่ได้เก่งอะไรมาก แต่สัญญาเลยว่าไม่ทิ้งคุณไปแน่ๆ!
                             </div>
                         </div>
                     </div>
 
-                    <!-- Chat Input Bar -->
                     <div class="chat-input-panel">
-                        <input type="text" id="chat-input" placeholder="พิมพ์ข้อความพูดคุยกับ พี่จู uwufufu ที่นี่..." maxlength="250" autofocus>
-                        <button id="btn-send" class="send-btn" title="ส่งข้อความ">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
+                        <input type="text" id="sandbox-input" placeholder="พิมพ์คุยกับ พี่จู uwufufu อิสระ..." maxlength="200">
+                        <button id="sandbox-send-btn" class="sandbox-send-btn"><i class="fa-solid fa-paper-plane"></i> ส่ง</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Log Overlay -->
+        <div id="log-overlay" class="overlay">
+            <div class="overlay-card log-card">
+                <div class="overlay-header">
+                    <h2><i class="fa-solid fa-clock-rotate-left"></i> ประวัติการสนทนา (Log)</h2>
+                    <button id="log-close-btn" class="close-btn">&times;</button>
+                </div>
+                <div id="log-content" class="log-content">
+                    <!-- History log records injected dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay (AI Generation Spinner) -->
+        <div id="loading-overlay" class="overlay-blur">
+            <div class="loader-card">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                    <div class="spinner-heart"><i class="fa-solid fa-heart"></i></div>
+                </div>
+                <h3 id="loading-title">พี่จู uwufufu กำลังบ่น...</h3>
+                <p id="loading-subtitle">ระบบ AI กำลังประมวลผลเส้นทางเรื่องราวใหม่ให้คุณ</p>
             </div>
         </div>
 
