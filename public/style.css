@@ -672,10 +672,10 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=1920&auto=format&fit=crop');
+    background-image: url('assets/sandbox_bg.jpg');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.3) blur(3px);
+    filter: brightness(0.65) saturate(1.05);
     z-index: -2;
 }
 
