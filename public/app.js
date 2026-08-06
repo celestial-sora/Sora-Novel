@@ -358,6 +358,7 @@ function updateAutoSkipButtonsUI() {
 function playNode(nodeId) {
     console.log(`Playing node: ${nodeId}`);
     gameState.currentNodeId = nodeId;
+    hideChoicesOverlay();
     
     // Look up the node (check dynamic nodes first, then static dialogue tree)
     const node = gameState.dynamicNodes[nodeId] || gameState.dialogueTree[nodeId];
@@ -783,7 +784,7 @@ async function submitCustomResponse() {
     playSound("click");
     
     // Close choices overlay visually while loading
-    document.getElementById("choices-overlay").classList.remove("active");
+    hideChoicesOverlay();
     
     // Start loader overlay
     setAILoader(true, "โซระจัง กำลังคิด...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
@@ -1058,6 +1059,7 @@ function setAILoader(show, title = "", subtitle = "") {
     const isSandboxActive = document.getElementById("sandbox-stage").classList.contains("active");
 
     if (show) {
+        hideChoicesOverlay();
         if (isGameActive) {
             // Immersive Dialogue Loader: Set speaker badge and show inline typing dots
             const currentNode = gameState.dynamicNodes[gameState.currentNodeId] || gameState.dialogueTree[gameState.currentNodeId];
