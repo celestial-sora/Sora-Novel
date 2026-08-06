@@ -6,17 +6,23 @@ const API_URL = "/api/generate";
 
 // Curated Background Image URLs (High-res anime style fallbacks/direct images)
 const BACKGROUNDS = {
-    "lugnica_capital": "assets/capital.webp",
-    "lugnica_yard": "assets/yard.webp",
-    "lugnica_living_room": "assets/living_room.webp",
-    "lugnica_bedroom": "assets/bedroom.webp",
-    "lugnica_empty": "assets/bad_ending.webp"
+    "office_desk": "assets/office_desk.jpg",
+    "office_lounge": "assets/office_lounge.jpg",
+    "office_outside": "assets/office_outside.jpg",
+    "office_breakroom": "assets/office_breakroom.jpg",
+    "server_crash": "assets/server_crash.jpg"
 };
 
-// Sprites mapping
+// Sprites mapping (Multiple character poses & expressions)
 const SPRITES = {
     "happy": "assets/sora_normal.png",
-    "neutral": "assets/sora_larp.png"
+    "neutral": "assets/sora_normal.png",
+    "thinking": "assets/sora_thinking.png",
+    "curious": "assets/sora_thinking.png",
+    "panic": "assets/sora_panic.png",
+    "worried": "assets/sora_panic.png",
+    "confident": "assets/sora_confident.png",
+    "excited": "assets/sora_confident.png"
 };
 
 // Game State Object
@@ -391,7 +397,7 @@ function playNode(nodeId) {
     }
 
     // If it's an empty background scene, hide character
-    if (node.background === "lugnica_empty" || node.isEnding && nodeId === "ending_bad") {
+    if (node.background === "server_crash" || node.isEnding && nodeId === "ending_bad") {
         spriteImg.style.display = "none";
     } else {
         spriteImg.style.display = "block";
@@ -523,7 +529,7 @@ function scheduleAutoPlayAdvance() {
 function changeBackground(bgName) {
     const bgLayer = document.getElementById("bg-layer");
     const currentStyle = bgLayer.style.backgroundImage;
-    const nextUrl = BACKGROUNDS[bgName] || BACKGROUNDS["lugnica_capital"];
+    const nextUrl = BACKGROUNDS[bgName] || BACKGROUNDS["office_desk"];
     
     if (currentStyle !== `url("${nextUrl}")`) {
         playSound("whoosh");
@@ -837,7 +843,7 @@ JSON Schema:
         gameState.dynamicNodes[newNodeId] = {
             speaker: "โซระจัง",
             text: nextNode.text,
-            background: currentNode.background || "lugnica_capital",
+            background: currentNode.background || "office_desk",
             expression: nextNode.expression,
             choices: nextNode.choices,
             affectionChange: nextNode.affectionChange
@@ -946,7 +952,7 @@ JSON Schema:
         gameState.dynamicNodes[newNodeId] = {
             speaker: "โซระจัง",
             text: nextNode.text,
-            background: currentNode.background || "lugnica_capital",
+            background: currentNode.background || "office_desk",
             expression: nextNode.expression,
             choices: nextNode.choices,
             affectionChange: nextNode.affectionChange

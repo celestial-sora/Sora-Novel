@@ -2,7 +2,8 @@
   "start": {
     "speaker": "โซระจัง",
     "text": "พี่คะ... พี่! ยินดีที่ได้รู้จักค่ะ! หนูชื่อโซระจังนะคะ เพิ่งย้ายเข้ามาฝึกงานวันแรกในตำแหน่ง AI Engineer ฝึกหัดค่ะ! แต่ว่า... หนูกลัวมากเลยค่ะ โค้ดโมเดลภาษาขนาดใหญ่ (LLM) กับเทคโนโลยีใหม่ๆ มันยากไปหมดเลย... หนูจะรอดไหมคะเนี่ยพี่?!",
-    "background": "lugnica_bedroom",
+    "background": "office_desk",
+    "expression": "panic",
     "choices": [
       { "id": "friendly", "hint": "ยิ้มและให้กำลังใจ บอกว่ายินดีต้อนรับสู่ทีม ไม่ต้องห่วง ค่อยๆ เรียนรู้ไปด้วยกันนะ", "next": "node_friendly", "affectionChange": 1 },
       { "id": "cold", "hint": "บอกว่างานนี้โหดนะ ถ้าสติแตกตั้งแต่เรื่องนี้ก็คงไม่รอดหรอกนะ", "next": "node_cold", "affectionChange": -1 },
@@ -12,7 +13,8 @@
   "node_friendly": {
     "speaker": "โซระจัง",
     "text": "ฟู่... ค่อยยังชั่วหน่อยค่ะ! พอพี่พูดปลอบแล้วรู้สึกมีพลังขึ้นมาเยอะเลย! แต่โค้ดที่รันเมื่อกี้มันเออร์เรอร์ยาวเหยียดเลยค่ะ ทั้งปัญหา Out of Memory (OOM) ทั้งคีย์ API ไม่ผ่าน... หนูควรจะไปเริ่มสืบแก้จากตรงไหนก่อนดีคะพี่?!",
-    "background": "lugnica_living_room",
+    "background": "office_lounge",
+    "expression": "thinking",
     "choices": [
       { "id": "ask_reason", "hint": "แนะนำให้เช็คไฟล์ตั้งค่า .env และดูขนาด Context Window ใน API ดูก่อน", "next": "node_reason", "affectionChange": 1 },
       { "id": "sit_together", "hint": "บอกให้นั่งพักดื่มกาแฟก่อน แล้วมาลองเปิดหน้าจอดู Stack Trace ทีละบรรทัดด้วยกัน", "next": "node_sit", "affectionChange": 2 }
@@ -21,7 +23,8 @@
   "node_cold": {
     "speaker": "โซระจัง",
     "text": "โธ่พี่... พูดตรงซะหนูใจเสียเลยค่ะ! หรือหนูจะไม่เหมาะกับการเป็น AI Engineer จริงๆ นะ... ทนไม่ไหวแล้วล่ะค่ะ! โค้ดยังไม่ผ่าน คอมไพล์ก็ไม่ผ่าน หนูขอหนีออกจากออฟฟิศไปเดินเล่นข้างนอกระบายอารมณ์ก่อนนะคะ!",
-    "background": "lugnica_capital",
+    "background": "office_outside",
+    "expression": "panic",
     "choices": [
       { "id": "apologize", "hint": "เรียกสติ ดึงเธอกลับมา ขอโทษที่พูดแรงไป มาเริ่มแก้บั๊กทีละบรรทัดกันใหม่เถอะ", "next": "node_apologize", "affectionChange": 1 },
       { "id": "let_go", "hint": "ปล่อยให้เธอเดินหนีไป บางทีเธออาจจะอยากไปพักสงบสติอารมณ์คนเดียวเงียบๆ", "next": "ending_bad", "affectionChange": -1 }
@@ -30,7 +33,8 @@
   "node_curious": {
     "speaker": "โซระจัง",
     "text": "หนูกำลังรันโค้ดต่อสาย API ของ Gemini บนเซิร์ฟเวอร์ Node.js ค่ะ! แต่เออร์เรอร์บอกว่า 'Invalid response format' หรืออะไรสักอย่าง... หรือว่ารูปแบบ JSON ที่ส่งกลับมาจาก LLM มันไม่ตรงคะพี่? หนูควรไปแก้มันที่ตัวแปลงรูปแบบข้อมูลใช่ไหม?!",
-    "background": "lugnica_yard",
+    "background": "office_breakroom",
+    "expression": "thinking",
     "choices": [
       { "id": "listen", "hint": "สนับสนุนให้เปิดไฟล์ log มาเช็คดูผลลัพธ์ดิบที่ส่งมาจาก API แบบตรงๆ", "next": "node_sit", "affectionChange": 1 },
       { "id": "change_topic", "hint": "เตือนให้ระวังการแปลงค่า JSON เพราะถ้าอักขระหายไปตัวเดียวระบบก็แครชได้เลย", "next": "node_reason", "affectionChange": 0 }
@@ -39,7 +43,8 @@
   "node_reason": {
     "speaker": "โซระจัง",
     "text": "จริงด้วยค่ะ! การไปดึง JSON แบบไม่มีการครอบ Try-Catch มันเสี่ยงทำให้หน้าเว็บบล็อกการทำงานไปเลย! แต่การไล่แก้ระบบโค้ดที่มีคนทำค้างไว้เยอะแยะนี่มันบีบหัวใจหนูจัง... หวังว่าการใช้ไลบรารีแปลง JSON อัตโนมัติจะช่วยได้นะ...",
-    "background": "lugnica_yard",
+    "background": "office_breakroom",
+    "expression": "thinking",
     "choices": [
       { "id": "relate", "hint": "บอกว่าไม่ว่าจะเจอเออร์เรอร์กี่รอบ หัวใจของการเป็น AI Engineer คือการวิจัยทดลองและไม่ยอมแพ้", "next": "node_sit", "affectionChange": 2 },
       { "id": "neutral", "hint": "พยักหน้าให้สู้ๆ คอยดูอยู่ห่างๆ ปล่อยให้เธอลองเรียนรู้จากการดีบักด้วยตัวเอง", "next": "ending_neutral", "affectionChange": 0 }
@@ -48,7 +53,8 @@
   "node_apologize": {
     "speaker": "โซระจัง",
     "text": "...เฮ้อ! ขอบคุณนะคะพี่ คำพูดที่อบอุ่นและช่วยดึงสติหนูทำให้หนูหายตื่นตูมจากบั๊กหน้าแดงแป๊ดแล้วค่ะ! รู้สึกว่ามีพี่เป็นพี่เลี้ยงแล้วอุ่นใจมากเลย กลับมานั่งโต๊ะทำงาน ค่อยๆ เปิดเครื่องดูโค้ดกันใหม่เถอะค่ะ",
-    "background": "lugnica_living_room",
+    "background": "office_lounge",
+    "expression": "happy",
     "choices": [
       { "id": "smile", "hint": "ยิ้มให้และยืนยันว่าจะช่วยเธอประกบเขียนโค้ดเคลียร์ปัญหาไปจนส่งมอบงาน", "next": "node_sit", "affectionChange": 1 }
     ]
@@ -56,7 +62,8 @@
   "node_sit": {
     "speaker": "โซระจัง",
     "text": "ขอบคุณพี่เลี้ยงของหนูมากค่ะ! การได้นั่งดูโค้ดทีละสเต็ปบนเก้าอี้ทำงานข้างๆ พี่ มันทำให้หนูเข้าใจระบบขึ้นเยอะเลยค่ะ! ตอนนี้หนูพร้อมจะลุยและดีพลอย (Deploy) โครงการนี้ให้เสร็จแล้วค่ะ! ลุยกันเลย!",
-    "background": "lugnica_living_room",
+    "background": "office_lounge",
+    "expression": "confident",
     "choices": [
       { "id": "confess", "hint": "ให้กำลังใจว่าไม่ว่าบั๊กจะยากแค่ไหน เราจะผ่านพ้นช่วงทดสอบงานและเก่งขึ้นไปด้วยกัน", "next": "ending_good", "affectionChange": 3 },
       { "id": "casual", "hint": "ชวนคุยเรื่องตลกๆ เรื่องมีมโปรแกรมเมอร์และอาการออฟฟิศซินโดรมเพื่อคลายกังวล", "next": "ending_neutral", "affectionChange": 1 }
@@ -65,21 +72,24 @@
   "ending_good": {
     "speaker": "โซระจัง",
     "text": "[GOOD ENDING] เย้! พี่คะ! โค้ดผ่านหมดแล้วค่ะ! โครงการ AI แรกของหนูดีพลอยขึ้นโปรดักชันได้อย่างสมบูรณ์แบบโดยไม่มีบั๊กเลย! แถมทีมงานยังชมหนูใหญ่เลยค่ะ! ขอบคุณพี่มากนะคะที่เป็นสุดยอดพี่เลี้ยงช่วยคอยสอนและดึงสติหนูมาตลอดเลย!",
-    "background": "lugnica_bedroom",
+    "background": "office_desk",
+    "expression": "confident",
     "choices": [],
     "isEnding": true
   },
   "ending_neutral": {
     "speaker": "โซระจัง",
     "text": "[NEUTRAL ENDING] วันนี้เราแก้บั๊กและรันงานผ่านไปได้ด้วยดีค่ะ งานเสร็จตามกำหนดการ เดี๋ยวพรุ่งนี้เช้าเรามาอัปเดตงาน (Daily Standup) กันต่อนะคะพี่เลี้ยง! หวังว่าจะไม่มีระบบล่มกลางดึกนะ บ๊ายบายค่ะ!",
-    "background": "lugnica_yard",
+    "background": "office_breakroom",
+    "expression": "happy",
     "choices": [],
     "isEnding": true
   },
   "ending_bad": {
     "speaker": "โซระจัง",
     "text": "[BAD ENDING] ...โค้ดแครช บั๊กเต็มระบบ คีย์ API โดนล็อกสิทธิ์จนระบบการทำงานล่มอย่างรุนแรง... ต้องกลับไปตั้งต้นอ่านคู่มือดีบักใหม่ตั้งแต่หน้าแรก... เส้นทาง AI Engineer ช่างโหดร้ายจริงๆ...",
-    "background": "lugnica_empty",
+    "background": "server_crash",
+    "expression": "panic",
     "choices": [],
     "isEnding": true
   }
