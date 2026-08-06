@@ -579,9 +579,22 @@ function openLogOverlay() {
     container.scrollTop = container.scrollHeight;
 }
 
+function showChoicesOverlay() {
+    const choicesOverlay = document.getElementById("choices-overlay");
+    const gameStage = document.getElementById("game-stage");
+    if (choicesOverlay) choicesOverlay.classList.add("active");
+    if (gameStage) gameStage.classList.add("has-choices");
+}
+
+function hideChoicesOverlay() {
+    const choicesOverlay = document.getElementById("choices-overlay");
+    const gameStage = document.getElementById("game-stage");
+    if (choicesOverlay) choicesOverlay.classList.remove("active");
+    if (gameStage) gameStage.classList.remove("has-choices");
+}
+
 // Display choices overlay or ending prompts
 function renderChoicesOrEnding(node) {
-    const choicesOverlay = document.getElementById("choices-overlay");
     const choicesList = document.getElementById("choices-list");
     choicesList.innerHTML = "";
     
@@ -603,7 +616,7 @@ function renderChoicesOrEnding(node) {
             btn.innerHTML = `${choice.hint}`;
             btn.addEventListener("click", () => {
                 playSound("click");
-                choicesOverlay.classList.remove("active");
+                hideChoicesOverlay();
                 
                 // If it's a static node, play it
                 if (gameState.dialogueTree[choice.next]) {
@@ -617,9 +630,9 @@ function renderChoicesOrEnding(node) {
             choicesList.appendChild(btn);
         });
 
-        choicesOverlay.classList.add("active");
+        showChoicesOverlay();
     } else {
-        choicesOverlay.classList.remove("active");
+        hideChoicesOverlay();
     }
 }
 
@@ -737,7 +750,7 @@ function loadGame() {
         document.getElementById("affection-value").innerText = `${gameState.affectionScore}%`;
         
         // Hide Choice Overlay initially
-        document.getElementById("choices-overlay").classList.remove("active");
+        hideChoicesOverlay();
         
         // Switch Screen
         switchToScreen("game-stage");
@@ -861,7 +874,7 @@ JSON Schema:
         showToast("เกิดข้อผิดพลาดในการเชื่อมต่อ AI กลับสู่ด่านหลัก", "accent");
         
         // Re-show choices so player doesn't get stuck
-        document.getElementById("choices-overlay").classList.add("active");
+        showChoicesOverlay();
     }
 }
 
@@ -871,7 +884,7 @@ async function submitChoiceAsResponse(playerText, affectionChange) {
     adjustAffection(affectionChange);
     
     // Close choices overlay visually while loading
-    document.getElementById("choices-overlay").classList.remove("active");
+    hideChoicesOverlay();
     
     // Start loader overlay
     setAILoader(true, "โซระจัง กำลังคิด...", "ระบบกำลังวิเคราะห์คำตอบและสร้างเส้นทางเรื่องราวใหม่ของคุณ");
@@ -970,7 +983,7 @@ JSON Schema:
         showToast("เกิดข้อผิดพลาดในการเชื่อมต่อ AI กลับสู่ด่านหลัก", "accent");
         
         // Re-show choices so player doesn't get stuck
-        document.getElementById("choices-overlay").classList.add("active");
+        showChoicesOverlay();
     }
 }
 
