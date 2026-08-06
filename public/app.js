@@ -1072,6 +1072,12 @@ function setAILoader(show, title = "", subtitle = "") {
             `;
             document.getElementById("next-indicator").classList.remove("visible");
         } else if (isSandboxActive) {
+            // Switch Sandbox Sprite to Thinking Emote while AI generates text
+            const sandboxSprite = document.getElementById("sandbox-sprite");
+            if (sandboxSprite) {
+                sandboxSprite.src = SPRITES["thinking"] || "assets/sora_thinking.png";
+            }
+
             // Inline Sandbox Chat Loader: Append typing bubble
             const msgBox = document.getElementById("chat-messages");
             // Prevent duplicate bubble
@@ -1184,6 +1190,8 @@ Schema:
     } catch (e) {
         console.error("Sandbox API Call Failed:", e);
         setAILoader(false);
+        const sprite = document.getElementById("sandbox-sprite");
+        if (sprite) sprite.src = SPRITES["panic"] || SPRITES["happy"];
         addChatBubble("oracle-chan", "แงงง... ดูเหมือนสัญญาณเครือข่ายของหนูจะมีปัญหาค่ะพี่ ลองพิมพ์ถามใหม่อีกทีได้ไหมคะ?");
         playSound("sad");
     }
