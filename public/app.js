@@ -418,8 +418,12 @@ function playNode(nodeId) {
         // Log this dialogue in history
         logDialogue(node.speaker || "Narrator", node.text);
         
-        // Show choices or Ending Screen
-        renderChoicesOrEnding(node);
+        // Show choices or Ending Screen after a short natural reading pause (500ms)
+        setTimeout(() => {
+            if (!gameState.isTyping && gameState.currentNodeId === nodeId) {
+                renderChoicesOrEnding(node);
+            }
+        }, 500);
     });
 }
 
@@ -603,14 +607,6 @@ function renderChoicesOrEnding(node) {
     const customInput = document.getElementById("custom-reply-input");
     customInput.value = "";
     document.getElementById("submit-custom-reply").setAttribute("disabled", "true");
-
-    // Populate speech preview box inside choices modal
-    const previewSpeaker = document.getElementById("speech-preview-speaker");
-    const previewText = document.getElementById("speech-preview-text");
-    if (previewSpeaker && previewText) {
-        previewSpeaker.innerText = node.speaker || "โซระจัง";
-        previewText.innerText = `"${node.text || ''}"`;
-    }
 
     if (node.choices && node.choices.length > 0) {
         // Pause auto play to wait for choice
