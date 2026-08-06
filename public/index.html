@@ -93,6 +93,14 @@
             <!-- Choices Overlay -->
             <div id="choices-overlay" class="choices-overlay">
                 <div class="choices-card">
+                    <!-- Dialogue Prompt Preview Box -->
+                    <div id="choices-speech-preview" class="choices-speech-preview">
+                        <div class="speech-preview-badge">
+                            <i class="fa-solid fa-comment-dots"></i> <span id="speech-preview-speaker">โซระจัง</span> พูดว่า:
+                        </div>
+                        <div id="speech-preview-text" class="speech-preview-text">"..."</div>
+                    </div>
+
                     <div class="choices-header">เธอจะตอบ โซระจัง ว่าอย่างไรดี?</div>
                     <div id="choices-list" class="choices-list">
                         <!-- Standard options injected dynamically -->
@@ -104,7 +112,7 @@
                             <span>หรือ พิมพ์ตอบกลับด้วยตัวเองด้วยพลัง AI</span>
                         </div>
                         <div class="custom-input-group">
-                            <input type="text" id="custom-reply-input" placeholder="พิมพ์ข้อความคุยกับ โซระจัง ที่นี่..." maxlength="150">
+                            <input type="text" id="custom-reply-input" placeholder="พิมพ์ข้อความตอบกลับ โซระจัง ที่นี่..." maxlength="150">
                             <button id="submit-custom-reply" class="submit-btn" disabled>
                                 <i class="fa-solid fa-paper-plane"></i> ส่งคำตอบ
                             </button>

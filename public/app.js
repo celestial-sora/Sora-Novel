@@ -603,6 +603,14 @@ function renderChoicesOrEnding(node) {
     customInput.value = "";
     document.getElementById("submit-custom-reply").setAttribute("disabled", "true");
 
+    // Populate speech preview box inside choices modal
+    const previewSpeaker = document.getElementById("speech-preview-speaker");
+    const previewText = document.getElementById("speech-preview-text");
+    if (previewSpeaker && previewText) {
+        previewSpeaker.innerText = node.speaker || "โซระจัง";
+        previewText.innerText = `"${node.text || ''}"`;
+    }
+
     if (node.choices && node.choices.length > 0) {
         // Pause auto play to wait for choice
         if (gameState.autoPlay) {
