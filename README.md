@@ -1,5 +1,5 @@
 # Sora-chan AI Engineer · Visual Novel
-#Try At sora-novel.vercel.app
+[Try At sora-novel.vercel.app](https://sora-novel.vercel.app)
 
 <div align="center">
 
