@@ -1,5 +1,6 @@
 # Sora-chan AI Engineer · Visual Novel
 [Try At sora-novel.vercel.app](https://sora-novel.vercel.app)
+# this prokect is under develop still buggy plss i know the BUGS
 
 <div align="center">
 
