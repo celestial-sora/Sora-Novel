@@ -40,6 +40,7 @@ let gameState = {
     autoPlayTimer: null,
     skipMode: false,
     isAILoading: false,
+    unlockedSecret: false,   // Track if secret code audit route was unlocked
     sandboxHistory: []      // History of messages in AI chat mode
 };
 
@@ -285,6 +286,7 @@ function startNewGame() {
     gameState.gameHistory = [];
     gameState.autoPlay = false;
     gameState.skipMode = false;
+    gameState.unlockedSecret = false;
     stopAutoPlay();
     updateAutoSkipButtonsUI();
     switchToScreen("game-stage");
@@ -357,6 +359,28 @@ function updateAutoSkipButtonsUI() {
 // Render the current Dialogue Node
 function playNode(nodeId) {
     console.log(`Playing node: ${nodeId}`);
+
+    // Secret route unlock check
+    if (nodeId === "ch4_secret_code_audit" || nodeId.includes("secret")) {
+        gameState.unlockedSecret = true;
+    }
+
+    // Handle end of story calculation node
+    if (nodeId === "ch5_eval_ending") {
+        let finalEndingNodeId = "ending_neutral";
+        if (gameState.affectionScore >= 100 && gameState.unlockedSecret) {
+            finalEndingNodeId = "ending_secret";
+        } else if (gameState.affectionScore >= 70) {
+            finalEndingNodeId = "ending_good";
+        } else if (gameState.affectionScore >= 40) {
+            finalEndingNodeId = "ending_neutral";
+        } else {
+            finalEndingNodeId = "ending_bad";
+        }
+        playNode(finalEndingNodeId);
+        return;
+    }
+
     gameState.currentNodeId = nodeId;
     hideChoicesOverlay();
     
@@ -367,6 +391,12 @@ function playNode(nodeId) {
         console.error(`Node not found: ${nodeId}`);
         showToast("เกิดข้อผิดพลาด: ไม่พบฉากนี้!", "accent");
         return;
+    }
+
+    // Update Chapter Badge
+    if (node.chapter) {
+        const chapterText = document.getElementById("chapter-text");
+        if (chapterText) chapterText.innerText = node.chapter;
     }
 
     // Update Speaker
@@ -720,7 +750,8 @@ function saveGame() {
         currentNodeId: gameState.currentNodeId,
         affectionScore: gameState.affectionScore,
         gameHistory: gameState.gameHistory,
-        dynamicNodes: gameState.dynamicNodes
+        dynamicNodes: gameState.dynamicNodes,
+        unlockedSecret: gameState.unlockedSecret || false
     };
     
     try {
@@ -749,6 +780,7 @@ function loadGame() {
         gameState.affectionScore = saveData.affectionScore;
         gameState.gameHistory = saveData.gameHistory || [];
         gameState.dynamicNodes = saveData.dynamicNodes || {};
+        gameState.unlockedSecret = saveData.unlockedSecret || false;
         
         // Refresh Affection Bar
         document.getElementById("affection-bar").style.width = `${gameState.affectionScore}%`;
@@ -819,19 +851,25 @@ Task:
 2. Evaluate how it affects her feelings (+affection or -affection).
 3. Generate 2-3 new choices for the next step.
 
-CRITICAL INSTRUCTION: You must actively try to guide the story back to the main static storyline.
+CRITICAL INSTRUCTION: You must actively try to guide the story back to the current chapter's static storyline.
 Here is the list of target static nodes in the main storyline:
-- "node_friendly" (theme: player being supportive, โซระจัง feels encouraged, deciding where to start fixing bugs)
-- "node_cold" (theme: player being cold/harsh, โซระจัง gets discouraged, runs out of the office to clear her head)
-- "node_curious" (theme: player asking about the tech stack, โซระจัง explaining it's Gemini on Node.js and discussing JSON parsing issues)
-- "node_reason" (theme: discussing error-handling/Try-Catch safety with JSON processing)
-- "node_apologize" (theme: player apologizing for being harsh, โซระจัง feels reassured and returns to her desk)
-- "node_sit" (theme: player and โซระจัง sitting side-by-side reviewing code, debugging step-by-step)
-- "ending_neutral" (theme: wrapping up the work day successfully, looking forward to tomorrow's standup)
-- "ending_bad" (theme: system crash, API key leakage, lockout from git repository)
+- "ch1_setup_env" (theme: configuring .env and GEMINI_API_KEY)
+- "ch1_git_clone" (theme: handling git pull merge conflicts)
+- "ch1_api_test" (theme: running first Gemini API call)
+- "ch2_start" (theme: starting RAG pipeline and vector store)
+- "ch2_chunking_strategy" (theme: text chunking strategy & concurrency limits)
+- "ch3_start" (theme: midday breakroom coffee & bonding)
+- "ch3_secret_hint" (theme: Sora-chan sharing her secret autonomous self-healing agent loop)
+- "ch3_refactoring" (theme: clean code & refactoring)
+- "ch4_start" (theme: live demo countdown)
+- "ch4_incident_alert" (theme: production server crash & 429 Too Many Requests)
+- "ch4_secret_code_audit" (theme: auditing Sora-chan's secret self-healing agent code for Secret Ending)
+- "ch4_emergency_hotfix" (theme: writing emergency cache & backoff hotfix)
+- "ch5_start" (theme: final Vercel production deployment)
+- "ch5_eval_ending" (theme: evaluating final day score and triggering ending)
 
-In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-โซระจัง's reply text should also naturally lead up to these options (e.g. say "แงง พี่มาช่วยดูสแต็คเทรซตรงเก้าอี้ข้างๆ หนูหน่อยได้ไหมคะ?" to guide towards "node_sit").
+In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "ch1_setup_env", "ch2_start", "ch3_secret_hint", "ch4_incident_alert", "ch5_start").
+โซระจัง's reply text should also naturally lead up to these options (e.g. say "แงง พี่มาช่วยดูสแต็คเทรซตรงเก้าอี้ข้างๆ หนูหน่อยได้ไหมคะ?" to guide towards "ch4_incident_alert").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
@@ -928,19 +966,25 @@ Task:
 2. Evaluate how it affects her feelings (+affection or -affection).
 3. Generate 2-3 new choices for the next step.
 
-CRITICAL INSTRUCTION: You must actively try to guide the story back to the main static storyline.
+CRITICAL INSTRUCTION: You must actively try to guide the story back to the current chapter's static storyline.
 Here is the list of target static nodes in the main storyline:
-- "node_friendly" (theme: player being supportive, โซระจัง feels encouraged, deciding where to start fixing bugs)
-- "node_cold" (theme: player being cold/harsh, โซระจัง gets discouraged, runs out of the office to clear her head)
-- "node_curious" (theme: player asking about the tech stack, โซระจัง explaining it's Gemini on Node.js and discussing JSON parsing issues)
-- "node_reason" (theme: discussing error-handling/Try-Catch safety with JSON processing)
-- "node_apologize" (theme: player apologizing for being harsh, โซระจัง feels reassured and returns to her desk)
-- "node_sit" (theme: player and โซระจัง sitting side-by-side reviewing code, debugging step-by-step)
-- "ending_neutral" (theme: wrapping up the work day successfully, looking forward to tomorrow's standup)
-- "ending_bad" (theme: system crash, API key leakage, lockout from git repository)
+- "ch1_setup_env" (theme: configuring .env and GEMINI_API_KEY)
+- "ch1_git_clone" (theme: handling git pull merge conflicts)
+- "ch1_api_test" (theme: running first Gemini API call)
+- "ch2_start" (theme: starting RAG pipeline and vector store)
+- "ch2_chunking_strategy" (theme: text chunking strategy & concurrency limits)
+- "ch3_start" (theme: midday breakroom coffee & bonding)
+- "ch3_secret_hint" (theme: Sora-chan sharing her secret autonomous self-healing agent loop)
+- "ch3_refactoring" (theme: clean code & refactoring)
+- "ch4_start" (theme: live demo countdown)
+- "ch4_incident_alert" (theme: production server crash & 429 Too Many Requests)
+- "ch4_secret_code_audit" (theme: auditing Sora-chan's secret self-healing agent code for Secret Ending)
+- "ch4_emergency_hotfix" (theme: writing emergency cache & backoff hotfix)
+- "ch5_start" (theme: final Vercel production deployment)
+- "ch5_eval_ending" (theme: evaluating final day score and triggering ending)
 
-In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "node_sit", "node_reason", "node_friendly", "node_apologize", "ending_neutral").
-โซระจัง's reply text should also naturally lead up to these options (e.g. say "แงง พี่มาช่วยดูสแต็คเทรซตรงเก้าอี้ข้างๆ หนูหน่อยได้ไหมคะ?" to guide towards "node_sit").
+In the generated choices array, you MUST design it such that at least ONE choice directly links to one of these target static node IDs by setting its 'next' field to that exact string (e.g. "ch1_setup_env", "ch2_start", "ch3_secret_hint", "ch4_incident_alert", "ch5_start").
+โซระจัง's reply text should also naturally lead up to these options (e.g. say "แงง พี่มาช่วยดูสแต็คเทรซตรงเก้าอี้ข้างๆ หนูหน่อยได้ไหมคะ?" to guide towards "ch4_incident_alert").
 
 You MUST respond with a RAW JSON object matching this schema exactly. Do not wrap it in markdown code blocks. No explanations. Only valid JSON.
 
@@ -1015,12 +1059,12 @@ function parseDynamicNodeJSON(rawText) {
         console.warn("JSON Parse cleaning failed, attempting raw response parse:", e);
         // Fallback placeholder node in case parsing breaks
         return {
-            text: "คือ... เมื่อกี้ฉันเผลอคิดอะไรเพลินไปหน่อยน่ะ คุยกันต่อเถอะนะ!",
+            text: "คือ... เมื่อกี้ฉันเผลอคิดอะไรเพลินไปหน่อยน่ะ มาลุยงานในบทต่อไปกันต่อเถอะนะ!",
             expression: "happy",
             affectionChange: 0,
             choices: [
-                { id: "fallback_1", hint: "คุยเรื่องท้องฟ้ากันต่อ", next: "node_friendly", affectionChange: 1 },
-                { id: "fallback_2", hint: "ชวนเขานั่งคุยสบายๆ", next: "node_sit", affectionChange: 1 }
+                { id: "fallback_1", hint: "ลุยตั้งค่าไฟล์ระบบกันต่อ", next: "ch1_setup_env", affectionChange: 1 },
+                { id: "fallback_2", hint: "เตรียมตัวลุยงานสร้างระบบ RAG", next: "ch2_start", affectionChange: 1 }
             ]
         };
     }

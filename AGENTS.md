@@ -158,26 +158,36 @@ gameState = {
 ## Static Story Map
 
 ```
-[start]
-   ├─ friendly ──→ [node_friendly]
-   │                   ├─ ask_reason ──→ [node_reason]
-   │                   │                   ├─ relate ──→ [node_sit] ──→ [ending_good / ending_neutral]
-   │                   │                   └─ neutral ──→ [ending_neutral]
-   │                   └─ sit_together ──→ [node_sit]
-   │
-   ├─ cold ──→ [node_cold]
-   │               ├─ apologize ──→ [node_apologize] ──→ [node_sit]
-   │               └─ let_go ──→ [ending_bad]
-   │
-   └─ curious ──→ [node_curious]
-                   ├─ listen ──→ [node_sit]
-                   └─ change_topic ──→ [node_reason]
+[Chapter 1: Onboarding]
+   [start] ──→ [ch1_setup_env / ch1_git_clone / ch1_cold] ──→ [ch1_api_test / ch1_first_bug]
+                   │
+                   ▼
+[Chapter 2: RAG & Vector DB]
+   [ch2_start] ──→ [ch2_embedding_choice / ch2_oom_error] ──→ [ch2_chunking_strategy] ──→ [ch2_context_overflow]
+                   │
+                   ▼
+[Chapter 3: Breakroom Bonding]
+   [ch3_start] ──→ [ch3_coffee_chat / ch3_imposter_syndrome] ──→ [ch3_secret_hint] ──→ [ch3_refactoring]
+                   │
+                   ▼
+[Chapter 4: Live Demo Crash]
+   [ch4_start] ──→ [ch4_incident_alert] ───┬──→ [ch4_stacktrace_analysis] ──→ [ch4_emergency_hotfix]
+                                            └──→ [ch4_secret_code_audit] (Secret Route Trigger)
+                                                               │
+                                                               ▼
+                                                  [Chapter 5: Deployment & Endings]
+                                                     [ch5_start] ──→ [ch5_eval_ending]
+                                                                        ├─ (Affection 100% + Secret Audit) ──→ [ending_secret] 🌟🚀
+                                                                        ├─ (Affection >= 70%) ───────────────→ [ending_good] ❤️
+                                                                        ├─ (Affection >= 40%) ───────────────→ [ending_neutral] 📋
+                                                                        └─ (Affection < 40%) ────────────────→ [ending_bad] 💔
 ```
 
 **Endings:**
-- `ending_good` — All code passes and deploys successfully ❤️ (high affection path)
-- `ending_neutral` — Normal end-of-day wrap-up 📋
-- `ending_bad` — System crash, API key lockout 💔
+- `ending_good` — All code passes, promoted to Junior AI Engineer ❤️ (High affection path, >=70%)
+- `ending_neutral` — Normal end-of-day wrap-up & tomorrow's standup 📋 (Standard path, 40-69%)
+- `ending_bad` — System crash, API key lockout 💔 (Low affection path, <40%)
+- `ending_secret` — True Secret Ending: Autonomous AI Singularity & Co-CTO Promotion 🌟🚀 (100% Affection + Secret Code Audit path)
 
 ---
 

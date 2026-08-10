@@ -240,6 +240,34 @@ body, html {
     z-index: -1;
 }
 
+/* Chapter Badge Widget */
+.chapter-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass-bright);
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-premium);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 10;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e0e0ff;
+    letter-spacing: 0.5px;
+    animation: slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chapter-badge i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
 /* Affection Widget */
 .affection-widget {
     position: absolute;

@@ -9,9 +9,8 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-if (!GEMINI_API_KEY) {
-    console.error("❌ GEMINI_API_KEY is not set in .env — server cannot start.");
-    process.exit(1);
+if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_GEMINI_API_KEY_HERE") {
+    console.warn("⚠️ GEMINI_API_KEY is not set in .env — Server running in Offline Test Mode!");
 }
 
 // ── Middleware ──────────────────────────────────────────────────────────────
