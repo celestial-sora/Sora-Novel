@@ -1358,4 +1358,61 @@ body, html {
         opacity: 1;
     }
 }
-/* trigger rebuild: 1 */
+
+/* Player Name Input Modal */
+.name-card {
+    max-width: 500px;
+}
+
+.name-input-body {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.name-input-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.name-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.name-input-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.name-input-group input {
+    background: var(--bg-glass-light);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    color: #fff;
+    font-family: var(--font-thai);
+    font-size: 1.05rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.name-input-group input:focus {
+    border-color: var(--primary-glow);
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);
+}
+
+.name-input-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
