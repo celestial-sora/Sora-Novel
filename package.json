@@ -5,11 +5,17 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./public/tailwind.css --watch",
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/tailwind.css --minify"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-rate-limit": "^7.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.12",
+    "tailwindcss": "^4.1.12"
   }
 }

@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Tailwind scans the existing vanilla UI so utility classes can be introduced gradually. */
+@source "../public";

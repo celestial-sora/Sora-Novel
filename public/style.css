@@ -1322,6 +1322,270 @@ body, html {
     }
 }
 
+/* Clean developer workspace theme
+   Keeps the visual-novel warmth while removing the heavy sci-fi/glass treatment. */
+:root {
+    --primary-color: #8fa8c7;
+    --primary-glow: #55779f;
+    --accent-color: #d98a8a;
+    --accent-glow: #b96767;
+    --success-color: #8bb89f;
+    --bg-dark: #17191d;
+    --bg-glass: rgba(24, 27, 32, 0.94);
+    --bg-glass-light: rgba(255, 255, 255, 0.06);
+    --border-glass: rgba(207, 216, 228, 0.16);
+    --border-glass-bright: rgba(207, 216, 228, 0.28);
+    --text-color: #edf0f2;
+    --text-muted: #aab2bc;
+    --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+#app-container {
+    background: #17191d;
+}
+
+.menu-background {
+    filter: brightness(0.42) saturate(0.72);
+    animation: none;
+}
+
+.menu-content {
+    padding: 2.8rem 2.5rem;
+    border-radius: 14px;
+    background: rgba(23, 25, 29, 0.91);
+    border: 1px solid var(--border-glass-bright);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: var(--shadow-premium);
+}
+
+.game-title {
+    font-size: 3.2rem;
+    letter-spacing: 1px;
+    text-shadow: none;
+}
+
+.game-title .highlight,
+.sandbox-title {
+    background: none;
+    color: var(--primary-color);
+    -webkit-text-fill-color: initial;
+}
+
+.game-title .highlight::before {
+    content: '> ';
+    color: var(--accent-color);
+}
+
+.menu-buttons {
+    gap: 0.7rem;
+}
+
+.menu-btn,
+.back-btn,
+.ctrl-btn,
+.choice-btn,
+.submit-btn,
+.sandbox-send-btn {
+    border-radius: 7px;
+    box-shadow: none;
+}
+
+.menu-btn.primary,
+.menu-btn.accent,
+.submit-btn,
+.sandbox-send-btn,
+.message.player .message-bubble {
+    background: var(--primary-glow);
+}
+
+.menu-btn.primary:hover,
+.menu-btn.accent:hover,
+.submit-btn:hover:not(:disabled),
+.sandbox-send-btn:hover {
+    background: var(--primary-color);
+    box-shadow: none;
+    transform: translateY(-1px);
+}
+
+.menu-btn.secondary,
+.back-btn,
+.ctrl-btn {
+    background: transparent;
+    border-color: var(--border-glass);
+}
+
+.chapter-badge,
+.affection-widget {
+    background: rgba(23, 25, 29, 0.9);
+    border-radius: 8px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: var(--shadow-premium);
+}
+
+.heart-icon {
+    animation: none;
+}
+
+.bar-fill {
+    background: var(--accent-color);
+    box-shadow: none;
+}
+
+.dialogue-box,
+.choices-card,
+.chat-history-container,
+.overlay-card,
+.loader-card {
+    background: rgba(24, 27, 32, 0.96);
+    border: 1px solid var(--border-glass-bright);
+    border-radius: 10px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: var(--shadow-premium);
+}
+
+.speaker-badge {
+    top: -17px;
+    background: var(--primary-glow);
+    border-radius: 6px;
+    box-shadow: none;
+    border-color: var(--border-glass-bright);
+}
+
+.dialogue-text {
+    color: var(--text-color);
+}
+
+.ctrl-btn:hover,
+.choice-btn:hover {
+    transform: none;
+    background: rgba(143, 168, 199, 0.14);
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.choices-overlay {
+    background: rgba(10, 12, 15, 0.42);
+}
+
+.choices-header {
+    text-shadow: none;
+}
+
+.custom-input-group,
+#sandbox-input {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 7px;
+}
+
+.sandbox-background {
+    filter: brightness(0.32) saturate(0.65);
+}
+
+.sandbox-header {
+    background: rgba(23, 25, 29, 0.96);
+    border-bottom-color: var(--border-glass);
+    box-shadow: none;
+}
+
+.sandbox-status {
+    color: var(--success-color);
+}
+
+.status-indicator {
+    box-shadow: none;
+}
+
+.message.oracle-chan .message-bubble {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--border-glass);
+}
+
+.chat-input-panel {
+    background: rgba(23, 25, 29, 0.96);
+    border-top-color: var(--border-glass);
+}
+
+.overlay,
+.overlay-blur {
+    background: rgba(10, 12, 15, 0.76);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.loader-card {
+    padding: 2.4rem 2rem;
+}
+
+.spinner-heart {
+    animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Natural UI entrances: subtle movement with no overshoot or rubber-band effect. */
+.menu-content,
+.choices-card,
+.overlay-card,
+.loader-card {
+    animation: natural-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes natural-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screen {
+    transition: opacity 0.35s ease, visibility 0.35s;
+}
+
+.dialogue-box-container {
+    animation: natural-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes natural-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chapter-badge,
+.affection-widget,
+.sandbox-header {
+    animation: natural-slide-down 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes natural-slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Immersive Inline Typing Indicator */
 .inline-typing-indicator {
     display: inline-flex;
@@ -1406,7 +1670,7 @@ body, html {
 
 .name-input-group input:focus {
     border-color: var(--primary-glow);
-    box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);
+    box-shadow: none;
 }
 
 .name-input-actions {
@@ -1416,3 +1680,128 @@ body, html {
     margin-top: 0.5rem;
 }
 
+/* Narrow viewport layout (phones and split-screen browser panes). */
+@media (max-width: 480px) {
+    .menu-content {
+        width: calc(100% - 24px);
+        max-width: none;
+        padding: 2rem 1rem;
+    }
+
+    .game-title {
+        font-size: clamp(2rem, 12vw, 2.7rem);
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .game-title .highlight {
+        font-size: clamp(2.2rem, 14vw, 3rem);
+        margin-top: 0.1rem;
+    }
+
+    .game-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.4rem;
+    }
+
+    .menu-btn {
+        font-size: 1rem;
+        padding: 0.9rem 0.8rem;
+    }
+
+    .menu-footer {
+        font-size: 0.72rem;
+        line-height: 1.5;
+    }
+
+    .chapter-badge {
+        top: 10px;
+        left: 10px;
+        max-width: calc(100% - 20px);
+        padding: 0.45rem 0.65rem;
+        font-size: 0.72rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .affection-widget {
+        top: 52px;
+        right: 10px;
+    }
+
+    .dialogue-box-container {
+        width: calc(100% - 20px);
+        margin-bottom: 10px;
+    }
+
+    .dialogue-box {
+        min-height: 112px;
+        padding: 1.8rem 1rem 1.2rem;
+    }
+
+    .dialogue-text {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .speaker-badge {
+        left: 14px;
+        padding: 0.3rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .choices-overlay {
+        padding-bottom: 165px;
+    }
+
+    .choices-card {
+        width: calc(100% - 20px);
+        padding: 1rem;
+    }
+
+    .choices-header {
+        font-size: 1rem;
+    }
+
+    .choice-btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.85rem;
+    }
+
+    .custom-input-group {
+        flex-direction: column;
+        padding: 0.45rem;
+    }
+
+    #custom-reply-input {
+        min-width: 0;
+        padding: 0.55rem 0.7rem;
+    }
+
+    .submit-btn {
+        min-height: 2.4rem;
+        justify-content: center;
+    }
+
+    .sandbox-header {
+        padding: 0.7rem;
+        gap: 0.5rem;
+    }
+
+    .sandbox-title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .back-btn {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.78rem;
+        white-space: nowrap;
+    }
+
+    .sandbox-status {
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+}
