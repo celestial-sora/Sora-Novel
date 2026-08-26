@@ -48,6 +48,7 @@
 | Deployment | Vercel / localhost |
 
 ### 🚀 รันโปรเจกต์
+วิธีง๊ายง่าย เข้าเว็บ https://celestial-sora.vercel.app/
 
 **ข้อกำหนด:** Node.js 18+ และ Gemini API Key
 
