@@ -165,6 +165,6 @@ Sora-Novel/
 
 <div align="center">
 
-Made with ❤️ by Antigravity · Powered by Gemini Flash
+Made with ❤️ by Sorachan · Ai Powered by Gemini Flash
 
 </div>
