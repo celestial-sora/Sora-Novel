@@ -1,7 +1,7 @@
 {
   "name": "yuki-vn-server",
   "version": "1.0.0",
-  "description": "Backend proxy server for Yuki Visual Novel — keeps Gemini API key secure",
+  "description": "Backend proxy server for Sora Visual Novel — keeps OpenRouter API key secure",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

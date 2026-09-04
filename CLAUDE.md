@@ -8,8 +8,8 @@
 ## 🎯 Quick Context (อ่านก่อนลงมือ)
 
 โปรเจกต์นี้คือ **Visual Novel ภาษาไทย** ที่มีตัวละครหลักชื่อ **โซระจัง** (Sora-chan)  
-เธอเป็นน้องฝึกงาน AI Engineer — ขี้กังวล น่ารัก ตื่นตูมกับ error code แต่ใจสู้มาก  
-ผู้เล่นรับบทเป็น **พี่เลี้ยง Senior** ที่คอยชี้แนะเธอ
+เธอเป็นครีเอเตอร์มือใหม่ที่ฝันอยากสร้าง AI VTuber ของตัวเองชื่อ **โคฮารุจัง** — ขี้กังวล น่ารัก ตื่นตูมกับ error แต่ใจสู้มาก  
+ผู้เล่นรับบทเป็น **เพื่อนสนิท** ที่ช่วยเธอสร้างโคฮารุจังด้วยกัน
 
 **Stack:** Vanilla JS frontend + Node.js/Express backend + Gemini AI API
 
@@ -108,7 +108,7 @@ background: var(--bg-surface);  /* ห้ามใช้ rgba(...) โดยต�
 3. เพิ่มใน Story Map ใน `AGENTS.md`
 
 ### Valid Values
-- **backgrounds:** `office_desk`, `office_lounge`, `office_outside`, `office_breakroom`, `server_crash`
+- **backgrounds:** `living_room`, `office_desk`, `office_lounge`, `office_outside`, `office_breakroom`, `server_crash`
 - **expressions:** `happy`, `neutral`, `thinking`, `curious`, `panic`, `worried`, `confident`, `excited`
 
 ---
@@ -168,9 +168,9 @@ node server.js
 |---|---|
 | **ชื่อ** | โซระจัง (Sora-chan) |
 | **บุคลิก** | น่ารัก, ขี้กังวล, กระตือรือร้น, ใจสู้ |
-| **หน้าที่** | AI Engineer ฝึกหัด (วันแรก) |
-| **ทักษะ** | Gemini API, Node.js, LLM, Python (เรียนรู้) |
-| **จุดอ่อน** | ตื่นตูมกับ error, OOM, stack trace |
+| **หน้าที่** | ครีเอเตอร์มือใหม่ — กำลังสร้าง AI VTuber โคฮารุจัง |
+| **ทักษะ** | Gemini API, System Prompt, TTS, OBS, Node.js (เรียนรู้) |
+| **จุดอ่อน** | ตื่นตูมกับ error, API ล่ม, TTS ขาด, latency |
 | **สไตล์พูด** | ลงท้ายด้วย ค่ะ/นะคะ, เรียกตัวเองว่า หนู/โซระจัง, เรียกผู้เล่นว่า พี่ |
 | **คำอุทาน** | "แงงง!", "บั๊กอีกแล้วค่ะพี่!", "เย้!" |
 

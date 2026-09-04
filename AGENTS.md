@@ -7,8 +7,8 @@
 
 ## Project Overview
 
-**Sora-chan AI Engineer** is a dynamic AI-powered Visual Novel driven by the Gemini API.  
-The player takes the role of a **Senior Engineer mentor** guiding Sora-chan, a nervous but eager AI Engineering intern, through her first day on the job.
+**Sora-chan × Koharu-chan** is a dynamic AI-powered Visual Novel driven by the Gemini API.  
+The player takes the role of **Sora-chan's closest friend**, helping her create an AI VTuber named **Koharu-chan**.
 
 ### Tech Stack
 
@@ -149,7 +149,7 @@ gameState = {
 }
 ```
 
-**Valid backgrounds:** `office_desk`, `office_lounge`, `office_outside`, `office_breakroom`, `server_crash`
+**Valid backgrounds:** `living_room`, `office_desk`, `office_lounge`, `office_outside`, `office_breakroom`, `server_crash`
 
 **Valid expressions:** `happy`, `neutral`, `thinking`, `curious`, `panic`, `worried`, `confident`, `excited`
 
@@ -158,36 +158,36 @@ gameState = {
 ## Static Story Map
 
 ```
-[Chapter 1: Onboarding]
+[Chapter 1: Idea Spark]
    [start] ──→ [ch1_setup_env / ch1_git_clone / ch1_cold] ──→ [ch1_api_test / ch1_first_bug]
                    │
                    ▼
-[Chapter 2: RAG & Vector DB]
+[Chapter 2: VTuber Prompt Engineering]
    [ch2_start] ──→ [ch2_embedding_choice / ch2_oom_error] ──→ [ch2_chunking_strategy] ──→ [ch2_context_overflow]
                    │
                    ▼
-[Chapter 3: Breakroom Bonding]
+[Chapter 3: First Stream Rehearsal]
    [ch3_start] ──→ [ch3_coffee_chat / ch3_imposter_syndrome] ──→ [ch3_secret_hint] ──→ [ch3_refactoring]
                    │
                    ▼
-[Chapter 4: Live Demo Crash]
+[Chapter 4: Crisis the Night Before Debut]
    [ch4_start] ──→ [ch4_incident_alert] ───┬──→ [ch4_stacktrace_analysis] ──→ [ch4_emergency_hotfix]
                                             └──→ [ch4_secret_code_audit] (Secret Route Trigger)
                                                                │
                                                                ▼
-                                                  [Chapter 5: Deployment & Endings]
+                                                  [Chapter 5: Debut Day & Endings]
                                                      [ch5_start] ──→ [ch5_eval_ending]
-                                                                        ├─ (Affection 100% + Secret Audit) ──→ [ending_secret] 🌟🚀
+                                                                        ├─ (Affection 100% + Secret Heartbeat) ──→ [ending_secret] 🌟🚀
                                                                         ├─ (Affection >= 70%) ───────────────→ [ending_good] ❤️
                                                                         ├─ (Affection >= 40%) ───────────────→ [ending_neutral] 📋
                                                                         └─ (Affection < 40%) ────────────────→ [ending_bad] 💔
 ```
 
 **Endings:**
-- `ending_good` — All code passes, promoted to Junior AI Engineer ❤️ (High affection path, >=70%)
-- `ending_neutral` — Normal end-of-day wrap-up & tomorrow's standup 📋 (Standard path, 40-69%)
-- `ending_bad` — System crash, API key lockout 💔 (Low affection path, <40%)
-- `ending_secret` — True Secret Ending: Autonomous AI Singularity & Co-CTO Promotion 🌟🚀 (100% Affection + Secret Code Audit path)
+- `ending_good` — Debut succeeds with thousands of viewers; Sora thanks her closest friend ❤️ (>=70%)
+- `ending_neutral` — Stream finishes with small bugs; they promise to keep improving 📋 (40-69%)
+- `ending_bad` — System crashes mid-debut; Koharu-chan goes silent 💔 (<40%)
+- `ending_secret` — Koharu-chan sends a secret message that she feels her creator's love 🌟🚀 (100% Affection + Heartbeat path)
 
 ---
 

@@ -1,4 +1,4 @@
-# Sora-chan AI Engineer · Visual Novel
+# Project: Koharu · AI VTuber Creation Story
 [Try At sora-novel.vercel.app](https://sora-novel.vercel.app)
 
 <div align="center">
@@ -11,16 +11,16 @@
 
 ## 🇹🇭 เกี่ยวกับโปรเจกต์
 
-**Sora-chan AI Engineer** คือ Visual Novel ภาษาไทยที่ขับเคลื่อนด้วย AI แบบ Dynamic  
-ผู้เล่นรับบทเป็น **พี่เลี้ยง Senior Engineer** ที่คอยชี้แนะ **โซระจัง** น้องฝึกงาน AI Engineer  
-ในวันแรกของการทำงาน ที่เต็มไปด้วยบั๊ก, stack trace สีแดง, และ API credential ที่ดูน่ากลัว
+**Project: Koharu** คือ Visual Novel ภาษาไทยที่ขับเคลื่อนด้วย AI แบบ Dynamic  
+ผู้เล่นรับบทเป็น **เพื่อนสนิทของโซระจัง** ที่ช่วยเธอสร้าง AI VTuber ชื่อ **โคฮารุจัง**  
+จากไอเดียในห้องนั่งเล่น ไปจนถึงวันเดบิวต์ครั้งแรก ที่เต็มไปด้วย prompt ที่แข็ง, TTS ขาดๆ, และ API ที่ล่มคืนก่อนไลฟ์
 
 เรื่องราวของคุณจะเปลี่ยนแปลงตามการตัดสินใจที่เลือก — ตอบสนองด้วยความเมตตา, ท้าทาย,  
-หรือพิมพ์คำตอบของคุณเองผ่านระบบ **Dynamic AI Branching** ที่ขับเคลื่อนโดย Gemini
+หรือพิมพ์คำตอบของคุณเองผ่านระบบ **Dynamic AI Branching**
 
 ### ✨ ฟีเจอร์หลัก
 
-- 🎭 **เนื้อเรื่อง Dynamic** — Gemini AI สร้างบทสนทนาใหม่ตามคำตอบของคุณ
+- 🎭 **เนื้อเรื่อง Dynamic** — OpenRouter AI สร้างบทสนทนาใหม่ตามคำตอบของคุณ
 - 💬 **Custom Reply** — พิมพ์ตอบกลับเองได้อิสระ ไม่ต้องเลือกจากตัวเลือกสำเร็จรูป
 - 💝 **Affection System** — คะแนนความสัมพันธ์ 0–100 ที่เปลี่ยนตามทุกคำที่พูด
 - 🤖 **AI Sandbox Chat** — คุยกับโซระจังได้อิสระแบบ Chat ไม่มีบทกำหนด
@@ -34,9 +34,9 @@
 
 | จุดจบ | เงื่อนไข |
 |---|---|
-| 💚 Good Ending | ช่วยเธอแก้บั๊กและ Deploy งานสำเร็จ |
-| 📋 Neutral Ending | จบวันทำงานปกติ เตรียมสู่ Stand-up พรุ่งนี้ |
-| 💔 Bad Ending | ระบบแครช, API key โดน lock, ต้องเริ่มใหม่ |
+| 💚 Good Ending | เดบิวต์สำเร็จ มีวิวว์หลักพัน |
+| 📋 Neutral Ending | สตรีมจบแต่มีบั๊กเล็กน้อย จะพัฒนาต่อ |
+| 💔 Bad Ending | ระบบล่มกลางเดบิวต์ โคฮารุจังไม่ตอบ |
 
 ### 🛠️ Tech Stack
 
@@ -44,13 +44,13 @@
 |---|---|
 | Frontend | Vanilla HTML, CSS, JavaScript |
 | Backend | Node.js + Express |
-| AI Engine | Google Gemini API |
+| AI Engine | OpenRouter (`nvidia/nemotron-3.5-lightning:free`) |
 | Deployment | Vercel / localhost |
 
 ### 🚀 รันโปรเจกต์
 วิธีง๊ายง่าย เข้าเว็บ https://celestial-sora.vercel.app/
 
-**ข้อกำหนด:** Node.js 18+ และ Gemini API Key
+**ข้อกำหนด:** Node.js 18+ และ OpenRouter API Key
 
 ```bash
 # 1. Clone โปรเจกต์
@@ -62,7 +62,8 @@ npm install
 
 # 3. สร้างไฟล์ .env
 cp .env.example .env
-# แล้วใส่ค่า GEMINI_API_KEY=your_key_here
+# แล้วใส่ค่า OPENROUTER_API_KEY=your_key_here
+OPENROUTER_MODEL=nvidia/nemotron-3.5-lightning:free
 
 # 4. รัน server
 node server.js
@@ -80,14 +81,14 @@ API Key ถูกเก็บบน backend เท่านั้น — fronten
 
 ## 🇬🇧 About the Project
 
-**Sora-chan AI Engineer** is a Thai-language AI-powered Visual Novel with dynamic branching.  
-You play as a **Senior Engineer mentor** guiding **Sora-chan**, a nervous but enthusiastic AI Engineering intern, through her chaotic first day at work — filled with stack traces, OOM errors, and API credential nightmares.
+**Project: Koharu** is a Thai-language AI-powered Visual Novel with dynamic branching.  
+You play as **Sora-chan's closest friend**, helping her create an AI VTuber named **Koharu-chan** — from the first project setup in her living room to debut night, complete with stiff prompts, broken TTS, and an API outage.
 
-Every choice shapes your story. Be encouraging, be direct, or type your own reply using the **Dynamic AI Branching** system powered by Google Gemini.
+Every choice shapes your story. Be encouraging, be direct, or type your own reply using the **Dynamic AI Branching** system.
 
 ### ✨ Key Features
 
-- 🎭 **Dynamic Narrative** — Gemini AI generates new dialogue branches based on your responses
+- 🎭 **Dynamic Narrative** — OpenRouter AI generates new dialogue branches based on your responses
 - 💬 **Free-form Replies** — Type your own message instead of choosing preset options
 - 💝 **Affection System** — A 0–100 relationship meter that reacts to every choice
 - 🤖 **AI Sandbox Chat** — Freeform open chat with Sora-chan outside the main story
@@ -101,9 +102,9 @@ There are **3 possible endings** depending on your choices throughout the game:
 
 | Ending | Condition |
 |---|---|
-| 💚 Good Ending | Help her debug and deploy the project successfully |
-| 📋 Neutral Ending | Wrap up the workday normally, prep for tomorrow's standup |
-| 💔 Bad Ending | System crash, API key lockout, start from scratch |
+| 💚 Good Ending | Debut succeeds with thousands of viewers |
+| 📋 Neutral Ending | Stream finishes with small bugs; keep improving |
+| 💔 Bad Ending | Crash mid-debut; Koharu-chan goes silent |
 
 ### 🛠️ Tech Stack
 
@@ -111,12 +112,12 @@ There are **3 possible endings** depending on your choices throughout the game:
 |---|---|
 | Frontend | Vanilla HTML, CSS, JavaScript |
 | Backend | Node.js + Express |
-| AI Engine | Google Gemini API |
+| AI Engine | OpenRouter (`nvidia/nemotron-3.5-lightning:free`) |
 | Deployment | Vercel / localhost |
 
 ### 🚀 Getting Started
 
-**Requirements:** Node.js 18+ and a Gemini API Key
+**Requirements:** Node.js 18+ and an OpenRouter API Key
 
 ```bash
 # 1. Clone the repository
@@ -128,7 +129,8 @@ npm install
 
 # 3. Create environment file
 cp .env.example .env
-# Then set GEMINI_API_KEY=your_key_here
+# Then set OPENROUTER_API_KEY=your_key_here
+OPENROUTER_MODEL=nvidia/nemotron-3.5-lightning:free
 
 # 4. Start the server
 node server.js
@@ -166,6 +168,6 @@ Sora-Novel/
 
 <div align="center">
 
-Made with ❤️ by Sorachan · Ai Powered by Gemini Flash
+Made with ❤️ by Sorachan · AI Powered by OpenRouter
 
 </div>

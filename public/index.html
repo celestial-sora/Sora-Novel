@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: Sora • An AI Engineer Visual Novel</title>
+    <title>Project: Koharu • An AI VTuber Creation Story</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Generated Tailwind layer; existing style.css remains the compatibility layer. -->
@@ -17,27 +17,43 @@
 </head>
 <body>
     <div id="app-container">
+        <!-- Live2D loading console -->
+        <div id="live2d-loading" class="live2d-loading" aria-live="polite">
+            <div class="live2d-terminal">
+                <div class="terminal-bar"><span></span><span></span><span></span> LIVE2D SYSTEM</div>
+                <div class="terminal-line">&gt; booting Cubism Core<span class="terminal-dots">...</span></div>
+                <div id="live2d-loading-status" class="terminal-line">&gt; waiting for model loader<span class="terminal-cursor">_</span></div>
+                <div class="terminal-progress"><span></span></div>
+            </div>
+        </div>
         <!-- Main Menu -->
         <div id="main-menu" class="screen active">
             <div class="menu-background"></div>
-            <div class="menu-content">
-                <h1 class="game-title">Project: <span class="highlight">Sora</span></h1>
-                <p class="game-subtitle">An AI Engineer Visual Novel</p>
-                
-                <div class="menu-buttons">
-                    <button id="btn-new-game" class="menu-btn primary">
-                        <i class="fa-solid fa-play"></i> เริ่มเกมใหม่
-                    </button>
-                    <button id="btn-load-game" class="menu-btn secondary" disabled>
-                        <i class="fa-solid fa-cloud-arrow-up"></i> โหลดเกมเดิม
-                    </button>
-                    <button id="btn-sandbox" class="menu-btn accent">
-                        <i class="fa-solid fa-comments"></i> โหมดคุยเล่น AI อิสระ
-                    </button>
+            <div class="menu-layout">
+                <div class="menu-content">
+                    <h1 class="game-title">Project: <span class="highlight">Koharu</span></h1>
+                    <p class="game-subtitle">An AI VTuber Creation Story</p>
+
+                    <div class="menu-buttons">
+                        <button id="btn-new-game" class="menu-btn primary">
+                            <i class="fa-solid fa-play"></i> เริ่มเกมใหม่
+                        </button>
+                        <button id="btn-load-game" class="menu-btn secondary" disabled>
+                            <i class="fa-solid fa-cloud-arrow-up"></i> โหลดเกมเดิม
+                        </button>
+                        <button id="btn-sandbox" class="menu-btn accent">
+                            <i class="fa-solid fa-comments"></i> โหมดคุยเล่น AI อิสระ
+                        </button>
+                    </div>
+
+                    <div class="menu-footer">
+                        <p>พัฒนาด้วย <i class="fa-solid fa-heart" style="color: #ff6b81;"></i> โดย Antigravity • Powered by OpenRouter</p>
+                    </div>
                 </div>
 
-                <div class="menu-footer">
-                    <p>พัฒนาด้วย <i class="fa-solid fa-heart" style="color: #ff6b81;"></i> โดย Antigravity • Powered by Gemini 3.5 Flash</p>
+                <!-- Main Menu Live2D Character -->
+                <div class="menu-live2d-container">
+                    <canvas id="menu-live2d-canvas" class="menu-live2d-canvas"></canvas>
                 </div>
             </div>
         </div>
@@ -50,7 +66,7 @@
 
             <!-- Chapter Badge (Top Left) -->
             <div id="chapter-badge" class="chapter-badge">
-                <i class="fa-solid fa-bookmark"></i> <span id="chapter-text">บทที่ 1: วันแรกกับไฟล์ .env</span>
+                <i class="fa-solid fa-bookmark"></i> <span id="chapter-text">บทที่ 1: ไอเดียเกิด!</span>
             </div>
 
             <!-- Affection Widget (Top Right) -->
@@ -67,9 +83,9 @@
                 </div>
             </div>
 
-            <!-- Character Sprite Container -->
-            <div class="sprite-container">
-                <img id="character-sprite" src="assets/sora_normal.png" alt="โซระจัง" class="sprite float">
+            <!-- Character Sprite / Live2D Container -->
+            <div class="sprite-container" id="sprite-container">
+                <canvas id="live2d-canvas" class="live2d-canvas"></canvas>
             </div>
 
             <!-- Dialogue and Control Box (Bottom) -->
@@ -124,32 +140,36 @@
         <!-- AI Sandbox Chat Mode (Direct interaction) -->
         <div id="sandbox-stage" class="screen">
             <div class="sandbox-background"></div>
-            <div class="sandbox-header">
-                <button id="sandbox-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> กลับเมนู</button>
-                <div class="sandbox-title">AI Sandbox Chat with โซระจัง</div>
-                <div class="sandbox-status"><span class="status-indicator"></span> Online</div>
-            </div>
 
-            <div class="sandbox-content">
-                <!-- Sprite preview -->
-                <div class="sandbox-sprite-panel">
-                    <img id="sandbox-sprite" src="assets/sora_normal.png" alt="โซระจัง Chat" class="sandbox-sprite float">
-                </div>
+            <!-- Same layout structure as main menu -->
+            <div class="sandbox-layout">
+                <!-- Chat panel (left side) -->
+                <div class="sandbox-chat-panel">
+                    <div class="sandbox-header-inline">
+                        <button id="sandbox-back-btn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> กลับเมนู</button>
+                        <div class="sandbox-title"><i class="fa-solid fa-sparkles"></i> ห้องคุยเล่นกับโซระจัง</div>
+                        <div class="sandbox-status"><span class="status-indicator"></span> ออนไลน์</div>
+                    </div>
 
-                <!-- Chat history panel -->
-                <div class="chat-history-container">
-                    <div id="chat-messages" class="chat-messages">
-                        <div class="message oracle-chan">
-                            <div class="message-bubble">
-                            ยินดีต้อนรับสู่โหมดแชทอิสระกับโซระจังค่ะ! คุยเรื่องอะไรกับหนูก็ได้นะ หรือมีเรื่องอะไรที่อยากระบายหรืออยากให้หนูช่วยแนะนำก็บอกได้เลยนะ! ถึงหนูจะยังเป็นมือใหม่ แต่สัญญาว่าจะพยายามสุดความสามารถเลยค่ะ!
+                    <div class="chat-history-container">
+                        <div id="chat-messages" class="chat-messages">
+                            <div class="message oracle-chan">
+                                <div class="message-bubble">
+                                ยินดีต้อนรับสู่โหมดแชทอิสระกับโซระจังค่ะ! ตอนนี้หนูกำลังสร้าง AI VTuber ชื่อโคฮารุจังอยู่เลย คุยเรื่องโปรเจกต์ ไลฟ์ หรือเรื่องเล่นๆ กับหนูก็ได้นะคะ! เพื่อนสนิทอย่างพี่อยู่ตรงนี้ หนูกล้าลองอะไรก็ได้เลยค่ะ!
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="chat-input-panel">
-                        <input type="text" id="sandbox-input" placeholder="พิมพ์คุยกับ โซระจัง อิสระ..." maxlength="200">
-                        <button id="sandbox-send-btn" class="sandbox-send-btn"><i class="fa-solid fa-paper-plane"></i> ส่ง</button>
+                        <div class="chat-input-panel">
+                            <input type="text" id="sandbox-input" placeholder="พิมพ์คุยกับ โซระจัง อิสระ..." maxlength="200">
+                            <button id="sandbox-send-btn" class="sandbox-send-btn"><i class="fa-solid fa-paper-plane"></i> ส่ง</button>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Live2D character panel (right side, same as main menu) -->
+                <div class="sandbox-live2d-container">
+                    <canvas id="sandbox-live2d-canvas" class="menu-live2d-canvas"></canvas>
                 </div>
             </div>
         </div>
@@ -171,16 +191,16 @@
         <div id="name-input-overlay" class="overlay">
             <div class="overlay-card name-card">
                 <div class="overlay-header">
-                    <h2><i class="fa-solid fa-user-gear"></i> ระบุชื่อของคุณ (Senior Engineer)</h2>
+                    <h2><i class="fa-solid fa-user-gear"></i> ระบุชื่อของคุณ (เพื่อนสนิทของโซระจัง)</h2>
                     <button id="name-input-close-btn" class="close-btn">&times;</button>
                 </div>
                 <div class="name-input-body">
                     <p class="name-input-desc">
-                        กรุณาระบุชื่อของคุณ โซระจัง จะเรียกคุณด้วยชื่อนี้ตลอดการทำงานและการเรียนรู้ AI Engineer!
+                        กรุณาระบุชื่อของคุณ โซระจัง จะเรียกคุณด้วยชื่อนี้ตลอดการสร้างโคฮารุจังด้วยกัน!
                     </p>
                     <div class="name-input-group">
                         <label for="player-name-field"><i class="fa-solid fa-id-card"></i> ชื่อของคุณ / ชื่อเล่น:</label>
-                        <input type="text" id="player-name-field" placeholder="เช่น พี่เอ็ม, รุ่นพี่, Senior" maxlength="20" value="รุ่นพี่">
+                        <input type="text" id="player-name-field" placeholder="เช่น มิ้นท์, ปู, เพื่อน" maxlength="20" value="เพื่อน">
                     </div>
                     <div class="name-input-actions">
                         <button id="btn-confirm-start" class="menu-btn primary">
@@ -206,6 +226,17 @@
         <!-- System Toasts (Notifications) -->
         <div id="toast-container" class="toast-container"></div>
     </div>
+
+    <!-- Live2D Cubism 4 Core SDK -->
+    <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+    <!-- PixiJS v6 -->
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.8/dist/browser/pixi.min.js"></script>
+    <!-- Pixi Live2D Display for Cubism 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/cubism4.min.js"></script>
+
+    <!-- Subsystem Managers -->
+    <script src="background-manager.js"></script>
+    <script src="live2d-manager.js"></script>
 
     <!-- Core Game Logic -->
     <script src="app.js" defer></script>

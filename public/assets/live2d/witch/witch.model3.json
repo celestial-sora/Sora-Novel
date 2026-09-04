@@ -1,0 +1,29 @@
+{
+	"Version": 3,
+	"FileReferences": {
+			"Moc": "witch.moc3",
+		"Textures": [
+				"witch.8192/texture_00.png",
+				"witch.8192/texture_01.png"
+		],
+			"Physics": "witch.physics3.json",
+			"DisplayInfo": "witch.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		}
+	]
+}

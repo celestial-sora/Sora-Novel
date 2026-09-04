@@ -5,12 +5,11 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "nvidia/nemotron-3.5-lightning:free";
 
-if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_GEMINI_API_KEY_HERE") {
-    console.warn("⚠️ GEMINI_API_KEY is not set in .env — Server running in Offline Test Mode!");
+if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === "YOUR_OPENROUTER_API_KEY_HERE") {
+    console.warn("⚠️ OPENROUTER_API_KEY is not set in .env — Server running in Offline Test Mode!");
 }
 
 // ── Middleware ──────────────────────────────────────────────────────────────
@@ -44,6 +43,7 @@ app.get("*", (req, res) => {
 if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log(`✅ Yuki VN Server running at http://localhost:${PORT}`);
+        console.log(`🔒 OpenRouter model: ${OPENROUTER_MODEL}`);
         console.log(`🔒 API key is secure — never exposed to clients`);
         console.log(`⏱️  Rate limit: 10 requests / minute / IP`);
     });

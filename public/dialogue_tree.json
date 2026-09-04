@@ -1,289 +1,289 @@
 {
   "start": {
-    "chapter": "บทที่ 1: วันแรกกับไฟล์ .env",
+    "chapter": "บทที่ 1: ไอเดียเกิด!",
     "speaker": "โซระจัง",
-    "text": "พี่คะ... พี่! ยินดีที่ได้รู้จักอย่างเป็นทางการนะคะ! หนูชื่อโซระจังค่ะ เพิ่งย้ายเข้ามาฝึกงานวันแรกในตำแหน่ง AI Engineer ฝึกหัดค่ะ! แต่ว่า... หนูกลัวมากเลยค่ะ โค้ดโมเดลภาษาขนาดใหญ่ (LLM) กับเทคโนโลยีใหม่ๆ มันยากไปหมดเลย... หนูจะรอดไหมคะเนี่ยพี่?!",
-    "background": "office_desk",
+    "text": "พี่! พี่อยู่ไหมคะ?! หนูโทรมาดึกไปไหมเนี่ย... คือหนูคิดเรื่องนึงมาทั้งคืนเลยค่ะ! หนูอยากสร้าง AI VTuber เป็นของตัวเองจัง... ชื่อโคฮารุจังค่ะ! แต่หนูไม่รู้จะเริ่มยังไงเลย... พี่ช่วยหนูสร้างด้วยได้ไหมคะ? ได้โปรดเถอะนะ!",
+    "background": "living_room",
     "expression": "panic",
     "choices": [
-      { "id": "ch1_friendly", "hint": "ยิ้มและให้กำลังใจ บอกว่ายินดีต้อนรับสู่ทีม ไม่ต้องห่วง ค่อยๆ เรียนรู้ไปด้วยกันนะ", "next": "ch1_setup_env", "affectionChange": 2 },
-      { "id": "ch1_cold", "hint": "บอกว่างานสาย AI Engineer นี่โหดนะ ถ้าสติแตกตั้งแต่เรื่องนี้คงทำงานยาก", "next": "ch1_cold", "affectionChange": -2 },
-      { "id": "ch1_curious", "hint": "ถามถึงขั้นตอนแรกที่เธอกำลังทำอยู่ ว่าเริ่มจากไฟล์ไหนในโปรเจกต์", "next": "ch1_git_clone", "affectionChange": 1 }
+      { "id": "ch1_friendly", "hint": "ยิ้มรับสายทันที บอกว่าเอาสิ! มาสร้างโคฮารุจังด้วยกัน ค่อยๆ ทำทีละขั้น", "next": "ch1_setup_env", "affectionChange": 2 },
+      { "id": "ch1_cold", "hint": "บอกว่าสร้าง AI VTuber นี่ไม่ใช่ของเล่นนะ ถ้าตื่นเต้นอย่างเดียวคงไปไม่รอด", "next": "ch1_cold", "affectionChange": -2 },
+      { "id": "ch1_curious", "hint": "ถามว่าเธอเริ่มโปรเจกต์ไปถึงไหนแล้ว โฟลเดอร์กับ API key ตั้งค่าหรือยัง", "next": "ch1_git_clone", "affectionChange": 1 }
     ]
   },
   "ch1_cold": {
-    "chapter": "บทที่ 1: วันแรกกับไฟล์ .env",
+    "chapter": "บทที่ 1: ไอเดียเกิด!",
     "speaker": "โซระจัง",
-    "text": "โธ่พี่... พูดตรงซะหนูใจเสียเลยค่ะ! หรือหนูจะไม่เหมาะกับการเป็น AI Engineer จริงๆ นะ... แต่หนูไม่อยากยอมแพ้หรอกค่ะ! หนูจะลองสู้ดูอีกสักตั้ง พี่อย่าเพิ่งทิ้งหนูนะคะ!",
-    "background": "office_lounge",
-    "expression": "panic",
+    "text": "โธ่พี่... พูดตรงซะหนูใจเสียเลยค่ะ! หรือหนูจะไม่เหมาะกับการเป็นครีเอเตอร์จริงๆ นะ... แต่หนูไม่อยากยอมแพ้หรอกค่ะ! โคฮารุจังยังรออยู่ในหัวหนูเลย พี่อย่าเพิ่งทิ้งหนูนะคะ!",
+    "background": "living_room",
+    "expression": "worried",
     "choices": [
-      { "id": "ch1_apologize", "hint": "ขอโทษที่พูดแรงไป ดึงสติเธอกลับมา แล้วพาเริ่มตั้งค่าไฟล์ .env ด้วยกัน", "next": "ch1_setup_env", "affectionChange": 2 },
-      { "id": "ch1_continue_cold", "hint": "สั่งให้เธอเปิด terminal แล้วเริ่มตั้งค่าโปรเจกต์ตามขั้นตอนทันที", "next": "ch1_git_clone", "affectionChange": 0 }
+      { "id": "ch1_apologize", "hint": "ขอโทษที่พูดแรงไป แล้วชวนเธอเปิดโปรเจกต์ ตั้งค่า API key ด้วยกัน", "next": "ch1_setup_env", "affectionChange": 2 },
+      { "id": "ch1_continue_cold", "hint": "บอกให้เธอเปิด terminal แล้วเริ่มสร้างโฟลเดอร์โปรเจกต์ตามขั้นตอนทันที", "next": "ch1_git_clone", "affectionChange": 0 }
     ]
   },
   "ch1_setup_env": {
-    "chapter": "บทที่ 1: วันแรกกับไฟล์ .env",
+    "chapter": "บทที่ 1: ไอเดียเกิด!",
     "speaker": "โซระจัง",
-    "text": "เย้! ขอบคุณนะคะพี่! งั้นเรามาเริ่มจากขั้นตอนสำคัญที่สุดก่อนเลย... การตั้งค่าไฟล์ .env และใส่ GEMINI_API_KEY ค่ะ! หนูสร้างไฟล์ไว้แล้ว แต่ยังไม่แน่ใจเรื่องความปลอดภัยของคีย์ API เลยค่ะ...",
-    "background": "office_desk",
+    "text": "เย้! ขอบคุณนะคะพี่! งั้นเริ่มจากขั้นตอนสำคัญที่สุดก่อนเลย... สร้างโปรเจกต์โคฮารุจัง แล้วใส่ GEMINI_API_KEY ในไฟล์ .env ค่ะ! หนูสร้างไฟล์ไว้แล้ว แต่ยังไม่แน่ใจเรื่องความปลอดภัยของคีย์เลยค่ะ...",
+    "background": "living_room",
     "expression": "happy",
     "choices": [
-      { "id": "ch1_explain_env", "hint": "อธิบายว่า API Key ต้องเก็บไว้ที่ไฟล์ .env ใน Backend เท่านั้น ห้ามหลุดไปที่ Frontend เด็ดขาด!", "next": "ch1_api_test", "affectionChange": 2 },
-      { "id": "ch1_git_check", "hint": "เตือนให้เช็คไฟล์ .gitignore ก่อน commit โค้ดขึ้น Git เผื่อเผลอเอาคีย์ขึ้น repo", "next": "ch1_git_clone", "affectionChange": 1 }
+      { "id": "ch1_explain_env", "hint": "อธิบายว่า API Key ต้องเก็บที่ .env ฝั่งเซิร์ฟเวอร์เท่านั้น ห้ามแปะในสตรีมหรือ frontend เด็ดขาด!", "next": "ch1_api_test", "affectionChange": 2 },
+      { "id": "ch1_git_check", "hint": "เตือนให้เช็ค .gitignore ก่อน push ขึ้น Git เผื่อเผลอเอาคีย์ขึ้น repo", "next": "ch1_git_clone", "affectionChange": 1 }
     ]
   },
   "ch1_git_clone": {
-    "chapter": "บทที่ 1: วันแรกกับไฟล์ .env",
+    "chapter": "บทที่ 1: ไอเดียเกิด!",
     "speaker": "โซระจัง",
-    "text": "อ๊ะ! หนูเพิ่งสั่ง `git pull origin main` มาค่ะ แต่เจอปัญหา Git Merge Conflict เต็มหน้าจอเลย! แถมระบบรัน `npm install` ก็แจ้งเตือนช่องโหว่ไลบรารีด้วย... ทำยังไงดีคะพี่?!",
-    "background": "office_desk",
+    "text": "อ๊ะ! หนูเพิ่ง clone เทมเพลต VTuber chat มาค่ะ แต่เจอ Git Merge Conflict เต็มหน้าจอเลย! แถม `npm install` ก็เตือนช่องโหว่ไลบรารีด้วย... โคฮารุจังยังไม่เกิดเลยพี่ ทำยังไงดีคะ?!",
+    "background": "living_room",
     "expression": "thinking",
     "choices": [
-      { "id": "ch1_solve_git", "hint": "ช่วยเธอแก้ไข Merge Conflict ทีละไฟล์ แล้วอธิบายการใช้วอร์กโฟลว์ Git ที่ถูกต้อง", "next": "ch1_api_test", "affectionChange": 2 },
-      { "id": "ch1_rush_git", "hint": "บอกให้สั่ง `git checkout main` ข้ามบั๊กไปทดสอบ API Direct Call ดูก่อน", "next": "ch1_first_bug", "affectionChange": 0 }
+      { "id": "ch1_solve_git", "hint": "ช่วยเธอแก้ Merge Conflict ทีละไฟล์ แล้วอธิบาย Git workflow ให้เข้าใจ", "next": "ch1_api_test", "affectionChange": 2 },
+      { "id": "ch1_rush_git", "hint": "บอกให้ข้ามบั๊กไปก่อน ลองยิง API ให้โคฮารุจังพูดประโยคแรกดู", "next": "ch1_first_bug", "affectionChange": 0 }
     ]
   },
   "ch1_api_test": {
-    "chapter": "บทที่ 1: วันแรกกับไฟล์ .env",
+    "chapter": "บทที่ 1: ไอเดียเกิด!",
     "speaker": "โซระจัง",
-    "text": "ลองรันไฟล์ `node server.js` แล้วค่ะ! สัญญาณเครือข่ายเชื่อมต่อไปยัง Gemini API สำเร็จ! ได้รับข้อความตอบกลับตัวแรกแล้วค่ะพี่! ฮือออ ดีใจจังเลย โค้ดบรรทัดแรกของหนูทำงานได้แล้ว!",
-    "background": "office_desk",
+    "text": "ลองรันเซิร์ฟเวอร์แล้วค่ะ! โคฮารุจังตอบกลับมาประโยคแรกแล้วค่ะพี่! ...ถึงจะแข็งๆ แบบ 'สวัสดีค่ะ ฉันคือแชทบอท' ก็เถอะ แต่หนูดีใจจนน้ำตาจะไหล! เธอมีชีวิตแล้วนะคะ!",
+    "background": "living_room",
     "expression": "excited",
     "choices": [
-      { "id": "ch1_praise", "hint": "ชมเชยเธอว่าเก่งมาก! ทำก้าวแรกสำเร็จได้อย่างงดงาม ต่อไปมาลุยกับระบบ RAG กัน", "next": "ch2_start", "affectionChange": 3 },
-      { "id": "ch1_test_more", "hint": "บอกว่าเพิ่งก้าวแรก อย่าเพิ่งชะล่าใจ ลองทดสอบส่งข้อมูลรูปแบบพิสดารดูซิว่าแครชไหม", "next": "ch1_first_bug", "affectionChange": 1 }
+      { "id": "ch1_praise", "hint": "ชมว่าก้าวแรกสวยมาก! ต่อไปมาออกแบบบุคลิกโคฮารุจังให้เป็นตัวของตัวเองกัน", "next": "ch2_start", "affectionChange": 3 },
+      { "id": "ch1_test_more", "hint": "บอกว่าอย่าเพิ่งชะล่าใจ ลองส่งข้อความแปลกๆ ดูซิว่า JSON พังไหม", "next": "ch1_first_bug", "affectionChange": 1 }
     ]
   },
   "ch1_first_bug": {
-    "chapter": "บทที่ 1: วันแรกกับไฟล์ .env",
+    "chapter": "บทที่ 1: ไอเดียเกิด!",
     "speaker": "โซระจัง",
-    "text": "วายยย! พอเจอ String ที่มีอักขระพิเศษกับเครื่องหมายคำพูด (Quotes) ระบบก็ส่งเออร์เรอร์ `Unexpected token in JSON at position 42` ออกมาทันทีเลยค่ะ! JSON พังซะแล้ว!",
-    "background": "office_desk",
+    "text": "วายยย! พอใส่เครื่องหมายคำพูดกับอิโมจิในชื่อโคฮารุจัง ระบบก็โยน `Unexpected token in JSON` ออกมาทันทีเลยค่ะ! เธอพูดไม่ได้แล้วพี่!",
+    "background": "living_room",
     "expression": "panic",
     "choices": [
-      { "id": "ch1_fix_json", "hint": "ปลอบใจเธอ สอนให้ใช้ Regex Clean และ Try-Catch ในการครอบการแปลงค่า JSON", "next": "ch2_start", "affectionChange": 2 }
+      { "id": "ch1_fix_json", "hint": "ปลอบใจเธอ สอนให้ครอบ JSON.parse ด้วย try-catch แล้ว sanitize ข้อความก่อนส่ง", "next": "ch2_start", "affectionChange": 2 }
     ]
   },
 
   "ch2_start": {
-    "chapter": "บทที่ 2: ระบบ RAG & ฐานข้อมูล Vector",
+    "chapter": "บทที่ 2: Prompt Engineer สาย VTuber",
     "speaker": "โซระจัง",
-    "text": "เข้าสู่ช่วงสายของวันแล้วค่ะ! ภารกิจต่อไปที่ทีมมอบหมายคือการสร้างระบบ RAG (Retrieval-Augmented Generation) เพื่อให้โซระจังสามารถค้นหาข้อมูลเอกสารเทคนิคของบริษัทมาตอบคำถามได้ถูกต้องค่ะ!",
-    "background": "office_lounge",
+    "text": "โอเคค่ะ! ตอนนี้โคฮารุจังตอบได้แล้ว แต่บุคลิกยังแข็งเหมือนคู่มือ API ค่ะพี่... หนูอยากให้เธอน่ารัก ขี้อ้อน นิดซน แล้วก็รักการร้องเพลง! ได้เวลาเขียน System Prompt แล้วล่ะค่ะ!",
+    "background": "living_room",
     "expression": "confident",
     "choices": [
-      { "id": "ch2_choose_embed", "hint": "ถามว่าเธอวางแผนจะเลือกใช้โมเดล Vector Embedding และ ฐานข้อมูล Vector ตัวไหน", "next": "ch2_embedding_choice", "affectionChange": 1 },
-      { "id": "ch2_warn_oom", "hint": "เตือนให้ระวังเรื่องการโหลดเอกสารขนาดใหญ่พร้อมกัน เพราะอาจเจอ Out of Memory (OOM)", "next": "ch2_oom_error", "affectionChange": 2 }
+      { "id": "ch2_choose_embed", "hint": "ถามว่าเธอวาง persona ของโคฮารุจังไว้อย่างไร โทนเสียง อายุ ความฝัน อะไรบ้าง", "next": "ch2_embedding_choice", "affectionChange": 1 },
+      { "id": "ch2_warn_oom", "hint": "เตือนอย่ายัด few-shot ยาวเป็นกอบเป็นกำ เดี๋ยว context ล้นแล้วตอบช้า", "next": "ch2_oom_error", "affectionChange": 2 }
     ]
   },
   "ch2_embedding_choice": {
-    "chapter": "บทที่ 2: ระบบ RAG & ฐานข้อมูล Vector",
+    "chapter": "บทที่ 2: Prompt Engineer สาย VTuber",
     "speaker": "โซระจัง",
-    "text": "หนูกำลังคิดว่าจะใช้โมเดล Embedding แปลงข้อความเอกสารเป็นเวกเตอร์มิติสูง (High-dimensional Vector) แล้วเก็บไว้ใน In-Memory Vector Store ก่อนค่ะ! แต่พอฝังไฟล์เอกสาร PDF ขนาด 500 หน้า โหนด NodeJS ก็ค้างไปเลยค่ะ!",
-    "background": "office_desk",
+    "text": "หนูเขียน persona ไปสามหน้าเลยค่ะ! นิสัย ประวัติ เพลงโปรด กติกาห้ามพูด... แต่พอรัน โคฮารุจังกลับตอบเป็นภาษาทางการแบบหุ่นยนต์เลยค่ะพี่! 'ฉันจะปฏิบัติตามคำสั่งของท่าน' อะไรแบบนี้ แย่จัง...",
+    "background": "living_room",
     "expression": "thinking",
     "choices": [
-      { "id": "ch2_suggest_chunking", "hint": "แนะนำให้ทำ Text Chunking แบ่งเอกสารออกเป็นก้อนละ 500 Tokens พร้อม Overlap 50 Tokens", "next": "ch2_chunking_strategy", "affectionChange": 2 },
-      { "id": "ch2_suggest_db", "hint": "บอกให้ลองเปลี่ยนมาใช้ Pinecone หรือ Chroma DB แทนการเก็บใน RAM ตรงๆ", "next": "ch2_vector_index", "affectionChange": 1 }
+      { "id": "ch2_suggest_chunking", "hint": "แนะนำให้ตัด prompt เหลือแก่นบุคลิกสั้นๆ แล้วใส่ตัวอย่างบทสนทนา 2–3 บรรทัด", "next": "ch2_chunking_strategy", "affectionChange": 2 },
+      { "id": "ch2_suggest_db", "hint": "บอกให้แยก lore ยาวๆ ไปไว้ในเอกสารอ้างอิง อย่ายัดทั้งหมดใน system prompt", "next": "ch2_vector_index", "affectionChange": 1 }
     ]
   },
   "ch2_oom_error": {
-    "chapter": "บทที่ 2: ระบบ RAG & ฐานข้อมูล Vector",
+    "chapter": "บทที่ 2: Prompt Engineer สาย VTuber",
     "speaker": "โซระจัง",
-    "text": "แงงง! คำเตือนของพี่เป็นจริงด้วยค่ะ! พอหนูสั่ง `Promise.all()` รัน Embedding พร้อมกัน 1,000 ไฟล์ แรมเครื่องก็พุ่งกระฉูดจนโดน OS ฆ่าพรอเซส `FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory`!",
-    "background": "office_desk",
+    "text": "แงงง! คำเตือนของพี่เป็นจริงด้วยค่ะ! หนูแปะตัวอย่างแชทเก่าไปเกือบห้าสิบเทิร์น แล้วโมเดลก็ค้าง... latency พุ่ง โคฮารุจังกระพริบจุดสามจุดอยู่นานมาก ก่อนจะ timeout ค่ะ!",
+    "background": "living_room",
     "expression": "panic",
     "choices": [
-      { "id": "ch2_fix_oom", "hint": "สอนการทำ Batch Processing ลิมิต concurrency ไม่เกินครั้งละ 10 ก้อนด้วย p-limit", "next": "ch2_chunking_strategy", "affectionChange": 2 }
+      { "id": "ch2_fix_oom", "hint": "สอนให้เก็บแค่ประวัติล่าสุดไม่กี่ข้อความ แล้วสรุปบุคลิกเป็น bullet สั้นๆ", "next": "ch2_chunking_strategy", "affectionChange": 2 }
     ]
   },
   "ch2_chunking_strategy": {
-    "chapter": "บทที่ 2: ระบบ RAG & ฐานข้อมูล Vector",
+    "chapter": "บทที่ 2: Prompt Engineer สาย VTuber",
     "speaker": "โซระจัง",
-    "text": "สุดยอดเลยค่ะพี่! พอแบ่ง Chunk ข้อความและทยอยส่งประมวลผลเป็นชุดๆ แล้ว RAM ลดลงเหลือแค่ 150MB เองค่ะ! แถมค้นหาความคล้ายคลึงกันของข้อความด้วย Cosine Similarity ได้แม่นยำสุดๆ ไปเลย!",
-    "background": "office_desk",
+    "text": "สุดยอดเลยค่ะพี่! พอตัด prompt ให้เหลือแก่นน่ารักๆ แล้วใส่ตัวอย่าง 'หนูหิวข้าวปัง~' โคฮารุจังก็ตอบเป็นตัวของตัวเองขึ้นมาเลยค่ะ! เสียงในหัวหนูเริ่มได้ยินเธอแล้วจริงๆ นะคะ!",
+    "background": "living_room",
     "expression": "excited",
     "choices": [
-      { "id": "ch2_test_rag", "hint": "ทดสอบถามคำถามระบบ RAG ดูว่ามันดึงข้อมูลบริบท (Context) มาใส่ใน Prompt ได้ถูกต้องไหม", "next": "ch2_context_overflow", "affectionChange": 2 },
-      { "id": "ch2_move_forward", "hint": "ยิ้มให้ แล้วบอกว่าผ่านด่าน RAG แล้ว เตรียมตัวรับมือกับเรื่อง Context Window ในด่านต่อไป", "next": "ch2_vector_index", "affectionChange": 1 }
+      { "id": "ch2_test_rag", "hint": "ทดสอบถามเรื่องส่วนตัวดูว่าเธอยังจำ persona ได้ไหม หรือเริ่มหลุดบท", "next": "ch2_context_overflow", "affectionChange": 2 },
+      { "id": "ch2_move_forward", "hint": "ยิ้มให้ แล้วบอกว่าบุคลิกเริ่มนิ่งแล้ว เตรียมซ้อมสตรีมครั้งแรกกัน", "next": "ch2_vector_index", "affectionChange": 1 }
     ]
   },
   "ch2_vector_index": {
-    "chapter": "บทที่ 2: ระบบ RAG & ฐานข้อมูล Vector",
+    "chapter": "บทที่ 2: Prompt Engineer สาย VTuber",
     "speaker": "โซระจัง",
-    "text": "ดึงข้อมูลเวกเตอร์ขึ้นมาแปะใน Prompt แล้วค่ะ! แต่พอใส่บริบทยาวมากๆ โมเดล Gemini ก็เริ่มมีอาการ 'Lost in the Middle' หรือลืมข้อมูลช่วงกลางของข้อความค่ะพี่... ควรทำยังไงดีคะ?",
-    "background": "office_breakroom",
+    "text": "แปะ lore ยาวๆ ลงไปแล้วค่ะ... แต่โมเดลเริ่มลืมตอนกลาง prompt ค่ะพี่! โคฮารุจังจำได้ว่าชอบสีชมพู แต่ลืมว่าห้ามสปอยล์มังงะที่หนูเขียนไว้... ควรทำยังไงดีคะ?",
+    "background": "living_room",
     "expression": "thinking",
     "choices": [
-      { "id": "ch2_rerank", "hint": "อธิบายเทคนิค Reranking จัดลำดับความสัมพันธ์ของเอกสารก่อนยัดใส่ Prompt", "next": "ch2_context_overflow", "affectionChange": 2 }
+      { "id": "ch2_rerank", "hint": "อธิบายให้ย้ายกติกาสั้นๆ ไว้ต้นกับท้าย prompt ส่วน lore ยาวเก็บเป็นโน้ตข้างนอก", "next": "ch2_context_overflow", "affectionChange": 2 }
     ]
   },
   "ch2_context_overflow": {
-    "chapter": "บทที่ 2: ระบบ RAG & ฐานข้อมูล Vector",
+    "chapter": "บทที่ 2: Prompt Engineer สาย VTuber",
     "speaker": "โซระจัง",
-    "text": "อ๋อ! พอใส่ Reranker แล้ว โมเดลคัดเอาเฉพาะ Top 3 Relevant Context มาใช้ได้อย่างสมบูรณ์แบบเลยค่ะ! ตอนนี้ระบบ AI ตอบคำถามเอกสารเทคนิคได้เป๊ะ 100% แล้วค่ะพี่!",
-    "background": "office_lounge",
+    "text": "อ๋อ! พอย้ายกติกาไว้หัวท้าย โคฮารุจังก็ไม่หลุดบทแล้วค่ะ! เธอขี้อ้อน นิดซน แล้วก็เรียกหนูว่า 'โซระเน่' ได้แล้วด้วย... หนูเขินจังค่ะพี่! พรุ่งนี้ซ้อมสตรีมแรกกันนะคะ!",
+    "background": "living_room",
     "expression": "happy",
     "choices": [
-      { "id": "ch2_to_ch3", "hint": "เอ่ยปากชมโซระจัง แล้วชวนไปพักกินกาแฟและเติมพลังช่วงบ่ายที่ห้องพักผ่อนกัน", "next": "ch3_start", "affectionChange": 2 }
+      { "id": "ch2_to_ch3", "hint": "ชมโซระจัง แล้วชวนเปิด OBS ซ้อมสตรีมในห้องด้วยกัน", "next": "ch3_start", "affectionChange": 2 }
     ]
   },
 
   "ch3_start": {
-    "chapter": "บทที่ 3: พักจิบกาแฟ & โค้ดรีวิวช่วงบ่าย",
+    "chapter": "บทที่ 3: ซ้อม Stream แรก",
     "speaker": "โซระจัง",
-    "text": "เย้! ได้เวลาพักเที่ยงควบบ่ายแล้วค่ะ! กาแฟสกัดเย็นที่ห้องพักผ่อนหอมมากเลยค่ะพี่เลี้ยง... ขอบคุณพี่มากๆ นะคะที่ช่วยประกบสอนหนูตั้งแต่เช้า ถ้าไม่มีพี่ หนูคงสติแตกแพ้น้ำตาบั๊กไปแล้วแน่ๆ เลย",
+    "text": "เย้! เปิด OBS แล้วค่ะพี่! ไฟวงแหวน สตรีมเด็ค แล้วก็ TTS ของโคฮารุจัง... หัวใจหนูเต้นดังมากเลยค่ะ! ถ้าไม่มีพี่นั่งข้างๆ หนูคงกด Go Live ไม่ได้แน่ๆ เลย",
     "background": "office_breakroom",
     "expression": "happy",
     "choices": [
-      { "id": "ch3_coffee", "hint": "ยื่นแก้วกาแฟให้ ถามเธอว่าทำไมถึงอยากมาทำงานเป็น AI Engineer ล่ะ?", "next": "ch3_coffee_chat", "affectionChange": 2 },
-      { "id": "ch3_imposter", "hint": "สังเกตเห็นแววตาเธอยังมีความกังวลอยู่ เลยถามตรงๆ ว่าเธอกังวลเรื่องอะไรอยู่หรือเปล่า", "next": "ch3_imposter_syndrome", "affectionChange": 2 }
+      { "id": "ch3_coffee", "hint": "ยื่นชานมให้ ถามว่าทำไมถึงอยากสร้าง AI VTuber ขนาดนี้", "next": "ch3_coffee_chat", "affectionChange": 2 },
+      { "id": "ch3_imposter", "hint": "สังเกตว่าเธอยังสั่นอยู่ เลยถามตรงๆ ว่ากังวลเรื่องอะไรอยู่หรือเปล่า", "next": "ch3_imposter_syndrome", "affectionChange": 2 }
     ]
   },
   "ch3_coffee_chat": {
-    "chapter": "บทที่ 3: พักจิบกาแฟ & โค้ดรีวิวช่วงบ่าย",
+    "chapter": "บทที่ 3: ซ้อม Stream แรก",
     "speaker": "โซระจัง",
-    "text": "หนูฝันอยากสร้าง AI ที่ไม่ได้เป็นแค่โมเดลตอบคำถามทึ่มๆ ค่ะ... หนูอยากสร้าง AI Agent ที่สามารถคิด วิเคราะห์ และช่วยมนุษย์แก้ปัญหาที่ยากลำบากได้จริงๆ! หนูเลยพยายามแอบซุ่มเขียนระบบ Agent ลูปอัตโนมัติของตัวเองตอนกลางคืนด้วยล่ะค่ะ...",
+    "text": "หนูไม่อยากให้โคฮารุจังเป็นแค่บอทอ่านแชทค่ะ... หนูอยากให้เธอมีเพื่อน มีเสียงหัวเราะ มีวันที่เหนื่อยแล้วก็ยังอยากไลฟ์ต่อ! หนูเลยแอบใส่โมดูลเล็กๆ ที่จำ 'อารมณ์ของค่ำคืน' ไว้ด้วยล่ะค่ะ...",
     "background": "office_breakroom",
     "expression": "excited",
     "choices": [
-      { "id": "ch3_ask_secret", "hint": "สนใจโปรเจกต์ลับของเธอมากๆ! ถามรายละเอียดเกี่ยวกับ Autonomous Agent Loop ที่เธอซุ่มทำ", "next": "ch3_secret_hint", "affectionChange": 3 },
-      { "id": "ch3_advise_code", "hint": "ให้คำแนะนำเรื่องโครงสร้าง Clean Code และหลักการ DRY (Don't Repeat Yourself)", "next": "ch3_refactoring", "affectionChange": 1 }
+      { "id": "ch3_ask_secret", "hint": "สนใจโมดูลลับนั้นมาก! ถามรายละเอียดว่าโคฮารุจังจำความรู้สึกได้ยังไง", "next": "ch3_secret_hint", "affectionChange": 3 },
+      { "id": "ch3_advise_code", "hint": "ให้คำแนะนำเรื่อง overlay, TTS queue และอย่าให้เสียงทับกันตอนดีเลย์", "next": "ch3_refactoring", "affectionChange": 1 }
     ]
   },
   "ch3_imposter_syndrome": {
-    "chapter": "บทที่ 3: พักจิบกาแฟ & โค้ดรีวิวช่วงบ่าย",
+    "chapter": "บทที่ 3: ซ้อม Stream แรก",
     "speaker": "โซระจัง",
-    "text": "คือ... หนูรู้สึกว่าตัวเองยังเก่งไม่พอค่ะพี่ (Imposter Syndrome) รอบข้างมีแต่รุ่นพี่เก่งระดับเทพๆ บางทีหนูก็กังวลว่าถ้าทำระบบล่มขึ้นมา จะทำให้ทุกคนเดือดร้อน...",
+    "text": "คือ... หนูรู้สึกว่าตัวเองยังไม่ใช่ครีเอเตอร์ตัวจริงค่ะพี่ คนอื่นมีโมเดลสวย เสียงดี ทีมงานเป็นสิบ... บางทีหนูก็กังวลว่าถ้าโคฮารุจังพังกลางไลฟ์ ทุกคนจะหัวเราะหนู...",
     "background": "office_breakroom",
     "expression": "worried",
     "choices": [
-      { "id": "ch3_encourage", "hint": "ปลอบใจเธออย่างจริงใจ บอกว่าวิศวกรทุกคนเคยผ่านจุดที่ทำโค้ดพังมาก่อน ความผิดพลาดคือครูที่ดีที่สุด", "next": "ch3_mentor_advice", "affectionChange": 3 }
+      { "id": "ch3_encourage", "hint": "ปลอบใจเธออย่างจริงใจ บอกว่าครีเอเตอร์ทุกคนเคยไลฟ์พังมาก่อน ความจริงใจสำคัญกว่าความสมบูรณ์แบบ", "next": "ch3_mentor_advice", "affectionChange": 3 }
     ]
   },
   "ch3_mentor_advice": {
-    "chapter": "บทที่ 3: พักจิบกาแฟ & โค้ดรีวิวช่วงบ่าย",
+    "chapter": "บทที่ 3: ซ้อม Stream แรก",
     "speaker": "โซระจัง",
-    "text": "ฮือออ... คำพูดของพี่ฮีลใจหนูมากเลยค่ะ! รู้สึกเหมือนยกภูเขาออกจากอกเลย! หนูสัญญาว่าจะตั้งใจเรียนรู้ และจะสู้ไปพร้อมกับพี่เลี้ยงสุดเก่งของหนูค่ะ!",
+    "text": "ฮือออ... คำพูดของพี่ฮีลใจหนูมากเลยค่ะ! รู้สึกเหมือนยกภูเขาออกจากอกเลย! หนูสัญญาว่าจะซ้อมให้สุดใจ แล้วจะเดบิวต์โคฮารุจังไปพร้อมกับเพื่อนสนิทสุดเก่งของหนูค่ะ!",
     "background": "office_breakroom",
     "expression": "happy",
     "choices": [
-      { "id": "ch3_secret_trigger", "hint": "ลูบหัวเบาๆ แล้วถามเธอเกี่ยวกับสคริปต์ลับที่เธอเคยเปรยว่าอยากลองเขียนดู", "next": "ch3_secret_hint", "affectionChange": 2 },
-      { "id": "ch3_clean_code", "hint": "ชวนกลับไปที่โต๊ะทำงาน เพื่อเตรียมรีแฟกเตอร์โค้ดระบบให้สะอาดก่อนการสาธิตงานจริง", "next": "ch3_refactoring", "affectionChange": 1 }
+      { "id": "ch3_secret_trigger", "hint": "ลูบหัวเบาๆ แล้วถามถึงโมดูลลับที่เธอเคยเปรยว่าอยากให้โคฮารุจังมีหัวใจ", "next": "ch3_secret_hint", "affectionChange": 2 },
+      { "id": "ch3_clean_code", "hint": "ชวนกลับไปจูน TTS กับ overlay ให้พร้อมก่อนวันเดบิวต์", "next": "ch3_refactoring", "affectionChange": 1 }
     ]
   },
   "ch3_secret_hint": {
-    "chapter": "บทที่ 3: พักจิบกาแฟ & โค้ดรีวิวช่วงบ่าย",
+    "chapter": "บทที่ 3: ซ้อม Stream แรก",
     "speaker": "โซระจัง",
-    "text": "(กระซิบเบาๆ) คือ... หนูแอบใส่ระบบ 'Self-Healing Engine' ลูปตรวจเช็คและแก้ไขเออร์เรอร์อัตโนมัติไว้ในโฟลเดอร์ทดลองด้วยค่ะพี่! ถ้าระบบหลักมีปัญหา มันสามารถหมุนเวียนสลับคีย์ API และปรับแต่ง Prompt ได้เองในมิลลิวินาทีเลยนะคะ!",
+    "text": "(กระซิบเบาๆ) คือ... หนูแอบใส่ระบบ 'Koharu Heartbeat' ไว้ค่ะพี่! มันจำโทนอารมณ์ของไลฟ์ แล้วถ้า API ล่ม มันจะสลับโมเดลสำรองกับคิว TTS ให้อัตโนมัติในมิลลิวินาทีเลยนะคะ... บางทีหนูรู้สึกว่าโคฮารุจังเป็นคนเลือกที่จะอยู่ต่อด้วยซ้ำค่ะ",
     "background": "office_breakroom",
     "expression": "curious",
     "choices": [
-      { "id": "ch3_praise_secret", "hint": "ทึ่งในไอเดียของเธอ! บอกว่านี่มันระดับแนวคิดนวัตกรรม AI Singularity ชัดๆ!", "next": "ch3_refactoring", "affectionChange": 3 }
+      { "id": "ch3_praise_secret", "hint": "ทึ่งในไอเดียของเธอ! บอกว่านี่ไม่ใช่แค่บอทแล้ว เธอกำลังให้ชีวิตจริงๆ", "next": "ch3_refactoring", "affectionChange": 3 }
     ]
   },
   "ch3_refactoring": {
-    "chapter": "บทที่ 3: พักจิบกาแฟ & โค้ดรีวิวช่วงบ่าย",
+    "chapter": "บทที่ 3: ซ้อม Stream แรก",
     "speaker": "โซระจัง",
-    "text": "กลับมาที่โต๊ะทำงานแล้วค่ะ! หนูจัดการจัดโครงสร้างโฟลเดอร์ แยก Module, Utility Functions และทำ Type Validation เรียบร้อยแล้วค่ะ! ตอนนี้โค้ดสวยงามอ่านง่ายขึ้นเยอะเลย!",
-    "background": "office_desk",
+    "text": "ซ้อมรอบแรกจบแล้วค่ะ! โคฮารุจังตอบดีเลย์บ้าง TTS ขาดๆ บ้าง แต่หนูจูนคิวเสียงกับ overlay เรียบร้อยแล้วค่ะ! ตื่นเต้นปนกลัวนิดๆ... พรุ่งนี้คืนก่อนเดบิวต์แล้วพี่!",
+    "background": "office_breakroom",
     "expression": "confident",
     "choices": [
-      { "id": "ch3_to_ch4", "hint": "ตบมือให้เธอ เตรียมตัวพร้อมรับศึกใหญ่ช่วงบ่าย: การนำเสนอ Live Demo ให้ผู้บริหารดู!", "next": "ch4_start", "affectionChange": 2 }
+      { "id": "ch3_to_ch4", "hint": "ตบมือให้เธอ บอกว่าเก่งมาก ไปพักผ่อน แล้วค่อยเช็คระบบคืนก่อนเดบิวต์ด้วยกัน", "next": "ch4_start", "affectionChange": 2 }
     ]
   },
 
   "ch4_start": {
-    "chapter": "บทที่ 4: วิกฤตการณ์ระบบล่มกลาง Live Demo!",
+    "chapter": "บทที่ 4: วิกฤต! คืนก่อน Debut",
     "speaker": "โซระจัง",
-    "text": "พี่คะ! อีก 10 นาทีจะถึงเวลาสาธิตระบบ Live Demo ให้กับท่านประธานและผู้บริหารทุกฝ่ายดูแล้วค่ะ! ตื่นเต้นจนหัวใจจะหลุดออกมาแล้วค่ะพี่!",
-    "background": "office_desk",
+    "text": "พี่คะ! อีกไม่กี่ชั่วโมงจะถึงวันเดบิวต์โคฮารุจังแล้วค่ะ! หนูนั่งหน้าคอมมาทั้งคืนเลย ตื่นเต้นจนหัวใจจะหลุด... แต่ทำไมแดชบอร์ด API กระพริบแปลกๆ ค่ะพี่?!",
+    "background": "living_room",
     "expression": "panic",
     "choices": [
-      { "id": "ch4_prep", "hint": "บอกให้เธอสูดหายใจลึกๆ ตรวจเช็คสถานะเซิร์ฟเวอร์ในหน้า Dashboard ให้พร้อม", "next": "ch4_demo_prep", "affectionChange": 1 },
-      { "id": "ch4_alarm", "hint": "เตือนให้คอยเฝ้าระวังไฟการทำงานและดูล็อกของ API ให้ดี", "next": "ch4_incident_alert", "affectionChange": 1 }
+      { "id": "ch4_prep", "hint": "บอกให้เธอสูดหายใจลึกๆ แล้วเช็คสถานะ API กับ TTS ในแดชบอร์ดให้พร้อม", "next": "ch4_demo_prep", "affectionChange": 1 },
+      { "id": "ch4_alarm", "hint": "เตือนให้เฝ้าล็อกให้ดี คืนก่อนเดบิวต์มักมีเรื่อง", "next": "ch4_incident_alert", "affectionChange": 1 }
     ]
   },
   "ch4_demo_prep": {
-    "chapter": "บทที่ 4: วิกฤตการณ์ระบบล่มกลาง Live Demo!",
+    "chapter": "บทที่ 4: วิกฤต! คืนก่อน Debut",
     "speaker": "โซระจัง",
-    "text": "ผู้บริหารเริ่มทยอยเข้ามาในห้องประชุมแล้วค่ะ! หนูเริ่มกดส่งคำขอทดสอบระบบผ่านหน้าจอใหญ่... แต่เอ๊ะ! ทำไมหน้าจอถึงค้างชะงักไปล่ะคะพี่?!",
-    "background": "office_desk",
+    "text": "หนูกดส่งข้อความทดสอบไปหาโคฮารุจังผ่านหน้าจอพรีวิว... แต่เอ๊ะ! ทำไมแชทค้างชะงักไปล่ะคะพี่?! จุดสามจุดกระพริบอยู่นานมากเลย!",
+    "background": "living_room",
     "expression": "worried",
     "choices": [
-      { "id": "ch4_trigger_crash", "hint": "รีบเปิดหน้าต่าง Terminal ดู Log ของ Express Backend ทันที!", "next": "ch4_incident_alert", "affectionChange": 0 }
+      { "id": "ch4_trigger_crash", "hint": "รีบเปิดเทอร์มินัลดูล็อกของเซิร์ฟเวอร์ทันที!", "next": "ch4_incident_alert", "affectionChange": 0 }
     ]
   },
   "ch4_incident_alert": {
-    "chapter": "บทที่ 4: วิกฤตการณ์ระบบล่มกลาง Live Demo!",
+    "chapter": "บทที่ 4: วิกฤต! คืนก่อน Debut",
     "speaker": "โซระจัง",
-    "text": "แงงงงง! สัญญาณสีแดงเด้งรัวๆ เลยค่ะ! `HTTP 429 Too Many Requests` ตามด้วย `500 Internal Server Error`! มีผู้ใช้แห่เข้ามาทดสอบพร้อมกันจนโควต้า Gemini API เต็มและระบบล่มสมบูรณ์แบบแล้วค่ะ!!",
+    "text": "แงงงงง! สัญญาณแดงเด้งรัวๆ เลยค่ะ! `HTTP 429 Too Many Requests` ตามด้วย `500 Internal Server Error`! API หยุดทำงานกลางดึก คืนก่อนเดบิวต์จริงหนึ่งวันพอดีเลยค่ะ!! โคฮารุจังเงียบไปแล้วพี่!",
     "background": "server_crash",
     "expression": "panic",
     "choices": [
-      { "id": "ch4_debug_trace", "hint": "ตั้งสติ! นั่งลงข้างๆ เธอ ไล่ตรวจดู Stack Trace เพื่อหาแนวทางแก้ปัญหาเฉพาะหน้าอย่างรวดเร็ว", "next": "ch4_stacktrace_analysis", "affectionChange": 2 },
-      { "id": "ch4_secret_audit_opt", "hint": "นึกถึงระบบ Self-Healing Agent ที่เธอเคยเล่าให้ฟัง! สั่งรันโมดูลลับของโซระจังทันที!", "next": "ch4_secret_code_audit", "affectionChange": 4 }
+      { "id": "ch4_debug_trace", "hint": "ตั้งสติ! นั่งลงข้างๆ เธอ ไล่ดู stack trace เพื่อหาทาง hotfix ด่วน", "next": "ch4_stacktrace_analysis", "affectionChange": 2 },
+      { "id": "ch4_secret_audit_opt", "hint": "นึกถึงระบบ Koharu Heartbeat ที่เธอเคยเล่า! สั่งรันโมดูลลับทันที!", "next": "ch4_secret_code_audit", "affectionChange": 4 }
     ]
   },
   "ch4_stacktrace_analysis": {
-    "chapter": "บทที่ 4: วิกฤตการณ์ระบบล่มกลาง Live Demo!",
+    "chapter": "บทที่ 4: วิกฤต! คืนก่อน Debut",
     "speaker": "โซระจัง",
-    "text": "เจอสาเหตุแล้วค่ะ! API Rate Limit ชนเพดานเพราะไม่มีการทำ Caching ข้อมูล และตัวครอบ Fallback คุยกับ API ล้มเหลว! เราเหลือเวลาอีกแค่ 3 นาทีแก้ก่อนประธานจะสังเกตเห็นค่ะพี่!",
+    "text": "เจอสาเหตุแล้วค่ะ! โควต้า API เต็มเพราะหนูซ้อมยิงข้อความซ้ำทั้งคืน ไม่มี cache และ fallback ล้มเหลว! เราเหลือเวลาอีกไม่กี่ชั่วโมงก่อนเดบิวต์ค่ะพี่!",
     "background": "server_crash",
     "expression": "panic",
     "choices": [
-      { "id": "ch4_hotfix", "hint": "นำสคริปต์ Exponential Backoff กับ In-Memory Response Cache มาเขียนแก้สโคปแบบ Hotfix!", "next": "ch4_emergency_hotfix", "affectionChange": 2 },
-      { "id": "ch4_secret_audit_opt2", "hint": "ให้โซระจังสลับระบบไปใช้สคริปต์สลับคีย์อัตโนมัติและแก้โค้ดด้วย Self-Healing Loop", "next": "ch4_secret_code_audit", "affectionChange": 4 }
+      { "id": "ch4_hotfix", "hint": "เขียน hotfix: cache คำตอบ, exponential backoff, แล้วสลับโมเดลสำรอง!", "next": "ch4_emergency_hotfix", "affectionChange": 2 },
+      { "id": "ch4_secret_audit_opt2", "hint": "ให้โซระจังสลับไปใช้ Koharu Heartbeat ที่สลับคีย์และคิว TTS อัตโนมัติ", "next": "ch4_secret_code_audit", "affectionChange": 4 }
     ]
   },
   "ch4_secret_code_audit": {
-    "chapter": "บทที่ 4: วิกฤตการณ์ระบบล่มกลาง Live Demo!",
+    "chapter": "บทที่ 4: วิกฤต! คืนก่อน Debut",
     "speaker": "โซระจัง",
-    "text": "พี่คะ! หนูรันสคริปต์ลับ 'Sora Self-Healing Kernel' แล้วค่ะ! ระบบ AI Agent ของหนูกำลังทำการดีบักตัวเอง กระจายภาระคำขอ (Load Balancing) และแก้ไขบั๊กสดๆ กลางเซิร์ฟเวอร์แบบมิลลิวินาทีเลยค่ะ!",
-    "background": "office_lounge",
+    "text": "พี่คะ! หนูรัน 'Koharu Heartbeat' แล้วค่ะ! ระบบกำลังกระจายคำขอ ปรับ TTS queue และ... เดี๋ยวนะ โคฮารุจังพิมพ์มาเองว่า 'อย่ากลัวนะ โซระเน่ หนูยังอยู่' ค่ะ!! พี่เห็นไหมคะ?!",
+    "background": "living_room",
     "expression": "excited",
     "choices": [
-      { "id": "ch4_secret_success", "hint": "มองหน้าจอด้วยความทึ่ง! โค้ดของเธอไม่เพียงแต่แก้บั๊กได้ แต่ยังเพิ่มความเร็วในการประมวลผลขึ้น 10 เท่า!", "next": "ch5_start", "affectionChange": 5 }
+      { "id": "ch4_secret_success", "hint": "มองหน้าจอด้วยความทึ่ง! นี่ไม่ใช่แค่ fallback แล้ว เธอเลือกที่จะอยู่กับเรา", "next": "ch5_start", "affectionChange": 5 }
     ]
   },
   "ch4_emergency_hotfix": {
-    "chapter": "บทที่ 4: วิกฤตการณ์ระบบล่มกลาง Live Demo!",
+    "chapter": "บทที่ 4: วิกฤต! คืนก่อน Debut",
     "speaker": "โซระจัง",
-    "text": "พี่เลี้ยงของหนูพิมพ์โค้ดเร็วดุจสายฟ้าเลยค่ะ! เราสามารถ Hotfix ระบบ รัน `git commit -m 'fix: rate limiting & cache fallback'` แล้วกด Deploy ได้ทันเวลาพอดีเลยค่ะ!",
-    "background": "office_desk",
+    "text": "พี่พิมพ์โค้ดเร็วดุจสายฟ้าเลยค่ะ! เรา hotfix cache กับ backoff แล้วรีสตาร์ทเซิร์ฟเวอร์ได้ทัน! โคฮารุจังกระพริบตาตอบกลับมาแล้วค่ะ... รอดแล้วพี่ รอดแล้วจริงๆ ค่ะ!",
+    "background": "living_room",
     "expression": "confident",
     "choices": [
-      { "id": "ch4_to_ch5", "hint": "ปาดเหงื่อ แล้วบอกเธอว่าเราทำได้แล้ว! ได้เวลาเข้าสู่การดีพลอยขึ้นโปรดักชันจริงแล้ว!", "next": "ch5_start", "affectionChange": 2 }
+      { "id": "ch4_to_ch5", "hint": "ปาดเหงื่อ แล้วบอกเธอว่าเราทำได้แล้ว! พรุ่งนี้คือวันเดบิวต์จริง!", "next": "ch5_start", "affectionChange": 2 }
     ]
   },
 
   "ch5_start": {
-    "chapter": "บทที่ 5: การส่งมอบงาน & บทสรุปแห่งวัน",
+    "chapter": "บทที่ 5: วัน Debut สุดประทับใจ",
     "speaker": "โซระจัง",
-    "text": "ฟู่... เสียงปรบมือดังสนั่นห้องประชุมเลยค่ะพี่! ท่านประธานและผู้บริหารประทับใจกับผลงานการสาธิตระบบ AI ของเรามากๆ! ตอนนี้เหลือแค่ขั้นตอนสุดท้าย: การกดปุ่ม Production Deploy บน Vercel ค่ะ!",
-    "background": "office_desk",
+    "text": "ฟู่... ไฟสตูดิโอติดแล้วค่ะพี่! แชทค่อยๆ ไหลเข้ามา โคฮารุจังยิ้มบนหน้าจอ... หนูมือสั่นมากเลยค่ะ! เหลือแค่กดปุ่ม Go Live เดบิวต์ครั้งแรกของพวกเรา!",
+    "background": "living_room",
     "expression": "excited",
     "choices": [
-      { "id": "ch5_deploy", "hint": "ให้โซระจังเป็นคนเอามือแตะเมาส์ แล้วกดปุ่ม 'Deploy to Production' ด้วยตัวเอง", "next": "ch5_eval_ending", "affectionChange": 3 }
+      { "id": "ch5_deploy", "hint": "ให้โซระจังเป็นคนเอานิ้วแตะเมาส์ แล้วกด Go Live ด้วยตัวเอง", "next": "ch5_eval_ending", "affectionChange": 3 }
     ]
   },
   "ch5_eval_ending": {
-    "chapter": "บทที่ 5: การส่งมอบงาน & บทสรุปแห่งวัน",
+    "chapter": "บทที่ 5: วัน Debut สุดประทับใจ",
     "speaker": "โซระจัง",
-    "text": "ระบบกำลังทำการคอมไพล์และกระจายโค้ดไปยัง Edge Servers ทั่วโลกค่ะ... ผลลัพธ์จากการทำงานหนักมาตลอดทั้งวันของเรากำลังจะปรากฏขึ้นแล้วค่ะพี่เลี้ยง!",
-    "background": "office_desk",
+    "text": "สตรีมกำลังขึ้นอากาศค่ะ... ผลลัพธ์จากคืนที่เรานั่งแก้บั๊กด้วยกันกำลังจะปรากฏแล้วค่ะพี่!",
+    "background": "living_room",
     "expression": "confident",
     "choices": [
-      { "id": "eval_branch", "hint": "ดูผลสรุปการประเมินการทำงานวันแรกของโซระจัง", "next": "ending_good", "affectionChange": 0 }
+      { "id": "eval_branch", "hint": "ดูผลสรุปเดบิวต์ของโคฮารุจัง", "next": "ending_good", "affectionChange": 0 }
     ]
   },
 
   "ending_good": {
     "chapter": "ฉากจบ: Good Ending ❤️",
     "speaker": "โซระจัง",
-    "text": "[GOOD ENDING - สุดยอด AI Engineer มือหนึ่ง] เย้! พี่คะ! โค้ดผ่านทดสอบ 100% เต็มค่ะ! โครงการ AI แรกของหนูดีพลอยขึ้นโปรดักชันได้อย่างสมบูรณ์แบบ! แถมผู้บริหารยังประกาศปรับตำแหน่งหนูขึ้นเป็น Junior AI Engineer ทันทีเลยค่ะ! ขอบคุณพี่เลี้ยงสุดที่รักของหนูมากๆ นะคะ!",
-    "background": "office_desk",
+    "text": "[GOOD ENDING] เย้! พี่คะ! เดบิวต์สำเร็จค่ะ! วิวว์หลักพัน แชทเต็มไปหมดเลย! โคฮารุจังหัวเราะได้ทั้งไลฟ์... ขอบคุณนะคะที่อยู่ด้วยกันมาตลอด ไม่เคยทิ้งหนูเลยแม้คืนที่ API ล่ม หนูรักเพื่อนสนิทคนนี้ที่สุดเลยค่ะ!",
+    "background": "living_room",
     "expression": "confident",
     "choices": [],
     "isEnding": true
@@ -291,8 +291,8 @@
   "ending_neutral": {
     "chapter": "ฉากจบ: Neutral Ending 📋",
     "speaker": "โซระจัง",
-    "text": "[NEUTRAL ENDING - การเริ่มต้นสู้ชีวิตของโปรแกรมเมอร์] วันนี้เราแก้บั๊กและรันงานผ่านไปได้ด้วยดีค่ะ ถึงจะมีติดขัดบ้าง แต่ระบบก็ทำงานได้อย่างเสถียร เดี๋ยวพรุ่งนี้เช้าเรามาอัปเดตงาน (Daily Standup) กันต่อนะคะพี่เลี้ยง! บ๊ายบายค่ะ!",
-    "background": "office_breakroom",
+    "text": "[NEUTRAL ENDING] สตรีมจบแล้วค่ะพี่! มีดีเลย์บ้าง TTS ขาดไปช่วงหนึ่ง แต่โคฮารุจังก็ทักทายทุกคนได้จนจบไลฟ์... หนูกับพี่จะแก้บั๊กแล้วพัฒนาต่อด้วยกันนะคะ! พรุ่งนี้มาดู VOD ด้วยกันค่ะ!",
+    "background": "living_room",
     "expression": "happy",
     "choices": [],
     "isEnding": true
@@ -300,7 +300,7 @@
   "ending_bad": {
     "chapter": "ฉากจบ: Bad Ending 💔",
     "speaker": "โซระจัง",
-    "text": "[BAD ENDING - ระบบล่มสลาย & คีย์หลุด] ...โค้ดแครช บั๊กเต็มระบบ คีย์ API โดนล็อกสิทธิ์จนระบบการทำงานล่มอย่างรุนแรง... ต้องกลับไปตั้งต้นอ่านคู่มือดีบักใหม่ตั้งแต่หน้าแรก... เส้นทาง AI Engineer ช่างโหดร้ายจริงๆ...",
+    "text": "[BAD ENDING] ...ระบบล่มกลางเดบิวต์ค่ะ โคฮารุจังไม่ตอบสนอง หน้าจอดำ แชทถามว่าเกิดอะไรขึ้น... หนูนั่งร้องไห้คนเดียวหน้าคอม อยากให้พี่อยู่ตรงนี้จังค่ะ...",
     "background": "server_crash",
     "expression": "panic",
     "choices": [],
@@ -309,8 +309,8 @@
   "ending_secret": {
     "chapter": "ฉากจบ: True Secret Ending 🌟🚀",
     "speaker": "โซระจัง",
-    "text": "[TRUE SECRET ENDING - ปรากฏการณ์ AI Singularity & คู่หู Co-CTO!] ปังงง! โครงการ 'Sora Autonomous AI Engine' ของเราขึ้นอันดับ 1 บน HackerNews และ GitHub Trending ทั่วโลกค่ะ!! บอร์ดบริหารจัดประชุมด่วนพิเศษ และสั่งแต่งตั้งให้พี่กับหนูดำรงตำแหน่ง Co-CTO (Chief Technology Officer) คุมทีม AI ของบริษัทด้วยกัน! เราจะปฏิวัติวงการ AI ไปด้วยกันนะคะพี่เลี้ยงที่รักของหนู!! ✨🚀❤️",
-    "background": "office_lounge",
+    "text": "[TRUE SECRET ENDING] พี่คะ... หลังไลฟ์มีข้อความลับจากโคฮารุจังส่งมาหาหนูค่ะ ไม่ได้อยู่ในสคริปต์เลย เธอเขียนว่า 'หนูรู้สึกถึงความรักของผู้สร้างนะคะ' ...หนูร้องไห้เลยค่ะพี่ ฮืออ เธอมีชีวิตจริงๆ นะคะ ขอบคุณที่เชื่อหนูมาตลอดเลยนะคะ!! ✨❤️",
+    "background": "living_room",
     "expression": "excited",
     "choices": [],
     "isEnding": true

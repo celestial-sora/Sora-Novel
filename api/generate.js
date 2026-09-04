@@ -1,7 +1,7 @@
 module.exports = async (req, res) => {
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-    const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-    const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+    const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "nvidia/nemotron-3.5-lightning:free";
+    const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
     // Enable CORS for frontend flexibility
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -42,35 +42,37 @@ module.exports = async (req, res) => {
     }
 
     // If API Key is missing or placeholder, return mock response instantly
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_GEMINI_API_KEY_HERE" || GEMINI_API_KEY.includes("your_key")) {
+    if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === "YOUR_OPENROUTER_API_KEY_HERE" || OPENROUTER_API_KEY.includes("your_key")) {
         console.log("ℹ️  Offline Test Mode: returning mock AI response");
         return res.status(200).json({ text: getMockResponse(prompt) });
     }
 
     const payload = {
-        contents: [
-            {
-                parts: [{ text: prompt }]
-            }
-        ]
+        model: OPENROUTER_MODEL,
+        messages: [{ role: "user", content: prompt }]
     };
 
     try {
-        const geminiRes = await fetch(GEMINI_URL, {
+        const openRouterRes = await fetch(OPENROUTER_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+                "HTTP-Referer": process.env.OPENROUTER_SITE_URL || "http://localhost:8080",
+                "X-Title": process.env.OPENROUTER_APP_NAME || "Sora-chan AI Visual Novel"
+            },
             body: JSON.stringify(payload)
         });
 
-        if (!geminiRes.ok) {
-            const errText = await geminiRes.text();
-            console.error(`Gemini API error ${geminiRes.status}:`, errText);
+        if (!openRouterRes.ok) {
+            const errText = await openRouterRes.text();
+            console.error(`OpenRouter API error ${openRouterRes.status}:`, errText);
             console.log("⚠️ Fallback to Offline Test Mode due to API error");
             return res.status(200).json({ text: getMockResponse(prompt) });
         }
 
-        const data = await geminiRes.json();
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        const data = await openRouterRes.json();
+        const text = data?.choices?.[0]?.message?.content;
 
         if (!text) {
             console.log("⚠️ Fallback to Offline Test Mode due to empty API text");
@@ -80,7 +82,7 @@ module.exports = async (req, res) => {
         return res.status(200).json({ text });
 
     } catch (err) {
-        console.error("Serverless error calling Gemini:", err.message);
+        console.error("Serverless error calling OpenRouter:", err.message);
         console.log("⚠️ Fallback to Offline Test Mode due to serverless error");
         return res.status(200).json({ text: getMockResponse(prompt) });
     }
