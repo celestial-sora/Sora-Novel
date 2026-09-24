@@ -193,8 +193,8 @@ class Live2DManager {
 
     fitModel() {
         if (!this.model || !this.app) return;
-        const stageWidth = this.app.renderer.width;
-        const stageHeight = this.app.renderer.height;
+        const stageWidth = this.app.renderer.screen.width;
+        const stageHeight = this.app.renderer.screen.height;
 
         this.model.x = stageWidth / 2;
         this.model.y = stageHeight + 35;
@@ -577,8 +577,8 @@ class Live2DManager {
 
     fitMenuModel() {
         if (!this.menuModel || !this.menuApp) return;
-        const stageW = this.menuApp.renderer.width;
-        const stageH = this.menuApp.renderer.height;
+        const stageW = this.menuApp.renderer.screen.width;
+        const stageH = this.menuApp.renderer.screen.height;
 
         this.menuModel.x = stageW / 2;
         this.menuModel.y = stageH + 25;
@@ -748,8 +748,8 @@ class Live2DManager {
 
     fitSandboxModel() {
         if (!this.sandboxModel || !this.sandboxApp) return;
-        const stageW = this.sandboxApp.renderer.width;
-        const stageH = this.sandboxApp.renderer.height;
+        const stageW = this.sandboxApp.renderer.screen.width;
+        const stageH = this.sandboxApp.renderer.screen.height;
         this.sandboxModel.x = stageW / 2;
         this.sandboxModel.y = stageH + 25;
         const targetH = stageH * 0.90;
